@@ -9,6 +9,6 @@ public class GameBoard extends World {
      * Should only by called once in the game.
      */
     public GameBoard() {
-        super(600, 400, 1);
+        super(800, 800, 1);
     }
 }
