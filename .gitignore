@@ -1,5 +1,4 @@
+.idea/
+
 *.class
 *.ctxt
-
-.idea/workspace.xml
-.idea/tasks.xml
