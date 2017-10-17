@@ -7,7 +7,7 @@ public class Map {
     public Map() {
     }
 
-    public Boolean isFigureInBase(Figure figure) {
+    public boolean isFigureInBase(Figure figure) {
         throw new NotImplementedException();
     }
 
