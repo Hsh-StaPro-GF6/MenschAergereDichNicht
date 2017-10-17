@@ -4,7 +4,6 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * Created by emilmilow on 17.10.17.
  */
 public class GameManager {
-
     public GameManager() {
 
     }
