@@ -1,7 +1,7 @@
 /**
  * Stellt eine Entscheidung, die der Spieler für seinen Zug treffen muss, dar.
  */
-public class Descision {
+public class Decision {
     private final Player player;
     private final int fields;
     private final boolean forcedImpact;
@@ -9,7 +9,7 @@ public class Descision {
 
     private Figure selectedFigure;
 
-    public Descision(Player player, int fields, boolean forcedImpact, Figure[] movableFigures) {
+    public Decision(Player player, int fields, boolean forcedImpact, Figure[] movableFigures) {
         this.player = player;
         this.fields = fields;
         this.forcedImpact = forcedImpact;
