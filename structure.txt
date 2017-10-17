@@ -53,15 +53,3 @@ bool exertDescision(Decision decision)  // Entscheidung ausführen. Dannach näc
 Terminologie:
 position: Absolute Position (z.B. in einem Felder-Array)
 fields: Relative Anazhl Felder, die der Spieler forwärts bewegt wird
-
-
-
-
-
-
-
-
-
-
-
-execs?
