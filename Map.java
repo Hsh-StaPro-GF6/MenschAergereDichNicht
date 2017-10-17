@@ -30,4 +30,7 @@ public class Map {
     public void moveFigureForward(Figure figure, int fields) {
         throw new NotImplementedException();
     }
+
+
 }
+
