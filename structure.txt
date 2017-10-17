@@ -1,0 +1,67 @@
+Wenn irgeindein unvorhersehbarer Fehler auftritt, der bei korrekter Programmierung nicht hätte auftreten dürfen => Exception werfen!
+
+BACKEND:
+
+Map()		1x, enthält Array mit Feldern und Homes
+bool isFigureInBase(Figure figure)
+int isFigureInStreet(Figure figure) // -1: Nicht auf der Straße; Sonst Position
+int isFigureInHome(Figure figure) //  -1: Nicht im Home; 0-3: Position im Home (0 ist ganz außen, am Anfang)
+Figure getFigureAtPosition(int position) // Figur, oder NULL, falls Feld leer
+void moveFigureForward(Figure figure, int fields)  // Figur forwärts bewegen, Felder ggf. rauskicken (nur in der Straße), Wenn Aktion ungültig Exception werfen
+
+
+
+Figure(Map map, Player player)		4x pro Player
+Player getPlayer()
+bool isInBase()
+int isInStreet()	// -1: Nicht auf der Straße; Sonst Position
+int isInHome()			//  -1: Nicht im Home; 0-3: Position im Home (0 ist ganz außen, am Anfang)
+bool canKickFigure(int fields)
+bool canMoveForward(int fields)  // Im Vorraus analysieren, ob Vorwärtsbewegung möglich; Im Home "stauen sich die Figuren auf", da gucken ob wer vor einem steht.
+
+
+
+
+Player(Map map, int playerId)		1x pro Player, Instanziert die Figuren und übergibt eigene Instanz
+int getId()
+int getColor()	// Wird anhand der Id bestimmt
+Figure[] getFigures()
+bool isFinished()
+Decision rollDice()  // Würfeln, prüfen ob Schlagzwang besteht (wenn canKickFigure() für irgendeine true), dann für Jede Figur canMoveForward() abfragen, Ergebnis zurückgeben
+bool moveFigureForward(Decision decision) // Ergebnis anwenden.
+bool areAllFiguresInBase()
+
+
+Decision(Player playerint fields, bool forcedImpact, Figure[] movableFigures)
+Player getPlayer()
+int getFields()
+bool getForcedImpact()
+Figure[] getMovableFigures()
+void setSelectedFigure(Figure figure)
+Figure getSelectedFigure()
+
+
+
+GameManager() // Instanziert andere Backend-Klassen
+Player[] getPlayers();
+Player getCurrentPlayer()
+Decision rollDice()  // Würfelt für den aktuellen Player
+bool exertDescision(Decision decision)  // Entscheidung ausführen. Dannach nächsten nicht-fertigen Spieler wählen, der an der Reihe ist. Gibt zurück, ob der Spieler durch diese Aktion fertig wurde => Gewonnen.
+
+
+
+Terminologie:
+position: Absolute Position (z.B. in einem Felder-Array)
+fields: Relative Anazhl Felder, die der Spieler forwärts bewegt wird
+
+
+
+
+
+
+
+
+
+
+
+execs?
