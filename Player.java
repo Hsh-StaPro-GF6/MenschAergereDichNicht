@@ -4,8 +4,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * Created by emilmilow on 17.10.17.
  */
 public class Player {
-    private Map map;
-    private int playerId;
+    private final Map map;
+    private final int playerId;
 
     public Player(Map map, int playerId) {
         this.map = map;
