@@ -6,9 +6,11 @@ Map()		1x, enthält Array mit Feldern und Homes
 bool isFigureInBase(Figure figure)
 int isFigureInStreet(Figure figure) // -1: Nicht auf der Straße; Sonst Position
 int isFigureInHome(Figure figure) //  -1: Nicht im Home; 0-3: Position im Home (0 ist ganz außen, am Anfang)
-Figure getFigureAtPosition(int position) // Figur, oder NULL, falls Feld leer
-void moveFigureForward(Figure figure, int fields)  // Figur forwärts bewegen, Felder ggf. rauskicken (nur in der Straße), Wenn Aktion ungültig Exception werfen
-
+Figure getFigureAtStreetPosition(int position) // Figur, oder NULL, falls Feld leer
+Figure getFigureAtHomePosition(int position) // Figur, oder NULL, falls Feld leer
+void moveFigureToBase(Figure figure)
+void moveFigureToStreetPosition(Figure figure, int position)
+void moveFigureToHomePosition(Figure figure, int position)
 
 
 Figure(Map map, Player player)		4x pro Player
@@ -17,8 +19,9 @@ bool isInBase()
 int isInStreet()	// -1: Nicht auf der Straße; Sonst Position
 int isInHome()			//  -1: Nicht im Home; 0-3: Position im Home (0 ist ganz außen, am Anfang)
 bool canKickFigure(int fields)
+bool canLeaveBase(int fields)
 bool canMoveForward(int fields)  // Im Vorraus analysieren, ob Vorwärtsbewegung möglich; Im Home "stauen sich die Figuren auf", da gucken ob wer vor einem steht.
-
+void processMove(int fields)  // Bei einer 6 ggf. die Base verlassen, ggf. Figur forwärts bewegen, Figuren ggf. rauskicken (nur in der Straße), Wenn Aktion ungültig Exception werfen und möglicherweise canMoveForward fixen.
 
 
 
@@ -28,8 +31,7 @@ int getColor()	// Wird anhand der Id bestimmt
 Figure[] getFigures()
 bool isFinished()
 Decision rollDice()  // Würfeln, prüfen ob Schlagzwang besteht (wenn canKickFigure() für irgendeine true), dann für Jede Figur canMoveForward() abfragen, Ergebnis zurückgeben
-bool moveFigureForward(Decision decision) // Ergebnis anwenden.
-bool areAllFiguresInBase()
+bool processMove(Decision decision) // Ergebnis anwenden.
 
 
 Decision(Player playerint fields, bool forcedImpact, Figure[] movableFigures)
