@@ -68,9 +68,7 @@ public class Figure {
         int pos = this.isInStreet();
         if (pos == -1)
             return false;
-        if (map.getFigureAtStreetPosition(pos + prepare(fields)) != null)
-            return true;
-        return false;
+        return (map.getFigureAtStreetPosition(pos + prepare(fields)) != null);
     }
 
     /**
@@ -93,7 +91,40 @@ public class Figure {
     public boolean canMoveForward(int fields) {
 
         int pos = this.isInStreet();
-        return !(pos == -1 /*|| (pos + fields) <= (this.getPlayer().getEnd() + 4)*/);
+        int stepsToHome;
+        int pend = this.getPlayer().getEnd();
+        int inHomePos;
+
+        // In Base?
+        if (this.isInBase())
+            return false;
+
+        // Auf der Straße?
+        if(isInStreet() != -1) {
+            stepsToHome = (pend - pos) < 0 ? pend+(40-pos) : pend-pos;
+
+                if (stepsToHome + 4 < fields)
+                    return false;
+                inHomePos = fields - stepsToHome;
+                for (int i = 0; i < inHomePos; i++) {
+                    if (map.getFigureAtHomePosition(this.getPlayer(), i) != null)
+                        return false;
+                }
+
+            return true;
+        }
+
+        //Im Home?
+        if (isInHome() != -1) {
+            int remaining = 4 - (isInHome() + 1);
+            if (remaining < fields)
+                return false;
+            for (int i = isInHome(); i <= isInHome() + fields; i++) {
+                if (map.getFigureAtHomePosition(this.getPlayer(), i) != null)
+                    return false;
+            }
+        }
+        return false;
     }
 
     /**
@@ -105,54 +136,61 @@ public class Figure {
         System.out.println("Figure.processMove");
         System.out.println("fields = [" + fields + "]");
 
-        if (!(this.canMoveForward(fields)) && (this.isInBase() && !this.canLeaveBase(fields)))
-            return;
+        if (this.canMoveForward(fields)) {
 
-        int Waypoint = prepare(fields);
+            int Waypoint = prepare(fields);
+            System.out.println("Waypoint = " + Waypoint);
 
-        System.out.println("ALALALALALALALALALLALA2");
-        //Kickt eine Figur vom Spielfeld falls möglich
-        if (canKickFigure(fields) && !this.isInBase())
-            map.moveFigureToBase(map.getFigureAtStreetPosition(this.isInStreet() + Waypoint));
-        if (canKickFigure(this.getPlayer().getStart()) && this.isInBase())
-            map.moveFigureToBase(map.getFigureAtStreetPosition(this.getPlayer().getStart()));
+            System.out.println("ALALALALALALALALALLALA2");
 
-        System.out.println("ALALALALALALALALALLALA3");
 
-        //Verlässt die Base
-        if (canLeaveBase(fields)) {
+
+            System.out.println("ALALALALALALALALALLALA3");
+
+            //Im home vorwärts bewegen
+            if (isInHome() != -1) {
+                map.moveFigureToHomePosition(this, isInHome() + fields);
+                System.out.println("ALALALALALALALALALLALA6");
+                return;
+            }
+
+            int stepsToHome = (this.getPlayer().getEnd() - this.isInStreet()) < 0 ? this.getPlayer().getEnd()+(40-this.isInStreet()) : this.getPlayer().getEnd()-this.isInStreet();
+            //Geht ins Home
+            if (this.isInStreet() + Waypoint > this.getPlayer().getEnd() && stepsToHome < fields) {
+                System.out.println("ALALALALALALALALALLALA5");
+                map.moveFigureToHomePosition(this, ((this.isInStreet() + Waypoint) - this.getPlayer().getEnd() - 1));
+                return;
+            }
+
+            //Kickt eine Figur vom Spielfeld falls möglich
+            if (canKickFigure(fields))
+                map.moveFigureToBase(map.getFigureAtStreetPosition(this.isInStreet() + Waypoint));
+
+            System.out.println("ALALALALALALALALALLALA7");
+            //Normales bewegen ohne Zwischenfall
+            map.moveFigureToStreetPosition(this, this.isInStreet() + Waypoint);
+
+        }
+
+        if (this.isInBase() && this.canLeaveBase(fields)) {
+
+            if (canKickFigure(this.getPlayer().getStart()))
+                map.moveFigureToBase(map.getFigureAtStreetPosition(this.getPlayer().getStart()));
+
             map.moveFigureToStreetPosition(this, this.getPlayer().getStart());
             System.out.println("ALALALALALALALALALLALA4");
             return;
         }
-
-        //Geht ins Home
-        //if ((this.isInStreet() + fields) > this.getPlayer().getEnd()) {
-        if (checkEnd(fields, this.getPlayer().getEnd())) {
-            map.moveFigureToHomePosition(this, (this.getPlayer().getEnd() - (this.isInStreet() + Waypoint)));
-            System.out.println("ALALALALALALALALALLALA5");
-            return;
-        }
-
-        //ToDo Check ob Figuren davor
-        if (isInHome() != -1) {
-            map.moveFigureToHomePosition(this, isInHome() + fields);
-            System.out.println("ALALALALALALALALALLALA6");
-            return;
-        }
-        System.out.println("ALALALALALALALALALLALA7");
-        //Normales bewegen ohne Zwischenfall
-        map.moveFigureToStreetPosition(this, this.isInStreet() + Waypoint);
-    }
-
-    public boolean checkEnd(int fields, int end) {
-        return (this.isInStreet() <= end && (this.isInStreet() + fields) > end);
     }
 
     public int prepare(int fields) {
         int ret = fields;
+        if (fields > 6) {
+            System.out.println("FUUUUUUUUUU HUSO ERROR!");
+            return 0;
+        }
         if (this.isInStreet() + fields > 39) {
-            ret = (this.isInStreet() + fields - 40) - this.isInStreet();
+            ret = fields - 40;
             System.out.println("Achtung Wechsel von: " + this.isInStreet() + " zu: " + ret + " bei gewürfelt: " + fields + "Also neues feld laut berechnung: " + (this.isInStreet() + ret));
         }
         return ret;
