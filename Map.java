@@ -6,6 +6,21 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * Weiterführende Operationen und Berechnungen sollten in anderen Klassen erfolgen.
  */
 public class Map {
+    private final Figure[] base0 = new Figure[4];
+    private final Figure[] base1 = new Figure[4];
+    private final Figure[] base2 = new Figure[4];
+    private final Figure[] base3 = new Figure[4];
+
+    private final Figure[] home0 = new Figure[4];
+    private final Figure[] home1 = new Figure[4];
+    private final Figure[] home2 = new Figure[4];
+    private final Figure[] home3 = new Figure[4];
+
+    private final Figure[] street = new Figure[40];
+
+    private final Figure[][] bases = {base0, base1, base2, base3};
+    private final Figure[][] homes = {home0, home1, home2, home3};
+
     /**
      * Erstellt eine neue Map-Instanz.
      */
@@ -19,7 +34,14 @@ public class Map {
      * @return True, falls sich die Figur in der Base befindet, sonst False.
      */
     public boolean isFigureInBase(Figure figure) {
-        throw new NotImplementedException();
+        int playerId = figure.getPlayer().getId();
+        Figure[] base = bases[playerId];
+
+        for (int i = 0; i < base.length; i++)
+            if (base[i] == figure)
+                return true;
+
+        return false;
     }
 
     /**
@@ -29,7 +51,11 @@ public class Map {
      * @return Die Position der Figur auf der Straße. Wenn sich die Figur nicht auf der Straße befindet: -1.
      */
     public int isFigureInStreet(Figure figure) {
-        throw new NotImplementedException();
+        for (int i = 0; i < street.length; i++)
+            if (street[i] == figure)
+                return i;
+
+        return -1;
     }
 
     /**
@@ -39,7 +65,14 @@ public class Map {
      * @return Die Position der Figur im Home, wobei 0 ganz am Anfang und 3 ganz am Ende ist. Wenn sich die Figur nicht im Home befindet: -1.
      */
     public int isFigureInHome(Figure figure) {
-        throw new NotImplementedException();
+        int playerId = figure.getPlayer().getId();
+        Figure[] home = homes[playerId];
+
+        for (int i = 0; i < home.length; i++)
+            if (home[i] == figure)
+                return i;
+
+        return -1;
     }
 
     /**
