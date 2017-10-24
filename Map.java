@@ -124,7 +124,9 @@ public class Map {
                 break;
             }
         }
-        assert (moved);
+
+        if (!moved)
+            System.out.println("FEHLER: WTF!? Ist die Base voll!?");
     }
 
     /**
@@ -135,6 +137,12 @@ public class Map {
      */
     public void moveFigureToStreetPosition(Figure figure, int position) {
         int playerId = figure.getPlayer().getId();
+
+        // An der neuen Position sollte noch keine Figur stehen
+        if (street[position] != null) {
+            System.out.println("FEHLER: An dieser Position auf der Straße ist schon eine Figur vorhanden!");
+            return;
+        }
 
         // Figur aus der Base löschen
         if (isFigureInBase(figure))
@@ -147,9 +155,6 @@ public class Map {
         // Figur von der Straße löschen
         if (isFigureInStreet(figure) >= 0)
             removeFigureFromStreet(playerId, figure);
-
-        // An der neuen Position sollte noch keine Figur stehen
-        assert (street[position] == null);
 
         // Figur setzen
         street[position] = figure;
@@ -164,6 +169,12 @@ public class Map {
     public void moveFigureToHomePosition(Figure figure, int position) {
         int playerId = figure.getPlayer().getId();
 
+        // An der neuen Position sollte noch keine Figur stehen
+        if (homes[playerId][position] != null) {
+            System.out.println("FEHLER: An dieser Position im Home eine Figur vorhanden!");
+            return;
+        }
+
         // Figur aus der Base löschen
         if (isFigureInBase(figure))
             removeFigureFromBase(playerId, figure);
@@ -175,9 +186,6 @@ public class Map {
         // Figur von der Straße löschen
         if (isFigureInStreet(figure) >= 0)
             removeFigureFromStreet(playerId, figure);
-
-        // An der neuen Position sollte noch keine Figur stehen
-        assert (homes[playerId][position] == null);
 
         // Figur setzen
         homes[playerId][position] = figure;
