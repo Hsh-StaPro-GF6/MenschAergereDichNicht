@@ -107,6 +107,8 @@ public class Player {
      * @return Ein neues Entscheidungs-Objekt.
      */
     public Decision rollDice() {
+        System.out.println("Player.rollDice");
+
         int fields = Greenfoot.getRandomNumber(6) + 1;
 
         for (Figure figure : figures) {

@@ -32,6 +32,7 @@ public class Map {
      * @return True, falls sich die Figur in der Base befindet, sonst False.
      */
     public boolean isFigureInBase(Figure figure) {
+
         int playerId = figure.getPlayer().getId();
         Figure[] base = bases[playerId];
 
@@ -49,6 +50,7 @@ public class Map {
      * @return Die Position der Figur auf der Straße. Wenn sich die Figur nicht auf der Straße befindet: -1.
      */
     public int isFigureInStreet(Figure figure) {
+
         for (int i = 0; i < street.length; i++)
             if (street[i] == figure)
                 return i;
@@ -63,6 +65,7 @@ public class Map {
      * @return Die Position der Figur im Home, wobei 0 ganz am Anfang und 3 ganz am Ende ist. Wenn sich die Figur nicht im Home befindet: -1.
      */
     public int isFigureInHome(Figure figure) {
+
         int playerId = figure.getPlayer().getId();
         Figure[] home = homes[playerId];
 
@@ -80,6 +83,7 @@ public class Map {
      * @return Falls sich an dieser Position eine Figur befindet, wird dessen Figure-Instanz zurückgegeben. Sonst Null.
      */
     public Figure getFigureAtStreetPosition(int position) {
+
         return street[position];
     }
 
@@ -91,6 +95,7 @@ public class Map {
      * @return Falls sich an dieser Position eine Figur befindet, wird dessen Figure-Instanz zurückgegeben. Sonst Null.
      */
     public Figure getFigureAtHomePosition(Player player, int position) {
+
         int playerId = player.getId();
         return homes[playerId][position];
     }
@@ -101,6 +106,9 @@ public class Map {
      * @param figure Die Figur, die verschoben werden soll.
      */
     public void moveFigureToBase(Figure figure) {
+        System.out.println("Map.moveFigureToBase");
+        System.out.println("figure = [" + figure + "]");
+
         int playerId = figure.getPlayer().getId();
 
         // Figur bereits in der Base?
@@ -136,6 +144,9 @@ public class Map {
      * @param position Die Position auf der Straße.
      */
     public void moveFigureToStreetPosition(Figure figure, int position) {
+        System.out.println("Map.moveFigureToStreetPosition");
+        System.out.println("figure = [" + figure + "], position = [" + position + "]");
+
         int playerId = figure.getPlayer().getId();
 
         // An der neuen Position sollte noch keine Figur stehen
@@ -167,6 +178,8 @@ public class Map {
      * @param position Die Position im Home.
      */
     public void moveFigureToHomePosition(Figure figure, int position) {
+        System.out.println("Map.moveFigureToHomePosition");
+        System.out.println("figure = [" + figure + "], position = [" + position + "]");
         int playerId = figure.getPlayer().getId();
 
         // An der neuen Position sollte noch keine Figur stehen
@@ -192,6 +205,9 @@ public class Map {
     }
 
     private void removeFigureFromBase(int playerId, Figure figure) {
+        System.out.println("Map.removeFigureFromBase");
+        System.out.println("playerId = [" + playerId + "], figure = [" + figure + "]");
+
         for (int i = 0; i < bases[playerId].length; i++) {
             if (bases[playerId][i] == figure) {
                 bases[playerId][i] = null;
@@ -201,6 +217,9 @@ public class Map {
     }
 
     private void removeFigureFromHome(int playerId, Figure figure) {
+        System.out.println("Map.removeFigureFromHome");
+        System.out.println("playerId = [" + playerId + "], figure = [" + figure + "]");
+
         for (int i = 0; i < homes[playerId].length; i++) {
             if (homes[playerId][i] == figure) {
                 homes[playerId][i] = null;
@@ -210,6 +229,9 @@ public class Map {
     }
 
     private void removeFigureFromStreet(int playerId, Figure figure) {
+        System.out.println("Map.removeFigureFromStreet");
+        System.out.println("playerId = [" + playerId + "], figure = [" + figure + "]");
+
         for (int i = 0; i < street.length; i++) {
             if (street[i] == figure) {
                 street[i] = null;

@@ -52,6 +52,8 @@ public class Figure {
      * @return Die Position der Figur im Home, wobei 0 ganz am Anfang und 3 ganz am Ende ist. Wenn sich die Figur nicht im Home befindet: -1.
      */
     public int isInHome() {
+        System.out.println("Figure.isInHome");
+
         return map.isFigureInHome(this);
     }
 
@@ -62,6 +64,7 @@ public class Figure {
      * @return True, falls eine Figur gekickt werden würde, sonst False.
      */
     public boolean canKickFigure(int fields) {
+
         int pos = this.isInStreet();
         if (pos == -1)
             return false;
@@ -77,6 +80,7 @@ public class Figure {
      * @return True, falls die Figur die Base verlassen könnte, sonst False.
      */
     public boolean canLeaveBase(int fields) {
+
         return (fields == 6 && this.isInBase());
     }
 
@@ -87,6 +91,7 @@ public class Figure {
      * @return True, falls die Figur vorwärts-bewegt werden könnte, sonst False.
      */
     public boolean canMoveForward(int fields) {
+
         int pos = this.isInStreet();
         return !(pos == -1 || (pos + fields) <= (this.getPlayer().getEnd() + 4));
     }
@@ -97,6 +102,9 @@ public class Figure {
      * @param fields Die gewürfelte Zahl für diesen Spielzug.
      */
     public void processMove(int fields) {
+        System.out.println("Figure.processMove");
+        System.out.println("fields = [" + fields + "]");
+
         System.out.println("ALALALALALALALALALLALA1" + this.canMoveForward(fields) + " - " + this.isInBase() + " - " + !this.canLeaveBase(fields));
 
 
@@ -108,8 +116,10 @@ public class Figure {
 
         System.out.println("ALALALALALALALALALLALA2");
         //Kickt eine Figur vom Spielfeld falls möglich
-        if (canKickFigure(fields))
+        if (canKickFigure(fields) && !this.isInBase())
             map.moveFigureToBase(map.getFigureAtStreetPosition(this.isInStreet() + prepare(fields)));
+        if (canKickFigure(this.getPlayer().getStart()) && this.isInBase())
+            map.moveFigureToBase(map.getFigureAtStreetPosition(this.getPlayer().getStart()));
 
         System.out.println("ALALALALALALALALALLALA3");
 

@@ -20,6 +20,23 @@ public class GameBoard extends World {
     public void act() {
         if (Greenfoot.isKeyDown("0")) {
 
+            System.out.println("");
+            System.out.println("------------------------");
+            System.out.println("Aktueller Spieler: " + GM.getCurrentPlayer());
+
+
+            decision = GM.rollDice();
+
+            System.out.println(decision.getMovableFigures().length + " Gewürfelt: " + decision.getFields());
+
+            for (int i = 0; i < decision.getMovableFigures().length; i++) {
+                System.out.print(" " + decision.getMovableFigures()[i] + " ");
+            }
+            if (decision.getMovableFigures().length > 0) {
+                decision.setSelectedFigure(decision.getMovableFigures()[0]);
+                GM.exertDecision(decision);
+            }
+
             System.out.println();
 
             for (int p = 0; p < 4; p++) {
@@ -49,21 +66,6 @@ public class GameBoard extends World {
                     System.out.print(figure == null ? " - " : " " + figure.getPlayer().getId() + " ");
                 }
                 System.out.print("|");
-            }
-
-            System.out.println();
-
-
-            decision = GM.rollDice();
-
-            System.out.println(decision.getMovableFigures().length + " Gewürfelt: " + decision.getFields());
-
-            for (int i = 0; i < decision.getMovableFigures().length; i++) {
-                System.out.print(" " + decision.getMovableFigures()[i] + " ");
-            }
-            if (decision.getMovableFigures().length > 0) {
-                decision.setSelectedFigure(decision.getMovableFigures()[0]);
-                GM.exertDecision(decision);
             }
 
             try {
