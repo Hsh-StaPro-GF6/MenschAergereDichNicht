@@ -143,7 +143,7 @@ public class Player {
     public boolean processMove(Decision decision) {
         if(decision.getSelectedFigure() == null){
             System.out.println("FEHLER: Es wurde keine Figur ausgewählt!");
-            return;
+            return false;
         }
 
         int fields = decision.getFields();

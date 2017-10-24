@@ -105,19 +105,15 @@ public class Figure {
         System.out.println("Figure.processMove");
         System.out.println("fields = [" + fields + "]");
 
-        System.out.println("ALALALALALALALALALLALA1" + this.canMoveForward(fields) + " - " + this.isInBase() + " - " + !this.canLeaveBase(fields));
-
-
-
-
         if (!(this.canMoveForward(fields)) && (this.isInBase() && !this.canLeaveBase(fields)))
             return;
 
+        int Waypoint = prepare(fields);
 
         System.out.println("ALALALALALALALALALLALA2");
         //Kickt eine Figur vom Spielfeld falls möglich
         if (canKickFigure(fields) && !this.isInBase())
-            map.moveFigureToBase(map.getFigureAtStreetPosition(this.isInStreet() + prepare(fields)));
+            map.moveFigureToBase(map.getFigureAtStreetPosition(this.isInStreet() + Waypoint));
         if (canKickFigure(this.getPlayer().getStart()) && this.isInBase())
             map.moveFigureToBase(map.getFigureAtStreetPosition(this.getPlayer().getStart()));
 
@@ -133,20 +129,20 @@ public class Figure {
         //Geht ins Home
         //if ((this.isInStreet() + fields) > this.getPlayer().getEnd()) {
         if (checkEnd(fields, this.getPlayer().getEnd())) {
-            map.moveFigureToHomePosition(this, (this.getPlayer().getEnd() - (this.isInStreet() + prepare(fields))));
+            map.moveFigureToHomePosition(this, (this.getPlayer().getEnd() - (this.isInStreet() + Waypoint)));
             System.out.println("ALALALALALALALALALLALA5");
             return;
         }
 
         //ToDo Check ob Figuren davor
         if (isInHome() != -1) {
-            map.moveFigureToHomePosition(this, isInHome() + prepare(fields));
+            map.moveFigureToHomePosition(this, isInHome() + fields);
             System.out.println("ALALALALALALALALALLALA6");
             return;
         }
         System.out.println("ALALALALALALALALALLALA7");
         //Normales bewegen ohne Zwischenfall
-        map.moveFigureToStreetPosition(this, this.isInStreet() + prepare(fields));
+        map.moveFigureToStreetPosition(this, this.isInStreet() + Waypoint);
     }
 
     public boolean checkEnd(int fields, int end) {
@@ -155,8 +151,10 @@ public class Figure {
 
     public int prepare(int fields) {
         int ret = fields;
-        if (this.isInStreet() + fields > 39)
+        if (this.isInStreet() + fields > 39) {
             ret = (this.isInStreet() + fields - 40) - this.isInStreet();
+            System.out.println("Achtung Wechsel von: " + this.isInStreet() + " zu: " + ret + " bei gewürfelt: " + fields + "Also neues feld laut berechnung: " + (this.isInStreet() + ret));
+        }
         return ret;
     }
 }

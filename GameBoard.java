@@ -22,7 +22,7 @@ public class GameBoard extends World {
 
             System.out.println("");
             System.out.println("------------------------");
-            System.out.println("Aktueller Spieler: " + GM.getCurrentPlayer());
+            System.out.println("Aktueller Spieler: " + GM.getCurrentPlayer().getId());
 
 
             decision = GM.rollDice();
@@ -32,10 +32,10 @@ public class GameBoard extends World {
             for (int i = 0; i < decision.getMovableFigures().length; i++) {
                 System.out.print(" " + decision.getMovableFigures()[i] + " ");
             }
-            if (decision.getMovableFigures().length > 0) {
+            if (decision.getMovableFigures().length > 0)
                 decision.setSelectedFigure(decision.getMovableFigures()[0]);
-                GM.exertDecision(decision);
-            }
+
+            GM.exertDecision(decision);
 
             System.out.println();
 
