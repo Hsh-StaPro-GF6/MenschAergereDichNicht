@@ -183,6 +183,8 @@ public class Figure {
         }
     }
 
+    //ToDo: Bekannte fehler: 0 geht nicht in Home; Figuren in Home werden nicht weiter bewegt
+
     public int prepare(int fields) {
         int ret = fields;
         if (fields > 6) {
