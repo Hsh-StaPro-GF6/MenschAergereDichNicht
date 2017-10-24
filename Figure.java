@@ -93,7 +93,7 @@ public class Figure {
     public boolean canMoveForward(int fields) {
 
         int pos = this.isInStreet();
-        return !(pos == -1 || (pos + fields) <= (this.getPlayer().getEnd() + 4));
+        return !(pos == -1 /*|| (pos + fields) <= (this.getPlayer().getEnd() + 4)*/);
     }
 
     /**

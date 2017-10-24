@@ -113,25 +113,25 @@ public class Player {
 
         for (Figure figure : figures) {
             if (figure.canKickFigure(fields)) {
-                Figure[] moveable = new Figure[1];
-                moveable[0] = figure;
-                return new Decision(this, fields, true, moveable);
+                Figure[] movable = new Figure[1];
+                movable[0] = figure;
+                return new Decision(this, fields, true, movable);
             }
         }
 
-        List<Figure> moveableFiguresList = new ArrayList<Figure>(figures.length);
+        List<Figure> movableFiguresList = new ArrayList<Figure>(figures.length);
         for (Figure figure : figures) {
             if (figure.canMoveForward(fields) || figure.canLeaveBase(fields)) {
-                moveableFiguresList.add(figure);
+                movableFiguresList.add(figure);
             }
         }
 
-        Figure[] moveableFigures = new Figure[moveableFiguresList.size()];
-        for (int i = 0; i < moveableFiguresList.size(); i++) {
-            moveableFigures[i] = moveableFiguresList.get(i);
+        Figure[] movableFigures = new Figure[movableFiguresList.size()];
+        for (int i = 0; i < movableFiguresList.size(); i++) {
+            movableFigures[i] = movableFiguresList.get(i);
         }
 
-        return new Decision(this, fields, false, moveableFigures);
+        return new Decision(this, fields, false, movableFigures);
     }
 
     /**
