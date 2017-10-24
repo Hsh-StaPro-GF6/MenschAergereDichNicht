@@ -119,7 +119,7 @@ public class Player {
 
         List<Figure> moveableFiguresList = new ArrayList<Figure>(figures.length);
         for (Figure figure : figures) {
-            if (figure.canMoveForward(fields)) {
+            if (figure.canMoveForward(fields) || figure.canLeaveBase(fields)) {
                 moveableFiguresList.add(figure);
             }
         }
