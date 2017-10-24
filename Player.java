@@ -96,7 +96,7 @@ public class Player {
     public boolean isFinished() {
         Figure[] figures = this.getFigures();
         for (Figure figure : figures) {
-            if (!this.map.isFigureInBase(figure)) {
+            if (!this.map.isFigureInHome(figure)) {
                 return false;
             }
         }
