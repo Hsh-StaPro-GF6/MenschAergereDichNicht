@@ -139,7 +139,10 @@ public class Player {
      * @return True, falls der Spieler durch diesen Spielzug gewonnen hat, sonst False.
      */
     public boolean processMove(Decision decision) {
-        assert (decision.getSelectedFigure() != null);
+        if(decision.getSelectedFigure() == null){
+            System.out.println("FEHLER: Es wurde keine Figur ausgewählt!");
+            return;
+        }
 
         int fields = decision.getFields();
         Figure selectedFigure = decision.getSelectedFigure();
