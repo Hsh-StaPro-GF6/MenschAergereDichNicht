@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import greenfoot.*;
 
-import greenfoot.Color;
 /**
  * Stellt einen am spiel teilnehmenden Spieler dar.
  */
@@ -93,7 +93,7 @@ public class Player {
     public boolean isFinished() {
         Figure[] figures = this.getFigures();
         for (Figure figure : figures) {
-            if (!this.map.isFigureInHome(figure)) {
+            if (this.map.isFigureInHome(figure) == -1) {
                 return false;
             }
         }
@@ -107,7 +107,7 @@ public class Player {
      * @return Ein neues Entscheidungs-Objekt.
      */
     public Decision rollDice() {
-        int fields = Greenfoot.getRandomNumber(6);
+        int fields = Greenfoot.getRandomNumber(6) + 1;
 
         for (Figure figure : figures) {
             if (figure.canKickFigure(fields)) {
