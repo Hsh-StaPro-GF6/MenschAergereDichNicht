@@ -82,17 +82,19 @@ public class Map {
      * @return Falls sich an dieser Position eine Figur befindet, wird dessen Figure-Instanz zurückgegeben. Sonst Null.
      */
     public Figure getFigureAtStreetPosition(int position) {
-        throw new NotImplementedException();
+        return street[position];
     }
 
     /**
      * Fragt ab, welche Figur sich an einer angegebenen absoluten Position im Home befindet.
      *
+     * @param player   Der Spieler, dessen Home geprüft werden soll.
      * @param position Absolute Position im Home.
      * @return Falls sich an dieser Position eine Figur befindet, wird dessen Figure-Instanz zurückgegeben. Sonst Null.
      */
-    public Figure getFigureAtHomePosition(int position) {
-        throw new NotImplementedException();
+    public Figure getFigureAtHomePosition(Player player, int position) {
+        int playerId = player.getId();
+        return homes[playerId][position];
     }
 
     /**
@@ -101,7 +103,42 @@ public class Map {
      * @param figure Die Figur, die verschoben werden soll.
      */
     public void moveFigureToBase(Figure figure) {
-        throw new NotImplementedException();
+        int playerId = figure.getPlayer().getId();
+
+        // Figur bereits in der Base?
+        if (isFigureInBase(figure))
+            return;
+
+        // Figur aus dem Home löschen
+        if (isFigureInHome(figure) >= 0) {
+            for (int i = 0; i < homes[playerId].length; i++) {
+                if (homes[playerId][i] == figure) {
+                    homes[playerId][i] = null;
+                    break;
+                }
+            }
+        }
+
+        // Figur von der Straße löschen
+        if (isFigureInStreet(figure) >= 0) {
+            for (int i = 0; i < street.length; i++) {
+                if (street[i] == figure) {
+                    street[i] = null;
+                    break;
+                }
+            }
+        }
+
+        // Figur an erster freier Position in Base platzieren
+        boolean moved = false;
+        for (int i = 0; i < bases[playerId].length; i++) {
+            if (bases[playerId][i] == null) {
+                bases[playerId][i] = figure;
+                moved = true;
+                break;
+            }
+        }
+        assert(moved);
     }
 
     /**
