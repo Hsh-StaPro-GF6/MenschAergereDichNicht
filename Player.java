@@ -67,6 +67,9 @@ public class Player {
         throw new NotImplementedException();
     }
 
+    public boolean getStart
+    public boolean getEnd
+
     /**
      * Führt anhand der getroffenen Entscheidung den nächsten Spielzug aus.
      *

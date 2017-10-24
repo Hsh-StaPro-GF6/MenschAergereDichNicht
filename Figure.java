@@ -36,7 +36,7 @@ public class Figure {
      * @return True, falls sich die Figur in der Base befindet, sonst False.
      */
     public boolean isInBase() {
-        throw new NotImplementedException();
+        return map.isFigureInBase(this);
     }
 
     /**
@@ -45,7 +45,7 @@ public class Figure {
      * @return Die Position der Figur auf der Straße. Wenn sich die Figur nicht auf der Straße befindet: -1.
      */
     public int isInStreet() {
-        throw new NotImplementedException();
+        return map.isFigureInStreet(this);
     }
 
     /**
@@ -54,7 +54,7 @@ public class Figure {
      * @return Die Position der Figur im Home, wobei 0 ganz am Anfang und 3 ganz am Ende ist. Wenn sich die Figur nicht im Home befindet: -1.
      */
     public int isInHome() {
-        throw new NotImplementedException();
+        return map.isFigureInHome(this);
     }
 
     /**
@@ -64,7 +64,12 @@ public class Figure {
      * @return True, falls eine Figur gekickt werden würde, sonst False.
      */
     public boolean canKickFigure(int fields) {
-        throw new NotImplementedException();
+        int pos = this.isInStreet();
+        if (pos == -1)
+            return false;
+        if (map.getFigureAtStreetPosition(pos + fields) != null)
+            return true;
+        return false;
     }
 
     /**
@@ -74,7 +79,7 @@ public class Figure {
      * @return True, falls die Figur die Base verlassen könnte, sonst False.
      */
     public boolean canLeaveBase(int fields) {
-        throw new NotImplementedException();
+        return (fields == 6 && this.isInBase())
     }
 
     /**
@@ -84,7 +89,8 @@ public class Figure {
      * @return True, falls die Figur vorwärts-bewegt werden könnte, sonst False.
      */
     public boolean canMoveForward(int fields) {
-        throw new NotImplementedException();
+        int pos = this.isInStreet();
+        return !(pos == -1 || (pos + fields) <= (this.getPlayer().getEnd() + 4));
     }
 
     /**
@@ -93,6 +99,15 @@ public class Figure {
      * @param fields Die gewürfelte Zahl für diesen Spielzug.
      */
     public void processMove(int fields) {
+        if (!this.canMoveForward(fields))
+
+        //Hat eine 6 gewürfelt und kann deshalb Home verlassen
+        if (isInBase() && fields == 6)
+            map.moveFigureToStreetPosition(this, this.getPlayer().getStart() + fields);
+
+
+
+
         // TODO: Bei einer 6 ggf. die Base verlassen, ggf. Figur forwärts bewegen, Figuren ggf. rauskicken (nur in der Straße),
         // TODO: wenn Aktion ungültig Exception werfen (dann muss wer wohl canMoveForward etc. fixen.. :D )
 
