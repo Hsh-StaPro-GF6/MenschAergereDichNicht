@@ -1,5 +1,3 @@
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 /**
  * Repräsentiert die einzelnen Spielfelder anhand von Arrays und speichert die akutellen Spiel-Figur-Positionen.
  * Diese Klasse stellt ausschließlich Methoden zum direkten Verändern und Abfragen der Zustände des Spielaufbaus dar.

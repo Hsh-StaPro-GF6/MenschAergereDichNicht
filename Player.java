@@ -2,9 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import greenfoot.Color;
-
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 /**
  * Stellt einen am spiel teilnehmenden Spieler dar.
  */

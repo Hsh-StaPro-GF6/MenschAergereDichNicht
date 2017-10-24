@@ -1,5 +1,3 @@
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 /**
  * Stellt eine Spiel-Figur eines Spielers dar.
  * Diese Methoden stellt spezifische Methoden zum Abfragen des Zustands einer Spielfigur
