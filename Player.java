@@ -134,9 +134,6 @@ public class Player {
         return new Decision(this, fields, false, moveableFigures);
     }
 
-    public boolean getStart
-    public boolean getEnd
-
     /**
      * Führt anhand der getroffenen Entscheidung den nächsten Spielzug aus.
      *
