@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+import greenfoot.Color
+
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -6,6 +10,9 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class Player {
     private final Map map;
     private final int playerId;
+    private int start;
+    private int end;
+    private Figure[] figures;
 
     /**
      * Erstellt eine neue Spieler-Instanz.
@@ -13,9 +20,32 @@ public class Player {
      * @param map      Die Instanz der Map.
      * @param playerId Eine eindeutige Spieler-Nummer zwischen von 0-3.
      */
-    public Player(Map map, int playerId) {
+    public Player(Map map, int playerId, int start, int end, Figure[] figures) {
         this.map = map;
         this.playerId = playerId;
+        this.start = start;
+        this.end = end;
+        this.figures = figures;
+    }
+
+    
+    
+    /**
+     * Gibt den Startfeld-Index zurück.
+     * @return Startfeld-Index
+     */
+    public int getStart() {
+        return start;
+    }
+    
+    
+    
+    /**
+     * Gibt den Endfeld-Index zurück.
+     * @return Endfeld-Index.
+     */
+    public int getEnd() {
+        return end;
     }
 
     /**
@@ -33,8 +63,19 @@ public class Player {
      *
      * @return Die Farbe für diesen Spieler.
      */
-    public int getColor() {
-        throw new NotImplementedException();
+    public Color getColor() {
+        switch (this.getId()) {
+            case 0:
+                return Color.BLUE;
+            case 1:
+                return Color.RED;
+            case 2:
+                return Color.GREEN;
+            case 3:
+                return Color.YELLOW;
+            default:
+                return null;
+        }
     }
 
     /**
@@ -43,7 +84,7 @@ public class Player {
      * @return Ein Array aller Figuren dieses Spielers.
      */
     public Figure[] getFigures() {
-        throw new NotImplementedException();
+        return figures;
     }
 
     /**
@@ -52,7 +93,14 @@ public class Player {
      * @return True, wenn wer fertig ist, sonst False.
      */
     public boolean isFinished() {
-        throw new NotImplementedException();
+        Figure[] figures = this.getFigures();
+        for (Figure figure : figures) {
+            if (!this.map.isFigureInBase(figure)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -61,10 +109,29 @@ public class Player {
      * @return Ein neues Entscheidungs-Objekt.
      */
     public Decision rollDice() {
-        // TODO: Würfeln, prüfen ob Schlagzwang besteht (wenn canKickFigure() für irgendeine true),
-        // TODO: dann für Jede Figur canMoveForward() abfragen, Ergebnis zurückgeben
+        int fields = Greenfoot.getRandomNumber(6);
 
-        throw new NotImplementedException();
+        for (Figure figure : figures) {
+            if (figure.canKickFigure(fields)) {
+                Figure[] moveable = new Figure[1];
+                moveable[0] = figure;
+                return new Decision(this, fields, true, moveable);
+            }
+        }
+
+        List<Figure> moveableFiguresList = new ArrayList<Figure>(figures.length);
+        for (Figure figure : figures) {
+            if (figure.canMoveForward(fields)) {
+                moveableFiguresList.add(figure);
+            }
+        }
+
+        Figure[] moveableFigures = new Figure[moveableFiguresList.size()];
+        for (int i = 0; i < moveableFiguresList.size(); i++) {
+            moveableFigures[i] = moveableFiguresList.get(i);
+        }
+
+        return new Decision(this, fields, false, moveableFigures);
     }
 
     /**
@@ -74,6 +141,7 @@ public class Player {
      * @return True, falls der Spieler durch diesen Spielzug gewonnen hat, sonst False.
      */
     public boolean processMove(Decision decision) {
-        throw new NotImplementedException();
+        return this.isFinished();
+//        throw new NotImplementedException();
     }
 }
