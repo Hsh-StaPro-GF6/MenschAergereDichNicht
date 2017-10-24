@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+
 import greenfoot.Color;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -10,9 +11,9 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class Player {
     private final Map map;
     private final int playerId;
-    private int start;
-    private int end;
-    private Figure[] figures;
+    private final int start;
+    private final int end;
+    private final Figure[] figures;
 
     /**
      * Erstellt eine neue Spieler-Instanz.
@@ -25,26 +26,24 @@ public class Player {
         this.playerId = playerId;
         this.start = start;
         this.end = end;
+
         this.figures = new Figure[4];
-        for (int i = 0; i < figures.length; i++) {
+        for (int i = 0; i < figures.length; i++)
             figures[i] = new Figure(this.map, this);
-        }
     }
 
-    
-    
     /**
      * Gibt den Startfeld-Index zurück.
+     *
      * @return Startfeld-Index
      */
     public int getStart() {
         return start;
     }
-    
-    
-    
+
     /**
      * Gibt den Endfeld-Index zurück.
+     *
      * @return Endfeld-Index.
      */
     public int getEnd() {
@@ -62,7 +61,6 @@ public class Player {
 
     /**
      * Generiert eine Spieler-Farbe und gibt diese zurück.
-     * TODO: Anderer Rückgabewert. Greenfoot Color.
      *
      * @return Die Farbe für diesen Spieler.
      */
@@ -98,7 +96,7 @@ public class Player {
     public boolean isFinished() {
         Figure[] figures = this.getFigures();
         for (Figure figure : figures) {
-            if (!this.map.isFigureInBase(figure)) {
+            if (!this.map.isFigureInHome(figure)) {
                 return false;
             }
         }
@@ -144,6 +142,8 @@ public class Player {
      * @return True, falls der Spieler durch diesen Spielzug gewonnen hat, sonst False.
      */
     public boolean processMove(Decision decision) {
+        assert (decision.getSelectedFigure() != null);
+
         int fields = decision.getFields();
         Figure selectedFigure = decision.getSelectedFigure();
         if (selectedFigure.canMoveForward(fields)) {
