@@ -20,12 +20,15 @@ public class Player {
      * @param map      Die Instanz der Map.
      * @param playerId Eine eindeutige Spieler-Nummer zwischen von 0-3.
      */
-    public Player(Map map, int playerId, int start, int end, Figure[] figures) {
+    public Player(Map map, int playerId, int start, int end) {
         this.map = map;
         this.playerId = playerId;
         this.start = start;
         this.end = end;
-        this.figures = figures;
+        this.figures = new Figure[4];
+        for (int i = 0; i < figures.length; i++) {
+            figures[i] = new Figure(this.map, this);
+        }
     }
 
     
