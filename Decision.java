@@ -71,7 +71,11 @@ public class Decision {
         for (Figure mvFig : movableFigures)
             if (mvFig == figure)
                 isMovable = true;
-        assert (isMovable);
+
+        if(!isMovable){
+            System.out.println("FEHLER: Die ausgewählte Figur darf nicht bewegt werden!");
+            return;
+        }
 
         selectedFigure = figure;
     }
