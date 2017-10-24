@@ -79,7 +79,7 @@ public class Figure {
      * @return True, falls die Figur die Base verlassen könnte, sonst False.
      */
     public boolean canLeaveBase(int fields) {
-        return (fields == 6 && this.isInBase())
+        return (fields == 6 && this.isInBase());
     }
 
     /**

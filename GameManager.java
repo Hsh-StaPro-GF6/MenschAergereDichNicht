@@ -66,7 +66,7 @@ public class GameManager {
             currentPlayer = 0;
         else
             currentPlayer++;
-        
+
         return x;
     }
 }
