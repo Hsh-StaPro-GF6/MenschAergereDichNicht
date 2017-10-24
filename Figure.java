@@ -65,7 +65,7 @@ public class Figure {
         int pos = this.isInStreet();
         if (pos == -1)
             return false;
-        if (map.getFigureAtStreetPosition(pos + fields) != null)
+        if (map.getFigureAtStreetPosition(pos + prepare(fields)) != null)
             return true;
         return false;
     }
@@ -97,32 +97,56 @@ public class Figure {
      * @param fields Die gewürfelte Zahl für diesen Spielzug.
      */
     public void processMove(int fields) {
-        if (!this.canMoveForward(fields) || (this.isInBase() && !this.canLeaveBase(fields)))
+        System.out.println("ALALALALALALALALALLALA1" + this.canMoveForward(fields) + " - " + this.isInBase() + " - " + !this.canLeaveBase(fields));
+
+
+
+
+        if (!(this.canMoveForward(fields)) && (this.isInBase() && !this.canLeaveBase(fields)))
             return;
 
+
+        System.out.println("ALALALALALALALALALLALA2");
         //Kickt eine Figur vom Spielfeld falls möglich
         if (canKickFigure(fields))
-            map.moveFigureToBase(map.getFigureAtStreetPosition(this.isInStreet() + fields));
+            map.moveFigureToBase(map.getFigureAtStreetPosition(this.isInStreet() + prepare(fields)));
+
+        System.out.println("ALALALALALALALALALLALA3");
 
         //Verlässt die Base
         if (canLeaveBase(fields)) {
             map.moveFigureToStreetPosition(this, this.getPlayer().getStart());
+            System.out.println("ALALALALALALALALALLALA4");
             return;
         }
 
         //Geht ins Home
-        if ((this.isInStreet() + fields) > this.getPlayer().getEnd()) {
-            map.moveFigureToHomePosition(this, (this.getPlayer().getEnd() - (this.isInStreet() + fields)));
+        //if ((this.isInStreet() + fields) > this.getPlayer().getEnd()) {
+        if (checkEnd(fields, this.getPlayer().getEnd())) {
+            map.moveFigureToHomePosition(this, (this.getPlayer().getEnd() - (this.isInStreet() + prepare(fields))));
+            System.out.println("ALALALALALALALALALLALA5");
             return;
         }
 
         //ToDo Check ob Figuren davor
         if (isInHome() != -1) {
-            map.moveFigureToHomePosition(this, isInHome() + fields);
+            map.moveFigureToHomePosition(this, isInHome() + prepare(fields));
+            System.out.println("ALALALALALALALALALLALA6");
             return;
         }
-
+        System.out.println("ALALALALALALALALALLALA7");
         //Normales bewegen ohne Zwischenfall
-        map.moveFigureToStreetPosition(this, this.isInStreet() + fields);
+        map.moveFigureToStreetPosition(this, this.isInStreet() + prepare(fields));
+    }
+
+    public boolean checkEnd(int fields, int end) {
+        return (this.isInStreet() <= end && (this.isInStreet() + fields) > end);
+    }
+
+    public int prepare(int fields) {
+        int ret = fields;
+        if (this.isInStreet() + fields > 39)
+            ret = (this.isInStreet() + fields - 40) - this.isInStreet();
+        return ret;
     }
 }

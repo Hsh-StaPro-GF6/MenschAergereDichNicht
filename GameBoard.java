@@ -20,6 +20,8 @@ public class GameBoard extends World {
     public void act() {
         if (Greenfoot.isKeyDown("0")) {
 
+            System.out.println();
+
             for (int p = 0; p < 4; p++) {
                 System.out.print(" " + GM.getPlayers()[p].getId() + ":");
                 for (int i = 0; i < 4; i++) {
@@ -57,11 +59,15 @@ public class GameBoard extends World {
             System.out.println(decision.getMovableFigures().length + " Gewürfelt: " + decision.getFields());
 
             for (int i = 0; i < decision.getMovableFigures().length; i++) {
-                System.out.print(decision.getMovableFigures()[i]);
+                System.out.print(" " + decision.getMovableFigures()[i] + " ");
+            }
+            if (decision.getMovableFigures().length > 0) {
+                decision.setSelectedFigure(decision.getMovableFigures()[0]);
+                GM.exertDecision(decision);
             }
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(400);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

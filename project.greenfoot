@@ -1,5 +1,5 @@
 #Greenfoot properties
-#Tue Oct 24 12:21:12 CEST 2017
+#Tue Oct 24 13:28:43 CEST 2017
 dependency9.type=UsesDependency
 target4.type=ClassTarget
 dependency3.from=Player
@@ -26,7 +26,7 @@ target3.typeParameters=
 dependency4.from=GameManager
 class.Figure.superclass=
 dependency15.to=Map
-mainWindow.width=1346
+mainWindow.width=1000
 dependency4.type=UsesDependency
 dependency16.to=Player
 target2.width=110
@@ -85,7 +85,7 @@ target2.type=ClassTarget
 target2.y=0
 target2.x=0
 mainWindow.y=23
-mainWindow.x=574
+mainWindow.x=920
 dependency16.from=Figure
 target6.typeParameters=
 dependency1.from=Player
