@@ -204,7 +204,6 @@ public class Map {
     }
 
     private void removeFigureFromStreet(int playerId, Figure figure) {
-
         for (int i = 0; i < street.length; i++) {
             if (street[i] == figure) {
                 street[i] = null;
@@ -213,4 +212,3 @@ public class Map {
         }
     }
 }
-

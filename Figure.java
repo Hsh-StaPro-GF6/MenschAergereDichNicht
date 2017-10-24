@@ -125,6 +125,6 @@ public class Figure {
         }
 
         //Normales bewegen ohne Zwischenfall
-        map.moveFigureToStreetPosition(this,this.isInStreet() + fields);
+        map.moveFigureToStreetPosition(this, this.isInStreet() + fields);
     }
 }
