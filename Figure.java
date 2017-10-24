@@ -99,18 +99,32 @@ public class Figure {
      * @param fields Die gewürfelte Zahl für diesen Spielzug.
      */
     public void processMove(int fields) {
-        if (!this.canMoveForward(fields))
+        if (!this.canMoveForward(fields) || (this.isInBase() && !this.canLeaveBase(fields)))
+            return;
 
-        //Hat eine 6 gewürfelt und kann deshalb Home verlassen
-        if (isInBase() && fields == 6)
-            map.moveFigureToStreetPosition(this, this.getPlayer().getStart() + fields);
+        //Kickt eine Figur vom Spielfeld falls möglich
+        if (canKickFigure(fields))
+            map.moveFigureToBase(map.getFigureAtStreetPosition(this.isInStreet() + fields));
 
+        //Verlässt die Base
+        if (canLeaveBase(fields)) {
+            map.moveFigureToStreetPosition(this, this.getPlayer().getStart());
+            return;
+        }
 
+        //Geht ins Home
+        if ((this.isInStreet() + fields) > this.getPlayer().getEnd()) {
+            map.moveFigureToHomePosition(this, (this.getPlayer().getEnd() - (this.isInStreet() + fields)));
+            return;
+        }
 
+        //ToDo Chekc ob Figuren davor
+        if (isInHome() != -1) {
+            map.moveFigureToHomePosition(this, isInHome() + fields);
+            return;
+        }
 
-        // TODO: Bei einer 6 ggf. die Base verlassen, ggf. Figur forwärts bewegen, Figuren ggf. rauskicken (nur in der Straße),
-        // TODO: wenn Aktion ungültig Exception werfen (dann muss wer wohl canMoveForward etc. fixen.. :D )
-
-        throw new NotImplementedException();
+        //Normales bewegen ohne Zwischenfall
+        map.moveFigureToStreetPosition(this,this.isInStreet() + fields);
     }
 }
