@@ -10,8 +10,6 @@ public class GameManager {
     private final Player[] players = new Player[4];
     private int currentPlayer = 0;
 
-
-
     /**
      * Instanziert einen neuen GameManager. Dieser sollte nur einmal existieren.
      */
@@ -21,6 +19,15 @@ public class GameManager {
         players[1] = new Player(map, 1, 10, 9);
         players[2] = new Player(map, 2, 20, 19);
         players[3] = new Player(map, 3, 30, 29);
+    }
+
+    /**
+     * Ruft das Map-Objekt ab.
+     *
+     * @return Die Map.
+     */
+    public Map getMap() {
+        return map;
     }
 
     /**
@@ -62,7 +69,7 @@ public class GameManager {
 
         boolean x = players[currentPlayer].processMove(decision);
 
-        if(currentPlayer == 3)
+        if (currentPlayer == 3)
             currentPlayer = 0;
         else
             currentPlayer++;
