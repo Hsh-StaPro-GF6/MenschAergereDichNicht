@@ -110,24 +110,12 @@ public class Map {
             return;
 
         // Figur aus dem Home löschen
-        if (isFigureInHome(figure) >= 0) {
-            for (int i = 0; i < homes[playerId].length; i++) {
-                if (homes[playerId][i] == figure) {
-                    homes[playerId][i] = null;
-                    break;
-                }
-            }
-        }
+        if (isFigureInHome(figure) >= 0)
+            removeFigureFromHome(playerId, figure);
 
         // Figur von der Straße löschen
-        if (isFigureInStreet(figure) >= 0) {
-            for (int i = 0; i < street.length; i++) {
-                if (street[i] == figure) {
-                    street[i] = null;
-                    break;
-                }
-            }
-        }
+        if (isFigureInStreet(figure) >= 0)
+            removeFigureFromStreet(playerId, figure);
 
         // Figur an erster freier Position in Base platzieren
         boolean moved = false;
@@ -138,7 +126,7 @@ public class Map {
                 break;
             }
         }
-        assert(moved);
+        assert (moved);
     }
 
     /**
@@ -148,7 +136,25 @@ public class Map {
      * @param position Die Position auf der Straße.
      */
     public void moveFigureToStreetPosition(Figure figure, int position) {
-        throw new NotImplementedException();
+        int playerId = figure.getPlayer().getId();
+
+        // Figur aus der Base löschen
+        if (isFigureInBase(figure))
+            removeFigureFromBase(playerId, figure);
+
+        // Figur aus dem Home löschen
+        if (isFigureInHome(figure) >= 0)
+            removeFigureFromHome(playerId, figure);
+
+        // Figur von der Straße löschen
+        if (isFigureInStreet(figure) >= 0)
+            removeFigureFromStreet(playerId, figure);
+
+        // An der neuen Position sollte noch keine Figur stehen
+        assert (street[position] == null);
+
+        // Figur setzen
+        street[position] = figure;
     }
 
     /**
@@ -158,7 +164,53 @@ public class Map {
      * @param position Die Position im Home.
      */
     public void moveFigureToHomePosition(Figure figure, int position) {
-        throw new NotImplementedException();
+        int playerId = figure.getPlayer().getId();
+
+        // Figur aus der Base löschen
+        if (isFigureInBase(figure))
+            removeFigureFromBase(playerId, figure);
+
+        // Figur aus dem Home löschen
+        if (isFigureInHome(figure) >= 0)
+            removeFigureFromHome(playerId, figure);
+
+        // Figur von der Straße löschen
+        if (isFigureInStreet(figure) >= 0)
+            removeFigureFromStreet(playerId, figure);
+
+        // An der neuen Position sollte noch keine Figur stehen
+        assert (homes[playerId][position] == null);
+
+        // Figur setzen
+        homes[playerId][position] = figure;
+    }
+
+    private void removeFigureFromBase(int playerId, Figure figure) {
+        for (int i = 0; i < bases[playerId].length; i++) {
+            if (bases[playerId][i] == figure) {
+                bases[playerId][i] = null;
+                break;
+            }
+        }
+    }
+
+    private void removeFigureFromHome(int playerId, Figure figure) {
+        for (int i = 0; i < homes[playerId].length; i++) {
+            if (homes[playerId][i] == figure) {
+                homes[playerId][i] = null;
+                break;
+            }
+        }
+    }
+
+    private void removeFigureFromStreet(int playerId, Figure figure) {
+
+        for (int i = 0; i < street.length; i++) {
+            if (street[i] == figure) {
+                street[i] = null;
+                break;
+            }
+        }
     }
 }
 
