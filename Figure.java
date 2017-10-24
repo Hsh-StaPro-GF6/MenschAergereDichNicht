@@ -118,7 +118,7 @@ public class Figure {
             return;
         }
 
-        //ToDo Chekc ob Figuren davor
+        //ToDo Check ob Figuren davor
         if (isInHome() != -1) {
             map.moveFigureToHomePosition(this, isInHome() + fields);
             return;

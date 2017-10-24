@@ -6,11 +6,21 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  */
 public class GameManager {
 
+    private final Map map;
+    private final Player[] players = new Player[4];
+    private int currentPlayer = 0;
+
+
+
     /**
      * Instanziert einen neuen GameManager. Dieser sollte nur einmal existieren.
      */
     public GameManager() {
-
+        map = new Map();
+        players[0] = new Player(map, 0, 0, 39);
+        players[1] = new Player(map, 1, 10, 9);
+        players[2] = new Player(map, 2, 20, 19);
+        players[3] = new Player(map, 3, 30, 29);
     }
 
     /**
@@ -19,7 +29,7 @@ public class GameManager {
      * @return Array mit allen Spielern.
      */
     public Player[] getPlayers() {
-        throw new NotImplementedException();
+        return players;
     }
 
     /**
@@ -28,7 +38,7 @@ public class GameManager {
      * @return Der Spieler, der gerade an der Reihe ist.
      */
     public Player getCurrentPlayer() {
-        throw new NotImplementedException();
+        return players[currentPlayer];
     }
 
     /**
@@ -38,7 +48,7 @@ public class GameManager {
      * @return Ein neues Entscheidungs-Objekt.
      */
     public Decision rollDice() {
-        throw new NotImplementedException();
+        return players[currentPlayer].rollDice();
     }
 
     /**
@@ -49,6 +59,14 @@ public class GameManager {
      * @return True, falls der Spieler durch diesen Spielzug gewonnen hat, sonst False.
      */
     public boolean exertDecision(Decision decision) {
-        throw new NotImplementedException();
+
+        boolean x = players[currentPlayer].processMove(decision);
+
+        if(currentPlayer == 3)
+            currentPlayer = 0;
+        else
+            currentPlayer++;
+        
+        return x;
     }
 }
