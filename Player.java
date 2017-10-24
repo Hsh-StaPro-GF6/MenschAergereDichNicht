@@ -142,6 +142,8 @@ public class Player {
      * @return True, falls der Spieler durch diesen Spielzug gewonnen hat, sonst False.
      */
     public boolean processMove(Decision decision) {
+        assert (decision.getSelectedFigure() != null);
+
         int fields = decision.getFields();
         Figure selectedFigure = decision.getSelectedFigure();
         if (selectedFigure.canMoveForward(fields)) {
