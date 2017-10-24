@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import greenfoot.Color;
+
 /**
  * Stellt einen am spiel teilnehmenden Spieler dar.
  */
@@ -143,7 +144,7 @@ public class Player {
 
         int fields = decision.getFields();
         Figure selectedFigure = decision.getSelectedFigure();
-        if (selectedFigure.canMoveForward(fields)) {
+        if (selectedFigure.canMoveForward(fields) || selectedFigure.canLeaveBase(fields)) {
             selectedFigure.processMove(fields);
         }
 

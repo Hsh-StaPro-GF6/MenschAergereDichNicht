@@ -66,6 +66,13 @@ public class Decision {
      * @param figure Die gewählte Figur.
      */
     public void setSelectedFigure(Figure figure) {
+        // Prüfen, ob Figur bewegt werden darf.
+        boolean isMovable = false;
+        for (Figure mvFig : movableFigures)
+            if (mvFig == figure)
+                isMovable = true;
+        assert (isMovable);
+
         selectedFigure = figure;
     }
 

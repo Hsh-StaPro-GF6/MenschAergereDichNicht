@@ -78,13 +78,13 @@ public class GameManager {
      */
     public boolean exertDecision(Decision decision) {
 
-        boolean x = players[currentPlayer].processMove(decision);
+        boolean won = players[currentPlayer].processMove(decision);
 
         if (currentPlayer == 3)
             currentPlayer = 0;
         else
             currentPlayer++;
 
-        return x;
+        return won;
     }
 }
