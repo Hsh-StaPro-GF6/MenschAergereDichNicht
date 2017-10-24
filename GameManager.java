@@ -19,6 +19,8 @@ public class GameManager {
         players[1] = new Player(map, 1, 10, 9);
         players[2] = new Player(map, 2, 20, 19);
         players[3] = new Player(map, 3, 30, 29);
+
+        resetGame();
     }
 
     /**
@@ -46,6 +48,15 @@ public class GameManager {
      */
     public Player getCurrentPlayer() {
         return players[currentPlayer];
+    }
+
+    /**
+     * Setzt das Spiel auf den Anfangszustand zurück.
+     */
+    public void resetGame() {
+        for (Player player : players)
+            for (Figure figure : player.getFigures())
+                map.moveFigureToBase(figure);
     }
 
     /**
