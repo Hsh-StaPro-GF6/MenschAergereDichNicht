@@ -1,0 +1,37 @@
+AvoidSpawn
+
+impactPrevention
+
+impactChance
+
+SpawnCamping
+
+Homeboy
+
+ensurespacing
+
+fuImpactPrevention
+
+fuImpactChance
+
+leaderHunt
+
+Modi:
+	Sehr aggressiv
+	aggressiv
+	mittel
+	Defensiv
+	Sehr defensiv
+	
+Taktik			sehr agressiv	agressiv	mittel	defensiv	Sehr devensiv
+avoid Spawn		0		10		20	30		40
+ImpactPrevention	0		5		20	30		40
+ImpactChance		40		30		20	10		0
+Spawncamping		40		25		20	0		0
+ensurespacing		10		10		20	30		30
+fuImpactprevention	0		5		20	30		40
+fuImpactChance		40		30		20	5		0
+LeaderHunt		40		40		20	10		5
+					
+Homeboy			0		30		20	40		40
+
