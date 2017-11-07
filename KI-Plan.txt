@@ -1,8 +1,8 @@
 AvoidSpawn
 
-enemyDistance
-	gegner hinter einem
-	gegner vor einem
+impactPrevention
+
+impactChance
 
 SpawnCamping
 
@@ -10,8 +10,15 @@ Homeboy
 
 ensurespacing
 
-ImpactPrevention
+fuImpactPrevention
 
-ImpactChance
+fuImpactChance
 
 leaderHunt
+
+Modi:
+	Sehr aggressiv
+	aggressiv
+	mittel
+	Defensiv
+	Sehr defensiv
