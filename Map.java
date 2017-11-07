@@ -77,6 +77,25 @@ public class Map {
     }
 
     /**
+     * Fragt ab, wie viele Figuren sich in der Base befinden.
+     *
+     * @param player Der Spieler, dessen Base geprüft werden soll.
+     * @return Die Anzahl der Figuren in der Base des Spielers.
+     */
+    public int getFigureCountInBase(Player player) {
+
+        int playerId = player.getId();
+        int count = 0;
+
+        // Figuren in der Base zählen
+        for (int i = 0; i < bases[playerId].length; i++)
+            if (bases[playerId][i] != null)
+                count++;
+
+        return count;
+    }
+
+    /**
      * Fragt ab, welche Figur sich an einer angegebenen absoluten Position auf dem Haupt-Spielfeld befindet.
      *
      * @param position Absolute Position auf dem Haupt-Spielfeld.
