@@ -94,15 +94,15 @@ public class GameBoard extends World {
         addObject(new HomeField(gameManager, gameManager.getPlayers()[1], 2), 6 * SPACING, 4 * SPACING);
         addObject(new HomeField(gameManager, gameManager.getPlayers()[1], 3), 6 * SPACING, 5 * SPACING);
 
-        addObject(new HomeField(gameManager, gameManager.getPlayers()[2], 0), 7 * SPACING, 6 * SPACING);
-        addObject(new HomeField(gameManager, gameManager.getPlayers()[2], 1), 8 * SPACING, 6 * SPACING);
-        addObject(new HomeField(gameManager, gameManager.getPlayers()[2], 2), 9 * SPACING, 6 * SPACING);
-        addObject(new HomeField(gameManager, gameManager.getPlayers()[2], 3), 10 * SPACING, 6 * SPACING);
+        addObject(new HomeField(gameManager, gameManager.getPlayers()[2], 0), 10 * SPACING, 6 * SPACING);
+        addObject(new HomeField(gameManager, gameManager.getPlayers()[2], 1), 9 * SPACING, 6 * SPACING);
+        addObject(new HomeField(gameManager, gameManager.getPlayers()[2], 2), 8 * SPACING, 6 * SPACING);
+        addObject(new HomeField(gameManager, gameManager.getPlayers()[2], 3), 7 * SPACING, 6 * SPACING);
 
-        addObject(new HomeField(gameManager, gameManager.getPlayers()[3], 0), 6 * SPACING, 7 * SPACING);
-        addObject(new HomeField(gameManager, gameManager.getPlayers()[3], 1), 6 * SPACING, 8 * SPACING);
-        addObject(new HomeField(gameManager, gameManager.getPlayers()[3], 2), 6 * SPACING, 9 * SPACING);
-        addObject(new HomeField(gameManager, gameManager.getPlayers()[3], 3), 6 * SPACING, 10 * SPACING);
+        addObject(new HomeField(gameManager, gameManager.getPlayers()[3], 0), 6 * SPACING, 10 * SPACING);
+        addObject(new HomeField(gameManager, gameManager.getPlayers()[3], 1), 6 * SPACING, 9 * SPACING);
+        addObject(new HomeField(gameManager, gameManager.getPlayers()[3], 2), 6 * SPACING, 8 * SPACING);
+        addObject(new HomeField(gameManager, gameManager.getPlayers()[3], 3), 6 * SPACING, 7 * SPACING);
 
         // Status-Anzeige anlegen
         addObject(statusDisplay = new StatusDisplay(gameManager), 6 * SPACING, 6 * SPACING);

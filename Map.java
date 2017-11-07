@@ -125,7 +125,7 @@ public class Map {
      * @param figure Die Figur, die verschoben werden soll.
      */
     public void moveFigureToBase(Figure figure) {
-        System.out.println("Map.moveFigureToBase");
+        System.out.println("Map.moveFigureToBase -- GEKICKT!");
         System.out.println("figure = [" + figure + "]");
 
         int playerId = figure.getPlayer().getId();
