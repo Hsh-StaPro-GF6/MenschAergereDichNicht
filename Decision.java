@@ -5,6 +5,8 @@ public class Decision {
     private final Player player;
     private final int fields;
     private final boolean forcedImpact;
+    private final boolean forcedLeave;
+    private final boolean forcedMove;
     private final Figure[] movableFigures;
 
     private Figure selectedFigure = null;
@@ -15,12 +17,16 @@ public class Decision {
      * @param player         Der Spieler, der diese Entscheidung treffen muss.
      * @param fields         Die gewürfelte Zahl.
      * @param forcedImpact   Gibt an, ob die Entscheidung durch Schlag-Zwang vorbestimmt ist.
+     * @param forcedLeave    Gibt an, ob die Entscheidung durch Base-Verlass-Zwang vorbestimmt ist.
+     * @param forcedMove     Gibt an, ob die Entscheidung durch Base-Verlass-Zwang vorbestimmt ist.
      * @param movableFigures Die Figuren, die für den nächsten Zug gewählt werden können.
      */
-    public Decision(Player player, int fields, boolean forcedImpact, Figure[] movableFigures) {
+    public Decision(Player player, int fields, boolean forcedImpact, boolean forcedLeave, boolean forcedMove, Figure[] movableFigures) {
         this.player = player;
         this.fields = fields;
         this.forcedImpact = forcedImpact;
+        this.forcedLeave = forcedLeave;
+        this.forcedMove = forcedMove;
         this.movableFigures = movableFigures;
     }
 
@@ -52,6 +58,24 @@ public class Decision {
     }
 
     /**
+     * Gibt zurück, Zwang besteht, die Base zu verlassen.
+     *
+     * @return True, falls Base-Veralss-Zwang besteht, sonst False.
+     */
+    public boolean isForcedLeave() {
+        return forcedLeave;
+    }
+
+    /**
+     * Gibt zurück, Zwang besteht, den Spawn zu räumen
+     *
+     * @return True, falls Spawn-Räum-Zwang besteht, sonst False.
+     */
+    public boolean isForcedMove() {
+        return forcedMove;
+    }
+
+    /**
      * Ruft die Figuren ab, zwischen denen für den nächsten Zug gewählt werden kann.
      *
      * @return Die Liste der wählbaren Figuren.
@@ -72,7 +96,7 @@ public class Decision {
             if (mvFig == figure)
                 isMovable = true;
 
-        if(!isMovable){
+        if (!isMovable) {
             System.out.println("FEHLER: Die ausgewählte Figur darf nicht bewegt werden!");
             return;
         }

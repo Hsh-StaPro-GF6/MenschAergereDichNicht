@@ -74,13 +74,15 @@ public class GameManager {
      * @return True, falls der Spieler durch diesen Spielzug gewonnen hat, sonst False.
      */
     public boolean exertDecision(Decision decision) {
-
         boolean won = players[currentPlayer].processMove(decision);
 
-        if (currentPlayer == 3)
-            currentPlayer = 0;
-        else
-            currentPlayer++;
+        // Bei 6 nochmal würfeln
+        if (decision.getFields() != 6) {
+            if (currentPlayer == 3)
+                currentPlayer = 0;
+            else
+                currentPlayer++;
+        }
 
         return won;
     }

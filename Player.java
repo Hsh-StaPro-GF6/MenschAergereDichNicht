@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+
 import greenfoot.*;
 
 /**
@@ -111,11 +112,28 @@ public class Player {
 
         int fields = Greenfoot.getRandomNumber(6) + 1;
 
+        // TODO: Was wenn z.B. Schlagzwang für mehrere Figuren besteht?
+        // TODO: Die Zwänge sollten für alle Figuren gleichwertig geprüft werden, unabhängig von der Reihenfolge der Fig. im Array.
         for (Figure figure : figures) {
+            // Es besteht Schlag-Zwang, wenn eine Figur eine Figur schlagen kann.
             if (figure.canKickFigure(fields)) {
                 Figure[] movable = new Figure[1];
                 movable[0] = figure;
-                return new Decision(this, fields, true, movable);
+                return new Decision(this, fields, true, false, false, movable);
+            }
+
+            // Wenn der Spieler mit einer Figur die Base verlassen kann, muss er es auch.
+            if (figure.canLeaveBase(fields)) {
+                Figure[] movable = new Figure[1];
+                movable[0] = figure;
+                return new Decision(this, fields, false, true, false, movable);
+            }
+
+            // Steht eine Figur im Spawn und kann diesen verlassen? => Dann muss sies auch.
+            if (map.isFigureInStreet(figure) == start && figure.canMoveForward(fields)) {
+                Figure[] movable = new Figure[1];
+                movable[0] = figure;
+                return new Decision(this, fields, false, false, true, movable);
             }
         }
 
@@ -131,7 +149,7 @@ public class Player {
             movableFigures[i] = movableFiguresList.get(i);
         }
 
-        return new Decision(this, fields, false, movableFigures);
+        return new Decision(this, fields, false, false,false, movableFigures);
     }
 
     /**
@@ -141,7 +159,7 @@ public class Player {
      * @return True, falls der Spieler durch diesen Spielzug gewonnen hat, sonst False.
      */
     public boolean processMove(Decision decision) {
-        if(decision.getSelectedFigure() == null){
+        if (decision.getSelectedFigure() == null) {
             System.out.println("FEHLER: Es wurde keine Figur ausgewählt!");
             return false;
         }
