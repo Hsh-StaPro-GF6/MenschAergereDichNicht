@@ -1,0 +1,17 @@
+AvoidSpawn
+
+enemyDistance
+	gegner hinter einem
+	gegner vor einem
+
+SpawnCamping
+
+Homeboy
+
+ensurespacing
+
+ImpactPrevention
+
+ImpactChance
+
+leaderHunt
