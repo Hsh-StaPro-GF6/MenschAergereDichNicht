@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=BaseField
+comment0.text=\r\n\ Gibt\ ein\ Basefeld\ auf\ dem\ Gameboard\ aus.\r\n
+comment1.params=gameManager\ player\ fieldId
+comment1.target=BaseField(GameManager,\ Player,\ int)
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Feld\ zeichnen.\r\n
+comment3.params=
+comment3.target=void\ setColors()
+numComments=4

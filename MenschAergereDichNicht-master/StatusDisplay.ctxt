@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=StatusDisplay
+comment0.text=\r\n\ Gibt\ ein\ Statusdisplay\ aus.\r\n
+comment1.params=gameManager
+comment1.target=StatusDisplay(GameManager)
+comment2.params=currentDecision
+comment2.target=void\ updateStatus(Decision)
+comment2.text=\r\n\ Status\ updaten.\r\n
+comment3.params=
+comment3.target=void\ act()
+comment3.text=\r\n\ Status-Anzeige\ zeichnen.\r\n
+numComments=4
