@@ -64,6 +64,16 @@ public class Ai {
     }
 
     private int checkLeaderHunt(Figure figure) {
+        boolean isTrue = false;
+        int figurePos = map.isFigureInStreet(figure);
+        int end = figure.getPlayer().getEnd();
 
+        for (int i = 0; i < 12; i++, figurePos++) {
+            if (figurePos >= 40) {
+                figurePos = 0;
+            }
+        }
+        
+        return isTrue ? new int[]{40, 40, 20, 10, 5}[behaviour] : 0;
     }
 }
