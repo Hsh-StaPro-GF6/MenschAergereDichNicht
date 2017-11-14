@@ -32,7 +32,7 @@ public class Ai {
 
         return isTrue ? new int[]{0, 10, 20, 30, 40}[behaviour] : 0;
     }
-
+    // Checkt ob sich die Figur ein Feld vom Spawnfeld entfernt befindet, also dieses "belagert"
     private int checkSpawnCamping(Figure figure) {
     	Player [] players = gameManager.getPlayers();
     	
@@ -45,6 +45,7 @@ public class Ai {
     	switch (position){
     		// Wenn die Figur 1 feld vor dem Spawn steht und ist das nicht unser 
 			// Spawn und die base von player dem  des Spawnfeld gehort nicht leer ist return 0 (warte)
+    		// ^^ Wer das versteht kriegt nen Keks :P
     		case 9:
     			if(position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[1])>0)
     				return 0;
@@ -73,10 +74,19 @@ public class Ai {
     	}
     }
 
-    //B/N
-    private int checkHomeboy(Figure figure, Decision decision) {
-    	int stepsToHome = player.getEnd()-figureAtStreetPosition
-    			decision.getFields()
+    // Prüft ob die Figur ins Home kann
+    private int checkHomeboy(Figure figure, Decision decision) {    	
+    	int position = figure.isInStreet();
+    	
+    	// Überhaupt auf der Straße?
+    	if(position == -1)
+    		return 0;
+    	    	
+    	// Ist der Home-Eingang in erreichbarer Nähe?
+    	if(getDistanceBetweenStreetPositions(position, player.getEnd()) < decision.getFields());
+    		return new int[]{0, 30, 20, 40, 40}[behaviour];
+    		
+    	return 0;    			
     }
 
     //check 5 Felder hinter Figur: wenn gegner -> Flucht
