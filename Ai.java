@@ -64,13 +64,41 @@ public class Ai {
     }
 //F
     private int checkLeaderHunt(Figure figure) {
-        boolean isTrue = false;
-        int figurePos = map.isFigureInStreet(figure);
-        int end = figure.getPlayer().getEnd();
+        //Variablen:
+        boolean isTrue    = false;
+        int nextTargetPos = map.isFigureInStreet(figure) + 1;
+        int end           = figure.getPlayer().getEnd();
+        int myID          = figure.getPlayer().getId();
 
-        for (int i = 0; i < 12; i++, figurePos++) {
-            if (figurePos >= 40) {
-                figurePos = 0;
+        //Leader herausfinden:
+        int leaderID = -1;
+
+        //Falls ich Leader bin, nicht bewerten:
+        if (leaderID == myID) {
+            return 0;
+        }
+
+        //Nächste 12 Felder checken:
+        for (int i = 0; i < 12; i++, nextTargetPos++) {
+            //Position zwischen 0 und 39 halten:
+            if (nextTargetPos >= 40) {
+                nextTargetPos = 0;
+            }
+
+            //Aktuelle Position über Ende hinaus:
+            if (nextTargetPos > end) {
+                break;
+            }
+
+            //Nächstes Ziel holen:
+            Figure nextTarget = map.getFigureAtStreetPosition(nextTargetPos);
+            if (nextTarget != null) {
+                //Falls eigene Figur, ignorieren:
+                if (nextTarget.getPlayer().getId() == myID) {
+                    continue;
+                }
+
+                
             }
         }
         
