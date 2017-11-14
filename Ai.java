@@ -8,6 +8,7 @@ public class Ai {
     private final GameManager gameManager;
     private final Player player;
     private final int behaviour;
+    private final int speedBehaviour;
 
     /**
      * Instanziert eine neue KI.
@@ -78,7 +79,7 @@ public class Ai {
     	int stepsToHome = player.getEnd()-figureAtStreetPosition
     			decision.getFields()
     }
-
+   
     //check 5 Felder hinter Figur: wenn gegner -> Flucht
     private int checkImpactPrevention(Figure figure) {
         int pos = figure.isInStreet();
@@ -225,7 +226,7 @@ public class Ai {
         return 0;
     }
 
-    //F
+    //12 Felder hinter Figur von Spieler (meiste Figuren in Home) -> Figur setzen
     private int checkLeaderHunt(Figure figure) {
         // Position des nächsten (initialen) Ziels:
         int nextTargetPos = gameManager.getMap().isFigureInStreet(figure);
@@ -277,6 +278,58 @@ public class Ai {
         
         return 0;
     }
+    
+    // Welche Figur hat den geringsten Abstand zum Home
+    private int checkFirstPosition (Figure figure) {
+	Figure minFigure = null; 
+    int distanceMin = 40;
+	//alle Figuren durchlaufen
+    for (Figure figure2: player.getFigures()){
+    	int figure2position=gameManager.getMap().isFigureInStreet(figure2);
+    	
+    	if (figure2position == -1)
+    		continue;
+    	
+		int distance = getDistanceBetweenStreetPositions(figure2position,player.getEnd());
+		//geringste Distanz zum Home suchen
+		if (distance<distanceMin){
+			distanceMin=distance;
+			minFigure=figure2;			
+		}
+    }
+    // eigene Figur als min setzen
+	if (figure == minFigure)
+		return new int[]{100, 50, 0, 10, 0}[speedBehaviour];
+		
+	return 0;
+		
+    }
+    
+    // Welche Figur hat den geringsten Abstand zur Base
+    private int checkLastPosition (Figure figure) {
+    Figure minFigure = null; 
+    int distanceMin = 40;
+    //alle Figuren durchlaufen
+     for (Figure figure2: player.getFigures()){    	 
+    	int figure2position=gameManager.getMap().isFigureInStreet(figure2);
+    	
+    	if (figure2position == -1)
+    		continue;
+    	
+    	int distance = getDistanceBetweenStreetPositions(player.getStart(),figure2position);
+    	//geringste Distanz zur Base suchen
+    	if (distance<distanceMin){
+    		distanceMin=distance;
+    		minFigure=figure2;			
+    	}
+     }
+    	// eigene Figur als min setzen
+    	if (figure == minFigure)
+    		return new int[]{0, 0, 0, 50, 100}[speedBehaviour];
+    		
+    	return 0;
+    
+    }
 
     // Die Distance zwischen zwei Straßen Positionen
     private int getDistanceBetweenStreetPositions(int position1, int position2) {
@@ -292,4 +345,6 @@ public class Ai {
     private int getStreetPositionfromBacksteps(int currentPos, int steps) {
         return (currentPos - steps) < 0 ? (currentPos - steps) + 40 : currentPos - steps;
     }
+    
+    
 }
