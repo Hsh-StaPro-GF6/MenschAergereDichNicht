@@ -115,7 +115,7 @@ public class Ai {
 
     // Überprüft ob eigene Figuren nach Zug auf haufen stehen
     private int checkPreventSpacing(Figure figure, Decision decision ) {
-    	int ownPosition = getStreetPositionFromSteps(gameManager.getMap().isFigureInStreet(figure), decision.getFields());    	
+    	int ownPosition = getStreetPositionfromSteps(gameManager.getMap().isFigureInStreet(figure), decision.getFields());
     	
     	// Überhaupt auf der Straße
     	if (ownPosition == -1)
