@@ -1,6 +1,6 @@
-avoidSpawn
+avoidforeignSpawn
 	bestzter Gegnerspawn meiden
-		-> parameter setzen
+		-> parameter nicht setzen
 
 impactPrevention
 	check 5 Felder hinter Figur: wenn gegner -> Flucht
@@ -20,12 +20,16 @@ homeboy
 ensurespacing
 	direckte freundlich nachbarn auflösen
 		-> parameter setzen
+		
+preventspacing
+	direckte freundlich nachbarn verhindern
+		-> parameter nicht setzen
 
-fuImpactPrevention
+futureImpactPrevention
 	check 5 Felder nach Würfeln hinter Figur: wenn gegner -> Flucht
 		-> parameter setzen
 
-fuImpactChance
+futureImpactChance
 	check 5 Felder nach Würfeln vor Figur: wenn gegner -> warten
 		-> parameter nicht setzen
 
@@ -40,15 +44,16 @@ Modi:
 	Defensiv
 	Sehr defensiv
 	
-Taktik			sehr agressiv	agressiv	mittel	defensiv	Sehr devensiv
-avoid Spawn		0		10		20	30		40
-impactPrevention	0		5		20	30		40
-impactChance		40		30		20	10		0
-spawncamping		40		25		20	0		0
-ensurespacing		10		10		20	30		30
-fuImpactprevention	0		5		20	30		40
-fuImpactChance		40		30		20	5		0
-leaderHunt		40		40		20	10		5
+Taktik			sehr agressiv	agressiv	mittel		defensiv	Sehr devensiv
+avoid Spawn		0		10		20		30		40
+impactPrevention	0		5		20		30		40
+impactChance		40		30		20		10		0
+spawncamping		40		25		20		0		0
+ensurespacing		10		10		20		30		30
+preventspacing		10		10		20		30		30
+futureImpactprevention	0		5		20		30		40
+futureImpactChance	40		30		20		5		0
+leaderHunt		40		40		20		10		5
 					
-homeboy			0		30		20	40		40
+homeboy			0		30		20		40		40
 
