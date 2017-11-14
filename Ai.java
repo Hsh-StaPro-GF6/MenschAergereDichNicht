@@ -72,19 +72,32 @@ public class Ai {
 
     //F
     private int checkLeaderHunt(Figure figure) {
-        //Variablen:
-        boolean isTrue    = false;
-        int nextTargetPos = map.isFigureInStreet(figure) + 1;
-        int end           = figure.getPlayer().getEnd();
-        int myID          = figure.getPlayer().getId();
+        //Bedingung:
+        boolean isTrue = false;
+
+        //Position des nächsten (initialen) Ziels:
+        int nextTargetPos = gameManager.getMap().isFigureInStreet(figure) + 1;
+
+        //Maximalen Score herausfinden:
+        int maxScore = 0;
+        for (Player curPlayer : gameManager.getPlayers()) {
+            int curPlayerScore = gameManager.getMap().getFigureCountInBase(curPlayer);
+            if (curPlayerScore > maxScore) {
+                maxScore = curPlayerScore;
+            }
+        }
 
         //Leader herausfinden:
-        int leaderID = -1;
-
-        //Falls ich Leader bin, nicht bewerten:
-        if (leaderID == myID) {
-            return 0;
+        boolean leaders[] = {false, false, false, false};
+        for (Player curPlayer : gameManager.getPlayers()) {
+            int curPlayerScore = gameManager.getMap().getFigureCountInBase(curPlayer);
+            if (curPlayerScore == maxScore) {
+                leaders[curPlayer.getId()] = true;
+            }
         }
+
+        //Selbst als Nicht-Leader setzen:
+        leaders[figure.getPlayer().getId()] = false;
 
         //Nächste 12 Felder checken:
         for (int i = 0; i < 12; i++, nextTargetPos++) {
@@ -94,19 +107,18 @@ public class Ai {
             }
 
             //Aktuelle Position über Ende hinaus:
-            if (nextTargetPos > end) {
+            if (nextTargetPos > figure.getPlayer().getEnd()) {
                 break;
             }
 
             //Nächstes Ziel holen:
-            Figure nextTarget = map.getFigureAtStreetPosition(nextTargetPos);
+            Figure nextTarget = gameManager.getMap().getFigureAtStreetPosition(nextTargetPos);
             if (nextTarget != null) {
-                //Falls eigene Figur, ignorieren:
-                if (nextTarget.getPlayer().getId() == myID) {
-                    continue;
+                //Nächstes Ziel = Leader => Bedingung erfüllt
+                if (leaders[nextTarget.getPlayer().getId()]) {
+                    isTrue = true;
+                    break;
                 }
-
-                
             }
         }
         
