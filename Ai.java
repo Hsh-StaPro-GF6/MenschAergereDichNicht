@@ -5,17 +5,17 @@ import java.util.List;
  * Alle Ki Handlungen.
  */
 public class Ai {
-    public static final int[] CHECK_AVOID_FOREIGN_SPAWN = {0, 10, 20, 30, 40};
-    public static final int[] CHECK_SPAWN_CAMPING = {40, 25, 20, 0, 0};
-    public static final int[] CHECK_HOMEBOY = {0, 30, 20, 40, 40};
-    public static final int[] CHECK_IMPACT_PREVENTION = {0, 5, 20, 30, 40};
-    public static final int[] CHECK_IMPACT_CHANCE = {40, 30, 20, 10, 0};
-    public static final int[] CHECK_ENSURE_SPACING = {10, 10, 20, 30, 30};
-    public static final int[] CHECK_PREVENT_SPACING = {10, 10, 20, 30, 30};
-    public static final int[] CHECK_FUTURE_IMPACT_PREVENTION = {0, 5, 20, 30, 40};
-    public static final int[] CHECK_FUTURE_IMPACT_CHANCE = {40, 30, 20, 10, 0};
-    public static final int[] CHECK_LEADER_HUNT = {40, 40, 20, 10, 5};
-    public static final int[] CHECK_HOME_POSITION = {40, 30, 20, 10, 0};
+    private static final int[] CHECK_AVOID_FOREIGN_SPAWN = {0, 10, 20, 30, 40};
+    private static final int[] CHECK_SPAWN_CAMPING = {40, 25, 20, 0, 0};
+    private static final int[] CHECK_HOMEBOY = {0, 30, 20, 40, 40};
+    private static final int[] CHECK_IMPACT_PREVENTION = {0, 5, 20, 30, 40};
+    private static final int[] CHECK_IMPACT_CHANCE = {40, 30, 20, 10, 0};
+    private static final int[] CHECK_ENSURE_SPACING = {10, 10, 20, 30, 30};
+    private static final int[] CHECK_PREVENT_SPACING = {10, 10, 20, 30, 30};
+    private static final int[] CHECK_FUTURE_IMPACT_PREVENTION = {0, 5, 20, 30, 40};
+    private static final int[] CHECK_FUTURE_IMPACT_CHANCE = {40, 30, 20, 10, 0};
+    private static final int[] CHECK_LEADER_HUNT = {40, 40, 20, 10, 5};
+    private static final int[] CHECK_HOME_POSITION = {40, 30, 20, 10, 0};
 
 
     private final GameManager gameManager;
@@ -30,10 +30,11 @@ public class Ai {
      * @param player      Der Spieler, für den die KI handelt.
      * @param behaviour   Der Schwierigkeitsgrad der KI.
      */
-    public Ai(GameManager gameManager, Player player, int behaviour) {
+    public Ai(GameManager gameManager, Player player, int behaviour, int speedBehaviour) {
         this.gameManager = gameManager;
         this.player = player;
         this.behaviour = behaviour;
+        this.speedBehaviour = speedBehaviour;
     }
 
     public void processDecision(Decision decision) {
@@ -97,8 +98,8 @@ public class Ai {
     		return 0;
     	    	
     	// Ist der Home-Eingang in erreichbarer Nähe?
-    	if(getDistanceBetweenStreetPositions(position, player.getEnd()) < decision.getFields());
-    		return new int[]{0, 30, 20, 40, 40}[behaviour];
+    	if(getDistanceBetweenStreetPositions(position, player.getEnd()) < decision.getFields())
+    		return CHECK_HOMEBOY[behaviour];
     		
     	return 0;    			
     }
