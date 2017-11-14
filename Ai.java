@@ -5,22 +5,23 @@ import java.util.List;
  * Alle Ki Handlungen.
  */
 public class Ai {
-    public static final int[] CHECK_CLEAR_FOREIGN_SPAWN = {0, 10, 20, 30, 40};
-    public static final int[] CHECK_AVOID_FOREIGN_SPAWN = {0, 10, 20, 30, 40};
-    public static final int[] CHECK_SPAWN_CAMPING = {40, 25, 20, 0, 0};
-    public static final int[] CHECK_HOMEBOY = {0, 30, 20, 40, 40};
-    public static final int[] CHECK_IMPACT_PREVENTION = {0, 5, 20, 30, 40};
-    public static final int[] CHECK_IMPACT_CHANCE = {40, 30, 20, 10, 0};
-    public static final int[] CHECK_ENSURE_SPACING = {10, 10, 20, 30, 30};
-    public static final int[] CHECK_PREVENT_SPACING = {10, 10, 20, 30, 30};
-    public static final int[] CHECK_FUTURE_IMPACT_PREVENTION = {0, 5, 20, 30, 40};
-    public static final int[] CHECK_FUTURE_IMPACT_CHANCE = {40, 30, 20, 10, 0};
-    public static final int[] CHECK_LEADER_HUNT = {40, 40, 20, 10, 5};
-
+    private static final int[] CHECK_CLEAR_FOREIGN_SPAWN = {0, 10, 20, 30, 40};
+    private static final int[] CHECK_AVOID_FOREIGN_SPAWN = {0, 10, 20, 30, 40};
+    private static final int[] CHECK_SPAWN_CAMPING = {40, 25, 20, 0, 0};
+    private static final int[] CHECK_HOMEBOY = {0, 30, 20, 40, 40};
+    private static final int[] CHECK_IMPACT_PREVENTION = {0, 5, 20, 30, 40};
+    private static final int[] CHECK_IMPACT_CHANCE = {40, 30, 20, 10, 0};
+    private static final int[] CHECK_ENSURE_SPACING = {10, 10, 20, 30, 30};
+    private static final int[] CHECK_PREVENT_SPACING = {10, 10, 20, 30, 30};
+    private static final int[] CHECK_FUTURE_IMPACT_PREVENTION = {0, 5, 20, 30, 40};
+    private static final int[] CHECK_FUTURE_IMPACT_CHANCE = {40, 30, 20, 10, 0};
+    private static final int[] CHECK_LEADER_HUNT = {40, 40, 20, 10, 5};
+    private static final int[] CHECK_HOME_POSITION = {40, 30, 20, 10, 0};
 
     private final GameManager gameManager;
     private final Player player;
     private final int behaviour;
+    private final int speedBehaviour;
 
     /**
      * Instanziert eine neue KI.
@@ -29,10 +30,11 @@ public class Ai {
      * @param player      Der Spieler, für den die KI handelt.
      * @param behaviour   Der Schwierigkeitsgrad der KI.
      */
-    public Ai(GameManager gameManager, Player player, int behaviour) {
+    public Ai(GameManager gameManager, Player player, int behaviour, int speedBehaviour) {
         this.gameManager = gameManager;
         this.player = player;
         this.behaviour = behaviour;
+        this.speedBehaviour = speedBehaviour;
     }
 
     public void processDecision(Decision decision) {
@@ -127,12 +129,12 @@ public class Ai {
     		return 0;
     	    	
     	// Ist der Home-Eingang in erreichbarer Nähe?
-    	if(getDistanceBetweenStreetPositions(position, player.getEnd()) < decision.getFields());
-    		return new int[]{0, 30, 20, 40, 40}[behaviour];
+    	if(getDistanceBetweenStreetPositions(position, player.getEnd()) < decision.getFields())
+    		return CHECK_HOMEBOY[behaviour];
     		
     	return 0;    			
     }
-
+   
     //check 5 Felder hinter Figur: wenn gegner -> Flucht
     private int checkImpactPrevention(Figure figure) {
         int pos = figure.isInStreet();
@@ -281,11 +283,11 @@ public class Ai {
 
     private int checkHomePosition(Figure figure) {
         if (figure.isInHome() != -1)
-            return new int[]{40, 30, 20, 10, 0}[behaviour];
+            return CHECK_HOME_POSITION[behaviour];
         return 0;
     }
 
-    //F
+    // 12 Felder hinter Figur von führendem Spieler (meiste Figuren in Home) -> Figur setzen
     private int checkLeaderHunt(Figure figure) {
         // Position des nächsten (initialen) Ziels:
         int nextTargetPos = gameManager.getMap().isFigureInStreet(figure);
@@ -337,6 +339,58 @@ public class Ai {
         
         return 0;
     }
+    
+    // Welche Figur hat den geringsten Abstand zum Home
+    private int checkFirstPosition (Figure figure) {
+	Figure minFigure = null; 
+    int distanceMin = 40;
+	//alle Figuren durchlaufen
+    for (Figure figure2: player.getFigures()){
+    	int figure2position=gameManager.getMap().isFigureInStreet(figure2);
+    	
+    	if (figure2position == -1)
+    		continue;
+    	
+		int distance = getDistanceBetweenStreetPositions(figure2position,player.getEnd());
+		//geringste Distanz zum Home suchen
+		if (distance<distanceMin){
+			distanceMin=distance;
+			minFigure=figure2;			
+		}
+    }
+    // eigene Figur als min setzen
+	if (figure == minFigure)
+		return new int[]{100, 50, 0, 10, 0}[speedBehaviour];
+		
+	return 0;
+		
+    }
+    
+    // Welche Figur hat den geringsten Abstand zur Base
+    private int checkLastPosition (Figure figure) {
+    Figure minFigure = null; 
+    int distanceMin = 40;
+    //alle Figuren durchlaufen
+     for (Figure figure2: player.getFigures()){    	 
+    	int figure2position=gameManager.getMap().isFigureInStreet(figure2);
+    	
+    	if (figure2position == -1)
+    		continue;
+    	
+    	int distance = getDistanceBetweenStreetPositions(player.getStart(),figure2position);
+    	//geringste Distanz zur Base suchen
+    	if (distance<distanceMin){
+    		distanceMin=distance;
+    		minFigure=figure2;			
+    	}
+     }
+    	// eigene Figur als min setzen
+    	if (figure == minFigure)
+    		return new int[]{0, 0, 0, 50, 100}[speedBehaviour];
+    		
+    	return 0;
+    
+    }
 
     // Die Distance zwischen zwei Straßen Positionen
     private int getDistanceBetweenStreetPositions(int position1, int position2) {
@@ -352,4 +406,6 @@ public class Ai {
     private int getStreetPositionfromBacksteps(int currentPos, int steps) {
         return (currentPos - steps) < 0 ? (currentPos - steps) + 40 : currentPos - steps;
     }
+    
+    
 }
