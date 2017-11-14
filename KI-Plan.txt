@@ -18,6 +18,9 @@ homeboy
 	Ins Homefeld gehen
 		-> parameter setzen
 
+Homeposition
+	Im Home vorwärts gehen
+
 ensurespacing
 	direckte freundlich nachbarn auflösen
 		-> parameter setzen
