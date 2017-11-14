@@ -42,7 +42,7 @@ public class Ai {
 
     }
 
-    //E
+    //check 5 Felder hinter Figur: wenn gegner -> Flucht
     private int checkImpactPrevention(Figure figure) {
         int pos = figure.isInStreet();
 
@@ -62,7 +62,7 @@ public class Ai {
         return 0;
     }
 
-    //E
+    //check 5 Felder vor Figur: wenn gegner a. nicht schlagen können -> warten
     private int checkImpactChance(Figure figure) {
         int pos = figure.isInStreet();
 
@@ -144,6 +144,7 @@ public class Ai {
     	return new int[]{10, 10, 20, 30, 30}[behaviour];
     }
 
+    //check 5 Felder nach Würfeln hinter Figur: wenn gegner -> Flucht
     private int checkFutureImpactPrevention(Figure figure, Decision decision) {
         int pos = figure.isInStreet();
 
@@ -165,6 +166,7 @@ public class Ai {
         return 0;
     }
 
+    //check 5 Felder nach Würfeln vor Figur: wenn gegner -> warten
     private int checkFutureImpactChance(Figure figure, Decision decision) {
         int pos = figure.isInStreet();
 
