@@ -110,11 +110,10 @@ public class Ai {
                 if (position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[0]) > 0)
                     return 0;
                 break;
-
-            // Sonst nicht warten
-            default:
-                return CHECK_SPAWN_CAMPING[behaviour];
         }
+
+        // Sonst nicht warten
+        return CHECK_SPAWN_CAMPING[behaviour];
     }
 
     // Prüft ob die Figur ins Home kann
