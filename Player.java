@@ -58,26 +58,6 @@ public class Player {
     }
 
     /**
-     * Generiert eine Spieler-Farbe und gibt diese zurück.
-     *
-     * @return Die Farbe für diesen Spieler.
-     */
-    public Color getColor() {
-        switch (this.getId()) {
-            case 0:
-                return Color.BLUE;
-            case 1:
-                return Color.RED;
-            case 2:
-                return Color.GREEN;
-            case 3:
-                return Color.YELLOW;
-            default:
-                return null;
-        }
-    }
-
-    /**
      * Ruft die Figuren dieses Spielers ab.
      *
      * @return Ein Array aller Figuren dieses Spielers.
@@ -149,7 +129,7 @@ public class Player {
             movableFigures[i] = movableFiguresList.get(i);
         }
 
-        return new Decision(this, fields, false, false,false, movableFigures);
+        return new Decision(this, fields, false, false, false, movableFigures);
     }
 
     /**

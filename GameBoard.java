@@ -17,6 +17,9 @@ public class GameBoard extends World {
     public GameBoard() {
         super(12 * SPACING, 12 * SPACING, 1);
 
+        // Hintergrund setzen
+        setBackgroundImage();
+
         // Street-Felder anlegen
         addObject(new Field(gameManager, 0), SPACING, 5 * SPACING);
         addObject(new Field(gameManager, 1), 2 * SPACING, 5 * SPACING);
@@ -174,5 +177,12 @@ public class GameBoard extends World {
                     e.printStackTrace();
                 }*/
         }
+    }
+
+    private void setBackgroundImage() {
+        GreenfootImage backgroundImage = new GreenfootImage("images/Board.png");
+
+        backgroundImage.scale(getHeight(), getWidth());
+        this.setBackground(backgroundImage);
     }
 }

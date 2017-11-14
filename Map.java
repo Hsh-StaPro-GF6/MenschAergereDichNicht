@@ -114,7 +114,6 @@ public class Map {
      * @return Falls sich an dieser Position eine Figur befindet, wird dessen Figure-Instanz zurückgegeben. Sonst Null.
      */
     public Figure getFigureAtHomePosition(Player player, int position) {
-
         int playerId = player.getId();
         return homes[playerId][position];
     }
