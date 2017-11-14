@@ -65,7 +65,7 @@ Geschwindigkeit:
 frontRunner
 	Figur mit geringsten abstand zum Home setzen
 
-groupmoving
+groupMoving
 	Figur mit geringsten Absatnd 
 
 
