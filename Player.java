@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import greenfoot.*;
@@ -92,29 +93,37 @@ public class Player {
 
         int fields = Greenfoot.getRandomNumber(6) + 1;
 
-        // TODO: Was wenn z.B. Schlagzwang für mehrere Figuren besteht?
-        // TODO: Die Zwänge sollten für alle Figuren gleichwertig geprüft werden, unabhängig von der Reihenfolge der Fig. im Array.
+        // Steht eine Figur im Spawn und kann diesen verlassen? => Dann muss sies auch.
         for (Figure figure : figures) {
-            // Es besteht Schlag-Zwang, wenn eine Figur eine Figur schlagen kann.
-            if (figure.canKickFigure(fields)) {
-                Figure[] movable = new Figure[1];
-                movable[0] = figure;
-                return new Decision(this, fields, true, false, false, movable);
-            }
+            int figureCount = 0;
+            Figure[] movableFigures = new Figure[figures.length];
 
-            // Wenn der Spieler mit einer Figur die Base verlassen kann, muss er es auch.
-            if (figure.canLeaveBase(fields)) {
-                Figure[] movable = new Figure[1];
-                movable[0] = figure;
-                return new Decision(this, fields, false, true, false, movable);
-            }
+            if (map.isFigureInStreet(figure) == start && figure.canMoveForward(fields))
+                movableFigures[figureCount++] = figure;
 
-            // Steht eine Figur im Spawn und kann diesen verlassen? => Dann muss sies auch.
-            if (map.isFigureInStreet(figure) == start && figure.canMoveForward(fields)) {
-                Figure[] movable = new Figure[1];
-                movable[0] = figure;
-                return new Decision(this, fields, false, false, true, movable);
-            }
+            return new Decision(this, fields, false, false, true, Arrays.copyOf(movableFigures, movableFigures));
+        }
+
+        // Wenn der Spieler mit einer Figur die Base verlassen kann, muss er es auch.
+        for (Figure figure : figures) {
+            int figureCount = 0;
+            Figure[] movableFigures = new Figure[figures.length];
+
+            if (figure.canLeaveBase(fields))
+                movableFigures[figureCount++] = figure;
+
+            return new Decision(this, fields, false, true, false, Arrays.copyOf(movableFigures, movableFigures));
+        }
+
+        // Es besteht Schlag-Zwang, wenn eine Figur eine Figur schlagen kann.
+        for (Figure figure : figures) {
+            int figureCount = 0;
+            Figure[] movableFigures = new Figure[figures.length];
+
+            if (figure.canKickFigure(fields))
+                movableFigures[figureCount++] = figure;
+
+            return new Decision(this, fields, false, true, false, Arrays.copyOf(movableFigures, movableFigures));
         }
 
         List<Figure> movableFiguresList = new ArrayList<Figure>(figures.length);

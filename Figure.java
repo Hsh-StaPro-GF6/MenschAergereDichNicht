@@ -114,11 +114,6 @@ public class Figure {
             if (stepsToHome + 1 <= fields) {
                 // Stehen Figuren im Home im Weg?
                 int newPositionInHome = fields - (stepsToHome + 1);
-                System.out.println("CHECK - NEW POS IN HOME: " + newPositionInHome);
-                System.out.println("fields = " + fields);
-                System.out.println("stepsToHome = " + stepsToHome);
-                System.out.println("position = " + position);
-                System.out.println("endPosition = " + endPosition);
                 for (int i = 0; i < newPositionInHome; i++)
                     if (map.getFigureAtHomePosition(this.getPlayer(), i) != null)
                         return false;
@@ -184,7 +179,6 @@ public class Figure {
                 // Geht ins Home
                 if (stepsToHome + 1 <= fields) {
                     int newPositionInHome = fields - (stepsToHome + 1);
-                    System.out.println("DO - NEW POS IN HOME: " + newPositionInHome);
                     map.moveFigureToHomePosition(this, newPositionInHome);
 
                     System.out.println("Ins Home gegangen. Pos: " + newPositionInHome);
@@ -195,7 +189,7 @@ public class Figure {
                 if (canKickFigure(fields))
                     map.moveFigureToBase(map.getFigureAtStreetPosition(newPositionOnStreet));
 
-                // Normales bewegen ohne Zwischenfall
+                // Normales Bewegen ohne Zwischenfall
                 map.moveFigureToStreetPosition(this, newPositionOnStreet);
             }
         }
