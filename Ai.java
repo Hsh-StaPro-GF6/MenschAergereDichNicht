@@ -1,4 +1,5 @@
-import greenfoot.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Alle Ki Handlungen.
@@ -102,57 +103,55 @@ public class Ai {
 
     //F
     private int checkLeaderHunt(Figure figure) {
-        //Bedingung:
-        boolean isTrue = false;
+        // Position des nächsten (initialen) Ziels:
+        int nextTargetPos = gameManager.getMap().isFigureInStreet(figure);
+        if (nextTargetPos < 0) 
+            return 0;
+        
 
-        //Position des nächsten (initialen) Ziels:
-        int nextTargetPos = gameManager.getMap().isFigureInStreet(figure) + 1;
-
-        //Maximalen Score herausfinden:
+         // Leader herausfinden:
+        List<Player> leaders = new ArrayList<Player>();
         int maxScore = 0;
         for (Player curPlayer : gameManager.getPlayers()) {
-            int curPlayerScore = gameManager.getMap().getFigureCountInBase(curPlayer);
+            // Eigenen Spieler ignorieren:
+            if (curPlayer == figure.getPlayer())
+                continue;
+
+            // Spieler-Score holen:
+            int curPlayerScore = gameManager.getMap().getFigureCountInHome(curPlayer);
+
+            // Neuen Score setzen und Liste clearen, falls höher:
             if (curPlayerScore > maxScore) {
                 maxScore = curPlayerScore;
+                leaders.clear();
             }
+
+            // Wenn Score dem Max Score entspricht, Leader hinzufügen:
+            if (curPlayerScore == maxScore) 
+                leaders.add(curPlayer);
+                        
         }
 
-        //Leader herausfinden:
-        boolean leaders[] = {false, false, false, false};
-        for (Player curPlayer : gameManager.getPlayers()) {
-            int curPlayerScore = gameManager.getMap().getFigureCountInBase(curPlayer);
-            if (curPlayerScore == maxScore) {
-                leaders[curPlayer.getId()] = true;
-            }
-        }
+        // Nächste 12 Felder checken:
+        for (int i = 0; i < 12; i++) {
+            // Nächste Position:
+            nextTargetPos = getStreetPositionfromSteps(gameManager.getMap().isFigureInStreet(figure), 1);
 
-        //Selbst als Nicht-Leader setzen:
-        leaders[figure.getPlayer().getId()] = false;
-
-        //Nächste 12 Felder checken:
-        for (int i = 0; i < 12; i++, nextTargetPos++) {
-            //Position zwischen 0 und 39 halten:
-            if (nextTargetPos >= 40) {
-                nextTargetPos = 0;
-            }
-
-            //Aktuelle Position über Ende hinaus:
-            if (nextTargetPos > figure.getPlayer().getEnd()) {
+            // Aktuelle Position über Ende hinaus:
+            if (nextTargetPos > figure.getPlayer().getEnd()) 
                 break;
-            }
-
-            //Nächstes Ziel holen:
+            
+            // Nächstes Ziel holen:
             Figure nextTarget = gameManager.getMap().getFigureAtStreetPosition(nextTargetPos);
             if (nextTarget != null) {
-                //Nächstes Ziel = Leader => Bedingung erfüllt
-                if (leaders[nextTarget.getPlayer().getId()]) {
-                    isTrue = true;
-                    break;
-                }
+                // Nächstes Ziel = Leader => Bedingung erfüllt
+                if (leaders.contains(nextTarget.getPlayer())) 
+                    return new int[]{40, 40, 20, 10, 5}[behaviour];
+                
             }
         }
         
-        return isTrue ? new int[]{40, 40, 20, 10, 5}[behaviour] : 0;
+        return 0;
     }
 
     // Die Distance zwischen zwei Straßen Positionen
