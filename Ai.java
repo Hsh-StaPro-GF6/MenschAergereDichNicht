@@ -48,7 +48,24 @@ public class Ai {
     }
 //T
     private int checkEnsureSpacing(Figure figure) {
-    	 int position =map.isFigureInStreet(figure);
+    	boolean isTrue = false; 
+    	int position1 =map.isFigureInStreet(figure);
+    	
+    	for (Figure figure2: player.getFigures()){
+    		if (figure==figure2){
+    				continue;
+    			}
+    		int position2 =map.isFigureInStreet(figure2);
+    		
+    		int Distance=getDistanceBetweenStreetPositions(position1,position2);
+    		if (Distance == 1){
+    			isTrue = true;
+    		
+    		}
+    			
+    	}
+    		 
+    return isTrue ? new int[]{0, 10, 20, 30, 40}[behaviour] : 0;
     }
 //T
     private int checkPreventSpacing(Figure figure) {
@@ -68,7 +85,7 @@ public class Ai {
     }
     
     // Die Distance zwischen zwei Straßen Positionen
-    private int distanceBetweenStreetPositions(int position1, int position2) {
+    private int getDistanceBetweenStreetPositions(int position1, int position2) {
     	return (position2 - position1) < 0 ? position2 + (40 - position1) : position2 - position1;    	
     }
 }
