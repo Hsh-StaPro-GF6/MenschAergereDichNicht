@@ -95,50 +95,37 @@ public class Player {
 
         // Steht eine Figur im Spawn und kann diesen verlassen? => Dann muss sies auch.
         for (Figure figure : figures) {
-            int figureCount = 0;
-            Figure[] movableFigures = new Figure[figures.length];
-
+            List<Figure> movableFigures = new ArrayList<Figure>(figures.length);
             if (map.isFigureInStreet(figure) == start && figure.canMoveForward(fields))
-                movableFigures[figureCount++] = figure;
+                movableFigures.add(figure);
 
-            return new Decision(this, fields, false, false, true, Arrays.copyOf(movableFigures, movableFigures));
+            return new Decision(this, fields, false, false, true, movableFigures.toArray(new Figure[movableFigures.size()]));
         }
 
         // Wenn der Spieler mit einer Figur die Base verlassen kann, muss er es auch.
         for (Figure figure : figures) {
-            int figureCount = 0;
-            Figure[] movableFigures = new Figure[figures.length];
-
+            List<Figure> movableFigures = new ArrayList<Figure>(figures.length);
             if (figure.canLeaveBase(fields))
-                movableFigures[figureCount++] = figure;
+                movableFigures.add(figure);
 
-            return new Decision(this, fields, false, true, false, Arrays.copyOf(movableFigures, movableFigures));
+            return new Decision(this, fields, false, true, false, movableFigures.toArray(new Figure[movableFigures.size()]));
         }
 
         // Es besteht Schlag-Zwang, wenn eine Figur eine Figur schlagen kann.
         for (Figure figure : figures) {
-            int figureCount = 0;
-            Figure[] movableFigures = new Figure[figures.length];
-
+            List<Figure> movableFigures = new ArrayList<Figure>(figures.length);
             if (figure.canKickFigure(fields))
-                movableFigures[figureCount++] = figure;
+                movableFigures.add(figure);
 
-            return new Decision(this, fields, false, true, false, Arrays.copyOf(movableFigures, movableFigures));
+            return new Decision(this, fields, true, false, false, movableFigures.toArray(new Figure[movableFigures.size()]));
         }
 
-        List<Figure> movableFiguresList = new ArrayList<Figure>(figures.length);
-        for (Figure figure : figures) {
-            if (figure.canMoveForward(fields) || figure.canLeaveBase(fields)) {
-                movableFiguresList.add(figure);
-            }
-        }
+        List<Figure> movableFigures = new ArrayList<Figure>(figures.length);
+        for (Figure figure : figures)
+            if (figure.canMoveForward(fields) || figure.canLeaveBase(fields))
+                movableFigures.add(figure);
 
-        Figure[] movableFigures = new Figure[movableFiguresList.size()];
-        for (int i = 0; i < movableFiguresList.size(); i++) {
-            movableFigures[i] = movableFiguresList.get(i);
-        }
-
-        return new Decision(this, fields, false, false, false, movableFigures);
+        return new Decision(this, fields, false, false, false, movableFigures.toArray(new Figure[movableFigures.size()]));
     }
 
     /**
