@@ -40,101 +40,104 @@ public class Ai {
     public void processDecision(Decision decision) {
 
     }
-    
+
     // Die Figur sollte fremde Spawnpunkte möglichst verlassen.
-    private int checkClearForeignSpawn(Figure figure, Decision decision){
-    	int position = figure.isInStreet(); 
-        
+    private int checkClearForeignSpawn(Figure figure, Decision decision) {
+        int position = figure.isInStreet();
+
         // Überhaupt auf der Straße?
-       	if(position == -1)
-       		return 0;
-           
-                	
-           if(position == player.getStart())
-           	return 0;
-           
-           if(position == 0 || position == 10 || position == 20 || position == 30)
-           	return CHECK_CLEAR_FOREIGN_SPAWN[behaviour];
-           
-           return 0;
+        if (position == -1)
+            return 0;
+
+        if (position == player.getStart())
+            return 0;
+
+        if (position == 0 || position == 10 || position == 20 || position == 30)
+            return CHECK_CLEAR_FOREIGN_SPAWN[behaviour];
+
+        return 0;
     }
 
     // Die Figur sollte fremde Spawnpunkte möglichst nicht betreten.
     private int checkAvoidForeignSpawn(Figure figure, Decision decision) {
-        int position = figure.isInStreet(); 
-        
-     // Überhaupt auf der Straße?
-    	if(position == -1)
-    		return 0;
-        
-        int nextPosition = getStreetPositionfromSteps(position,decision.getFields());
-    	
-        if(nextPosition == player.getStart())
-        	return CHECK_AVOID_FOREIGN_SPAWN[behaviour];
-        
-        if(nextPosition == 0 || nextPosition == 10 || nextPosition == 20 || nextPosition == 30)
-        	return 0;
-        
+        int position = figure.isInStreet();
+
+        // Überhaupt auf der Straße?
+        if (position == -1)
+            return 0;
+
+        int nextPosition = getStreetPositionFromSteps(position, decision.getFields());
+
+        if (nextPosition == player.getStart())
+            return CHECK_AVOID_FOREIGN_SPAWN[behaviour];
+
+        if (nextPosition == 0 || nextPosition == 10 || nextPosition == 20 || nextPosition == 30)
+            return 0;
+
         return CHECK_AVOID_FOREIGN_SPAWN[behaviour];
-   }
-    
+    }
+
     // Checkt ob sich die Figur ein Feld vom Spawnfeld entfernt befindet, also dieses "belagert"
     private int checkSpawnCamping(Figure figure) {
-    	Player [] players = gameManager.getPlayers();
-    	
-    	int position = figure.isInStreet();
-    	
-    	// Überhaupt auf der Straße?
-    	if(position == -1)
-    		return 0;
-    	
-    	switch (position){
-    		// Wenn die Figur 1 feld vor dem Spawn steht und ist das nicht unser 
-			// Spawn und die base von player dem  des Spawnfeld gehort nicht leer ist return 0 (warte)
-    		// ^^ Wer das versteht kriegt nen Keks :P
-    		case 9:
-    			if(position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[1])>0)
-    				return 0;
-    			break;
-    		
-    		case 19:
-    			if(position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[2])>0)
-    				return 0;
-    			break;
-        		
-    		
-    		case 29:
-    			if(position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[3])>0)
-    				return 0;
-    			break;
-        		
-    	
-    		case 39:
-    			if(position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[0])>0)
-    				return 0;
-    			break;
-        		
-    		// Sonst nicht warten
-    		default: 
-    			return CHECK_SPAWN_CAMPING[behaviour];
-    	}
+        Player[] players = gameManager.getPlayers();
+
+        int position = figure.isInStreet();
+
+        // Überhaupt auf der Straße?
+        if (position == -1)
+            return 0;
+
+        switch (position) {
+            // Wenn die Figur 1 feld vor dem Spawn steht und ist das nicht unser
+            // Spawn und die base von player dem  des Spawnfeld gehort nicht leer ist return 0 (warte)
+            // ^^ Wer das versteht kriegt nen Keks :P
+            case 9:
+                if (position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[1]) > 0)
+                    return 0;
+                break;
+
+            case 19:
+                if (position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[2]) > 0)
+                    return 0;
+                break;
+
+            case 29:
+                if (position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[3]) > 0)
+                    return 0;
+                break;
+
+            case 39:
+                if (position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[0]) > 0)
+                    return 0;
+                break;
+
+            // Sonst nicht warten
+            default:
+                return CHECK_SPAWN_CAMPING[behaviour];
+        }
     }
 
     // Prüft ob die Figur ins Home kann
-    private int checkHomeboy(Figure figure, Decision decision) {    	
-    	int position = figure.isInStreet();
-    	
-    	// Überhaupt auf der Straße?
-    	if(position == -1)
-    		return 0;
-    	    	
-    	// Ist der Home-Eingang in erreichbarer Nähe?
-    	if(getDistanceBetweenStreetPositions(position, player.getEnd()) < decision.getFields())
-    		return CHECK_HOMEBOY[behaviour];
-    		
-    	return 0;    			
+    private int checkHomeboy(Figure figure, Decision decision) {
+        int position = figure.isInStreet();
+
+        // Überhaupt auf der Straße?
+        if (position == -1)
+            return 0;
+
+        // Ist der Home-Eingang in erreichbarer Nähe?
+        if (getDistanceBetweenStreetPositions(position, player.getEnd()) < decision.getFields())
+            return CHECK_HOMEBOY[behaviour];
+
+        return 0;
     }
-   
+
+    private int checkHomePosition(Figure figure) {
+        if (figure.isInHome() != -1)
+            return CHECK_HOME_POSITION[behaviour];
+        return 0;
+    }
+
     //check 5 Felder hinter Figur: wenn gegner -> Flucht
     private int checkImpactPrevention(Figure figure) {
         int pos = figure.isInStreet();
@@ -146,7 +149,7 @@ public class Ai {
         // Überprüft die letzten 5 Felder auf Spieler
         Figure possibleImpact;
         for (int i = 1; i < 6; i++) {
-            possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionfromBacksteps(pos, i));
+            possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionFromBacksteps(pos, i));
             if (possibleImpact != null)
                 return CHECK_IMPACT_PREVENTION[behaviour];
         }
@@ -166,75 +169,13 @@ public class Ai {
         // Überprüft die nächsten 5 Felder auf Spieler
         Figure possibleImpact;
         for (int i = 1; i < 6; i++) {
-            possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionfromSteps(pos, i));
+            possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionFromSteps(pos, i));
             if (possibleImpact != null)
                 return CHECK_IMPACT_CHANCE[behaviour];
         }
 
         // Nichts da, was man schlagen könnte
         return 0;
-    }
-
-    // Überprüft ob eigene Figuren auf einem Haufen stehen
-    private int checkEnsureSpacing(Figure figure) {
-    	int ownPosition =gameManager.getMap().isFigureInStreet(figure);    	
-    	
-    	// Überhaupt auf der Straße
-    	if (ownPosition == -1)
-    		return 0;
-    	
-    	// Alle Figuren des Spielers
-    	for (Figure figure2: player.getFigures()){
-    		// Aktuelle Figur ausgewählt?
-    		if (figure==figure2)
-    				continue;
-    			
-    		int figure2Position =gameManager.getMap().isFigureInStreet(figure2);
-    		
-        	// Überhaupt auf der Straße
-        	if (figure2Position == -1)
-        		return 0;
-    		
-    		int distance=getDistanceBetweenStreetPositions(ownPosition,figure2Position);
-    		
-    		// Distanz gleich 1? 
-       		if (distance == 1)
-    			return CHECK_ENSURE_SPACING[behaviour];
-    		
-    	}
-    		 
-    return 0;
-    }
-
-    // Überprüft ob eigene Figuren nach Zug auf haufen stehen
-    private int checkPreventSpacing(Figure figure, Decision decision ) {
-    	int ownPosition = getStreetPositionfromSteps(gameManager.getMap().isFigureInStreet(figure), decision.getFields());
-    	
-    	// Überhaupt auf der Straße
-    	if (ownPosition == -1)
-    		return 0;
-    	
-    	// Alle Figuren des Spielers
-    	for (Figure figure2: player.getFigures()){
-    		// Aktuelle Figur ausgewählt?
-    		if (figure==figure2)
-    				continue;
-    			
-    		int figure2Position =gameManager.getMap().isFigureInStreet(figure2);
-    		
-        	// Überhaupt auf der Straße
-        	if (figure2Position == -1)
-        		return 0;
-    		
-    		int distance=getDistanceBetweenStreetPositions(ownPosition,figure2Position);
-    		
-    		// Distanz gleich 1? 
-       		if (distance == 1)
-    			return 0;	
-    		
-    	}
-    		 
-    	return CHECK_PREVENT_SPACING[behaviour];
     }
 
     //check 5 Felder nach Würfeln hinter Figur: wenn gegner -> Flucht
@@ -245,12 +186,12 @@ public class Ai {
         if (pos == -1)
             return 0;
 
-        pos =+ decision.getFields();
+        pos = +decision.getFields();
 
         // Überprüft die letzten 5 Felder auf Spieler
         Figure possibleImpact;
         for (int i = 1; i < 6; i++) {
-            possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionfromBacksteps(pos, i));
+            possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionFromBacksteps(pos, i));
             if (possibleImpact != null)
                 return CHECK_FUTURE_IMPACT_PREVENTION[behaviour];
         }
@@ -267,12 +208,12 @@ public class Ai {
         if (pos == -1)
             return 0;
 
-        pos =+ decision.getFields();
+        pos = +decision.getFields();
 
         // Überprüft die nächsten 5 Felder auf Spieler
         Figure possibleImpact;
         for (int i = 1; i < 6; i++) {
-            possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionfromSteps(pos, i));
+            possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionFromSteps(pos, i));
             if (possibleImpact != null)
                 return CHECK_FUTURE_IMPACT_CHANCE[behaviour];
         }
@@ -281,10 +222,66 @@ public class Ai {
         return 0;
     }
 
-    private int checkHomePosition(Figure figure) {
-        if (figure.isInHome() != -1)
-            return CHECK_HOME_POSITION[behaviour];
+    // Überprüft ob eigene Figuren auf einem Haufen stehen
+    private int checkEnsureSpacing(Figure figure) {
+        int ownPosition = gameManager.getMap().isFigureInStreet(figure);
+
+        // Überhaupt auf der Straße
+        if (ownPosition == -1)
+            return 0;
+
+        // Alle Figuren des Spielers
+        for (Figure figure2 : player.getFigures()) {
+            // Aktuelle Figur ausgewählt?
+            if (figure == figure2)
+                continue;
+
+            int figure2Position = gameManager.getMap().isFigureInStreet(figure2);
+
+            // Überhaupt auf der Straße
+            if (figure2Position == -1)
+                return 0;
+
+            int distance = getDistanceBetweenStreetPositions(ownPosition, figure2Position);
+
+            // Distanz gleich 1?
+            if (distance == 1)
+                return CHECK_ENSURE_SPACING[behaviour];
+
+        }
+
         return 0;
+    }
+
+    // Überprüft ob eigene Figuren nach Zug auf haufen stehen
+    private int checkPreventSpacing(Figure figure, Decision decision) {
+        int ownPosition = getStreetPositionFromSteps(gameManager.getMap().isFigureInStreet(figure), decision.getFields());
+
+        // Überhaupt auf der Straße
+        if (ownPosition == -1)
+            return 0;
+
+        // Alle Figuren des Spielers
+        for (Figure figure2 : player.getFigures()) {
+            // Aktuelle Figur ausgewählt?
+            if (figure == figure2)
+                continue;
+
+            int figure2Position = gameManager.getMap().isFigureInStreet(figure2);
+
+            // Überhaupt auf der Straße
+            if (figure2Position == -1)
+                return 0;
+
+            int distance = getDistanceBetweenStreetPositions(ownPosition, figure2Position);
+
+            // Distanz gleich 1?
+            if (distance == 1)
+                return 0;
+
+        }
+
+        return CHECK_PREVENT_SPACING[behaviour];
     }
 
     // 12 Felder hinter Figur von führendem Spieler (meiste Figuren in Home) -> Figur setzen
@@ -293,9 +290,8 @@ public class Ai {
         int nextTargetPos = gameManager.getMap().isFigureInStreet(figure);
         if (nextTargetPos < 0)
             return 0;
-        
 
-         // Leader herausfinden:
+        // Leader herausfinden:
         List<Player> leaders = new ArrayList<Player>();
         int maxScore = 0;
         for (Player curPlayer : gameManager.getPlayers()) {
@@ -313,99 +309,96 @@ public class Ai {
             }
 
             // Wenn Score dem Max Score entspricht, Leader hinzufügen:
-            if (curPlayerScore == maxScore) 
+            if (curPlayerScore == maxScore)
                 leaders.add(curPlayer);
-                        
+
         }
 
         // Nächste 12 Felder checken:
         for (int i = 0; i < 12; i++) {
             // Nächste Position:
-            nextTargetPos = getStreetPositionfromSteps(gameManager.getMap().isFigureInStreet(figure), 1);
+            nextTargetPos = getStreetPositionFromSteps(gameManager.getMap().isFigureInStreet(figure), 1);
 
             // Aktuelle Position über Ende hinaus:
-            if (nextTargetPos > figure.getPlayer().getEnd()) 
+            if (nextTargetPos > figure.getPlayer().getEnd())
                 break;
-            
+
             // Nächstes Ziel holen:
             Figure nextTarget = gameManager.getMap().getFigureAtStreetPosition(nextTargetPos);
             if (nextTarget != null) {
                 // Nächstes Ziel = Leader => Bedingung erfüllt
-                if (leaders.contains(nextTarget.getPlayer())) 
+                if (leaders.contains(nextTarget.getPlayer()))
                     return CHECK_LEADER_HUNT[behaviour];
-                
+
             }
         }
-        
+
         return 0;
     }
-    
+
     // Welche Figur hat den geringsten Abstand zum Home
-    private int checkFirstPosition (Figure figure) {
-	Figure minFigure = null; 
-    int distanceMin = 40;
-	//alle Figuren durchlaufen
-    for (Figure figure2: player.getFigures()){
-    	int figure2position=gameManager.getMap().isFigureInStreet(figure2);
-    	
-    	if (figure2position == -1)
-    		continue;
-    	
-		int distance = getDistanceBetweenStreetPositions(figure2position,player.getEnd());
-		//geringste Distanz zum Home suchen
-		if (distance<distanceMin){
-			distanceMin=distance;
-			minFigure=figure2;			
-		}
+    private int checkFirstPosition(Figure figure) {
+        Figure minFigure = null;
+        int distanceMin = 40;
+        //alle Figuren durchlaufen
+        for (Figure figure2 : player.getFigures()) {
+            int figure2position = gameManager.getMap().isFigureInStreet(figure2);
+
+            if (figure2position == -1)
+                continue;
+
+            int distance = getDistanceBetweenStreetPositions(figure2position, player.getEnd());
+            //geringste Distanz zum Home suchen
+            if (distance < distanceMin) {
+                distanceMin = distance;
+                minFigure = figure2;
+            }
+        }
+        // eigene Figur als min setzen
+        if (figure == minFigure)
+            return new int[]{100, 50, 0, 10, 0}[speedBehaviour];
+
+        return 0;
+
     }
-    // eigene Figur als min setzen
-	if (figure == minFigure)
-		return new int[]{100, 50, 0, 10, 0}[speedBehaviour];
-		
-	return 0;
-		
-    }
-    
+
     // Welche Figur hat den geringsten Abstand zur Base
-    private int checkLastPosition (Figure figure) {
-    Figure minFigure = null; 
-    int distanceMin = 40;
-    //alle Figuren durchlaufen
-     for (Figure figure2: player.getFigures()){    	 
-    	int figure2position=gameManager.getMap().isFigureInStreet(figure2);
-    	
-    	if (figure2position == -1)
-    		continue;
-    	
-    	int distance = getDistanceBetweenStreetPositions(player.getStart(),figure2position);
-    	//geringste Distanz zur Base suchen
-    	if (distance<distanceMin){
-    		distanceMin=distance;
-    		minFigure=figure2;			
-    	}
-     }
-    	// eigene Figur als min setzen
-    	if (figure == minFigure)
-    		return new int[]{0, 0, 0, 50, 100}[speedBehaviour];
-    		
-    	return 0;
-    
+    private int checkLastPosition(Figure figure) {
+        Figure minFigure = null;
+        int distanceMin = 40;
+        //alle Figuren durchlaufen
+        for (Figure figure2 : player.getFigures()) {
+            int figure2position = gameManager.getMap().isFigureInStreet(figure2);
+
+            if (figure2position == -1)
+                continue;
+
+            int distance = getDistanceBetweenStreetPositions(player.getStart(), figure2position);
+            //geringste Distanz zur Base suchen
+            if (distance < distanceMin) {
+                distanceMin = distance;
+                minFigure = figure2;
+            }
+        }
+        // eigene Figur als min setzen
+        if (figure == minFigure)
+            return new int[]{0, 0, 0, 50, 100}[speedBehaviour];
+
+        return 0;
     }
 
     // Die Distance zwischen zwei Straßen Positionen
     private int getDistanceBetweenStreetPositions(int position1, int position2) {
-    	return (position2 - position1) < 0 ? position2 + (40 - position1) : position2 - position1;    	
+        return (position2 - position1) < 0 ? position2 + (40 - position1) : position2 - position1;
     }
 
     // Die Distanz vorwärts von einer Position
-    private int getStreetPositionfromSteps(int currentPos, int steps) {
+    private int getStreetPositionFromSteps(int currentPos, int steps) {
         return (currentPos + steps) > 39 ? (currentPos + steps) - 40 : currentPos + steps;
     }
 
     // Die Distanz rückwärts von einer Position
-    private int getStreetPositionfromBacksteps(int currentPos, int steps) {
+    private int getStreetPositionFromBacksteps(int currentPos, int steps) {
         return (currentPos - steps) < 0 ? (currentPos - steps) + 40 : currentPos - steps;
     }
-    
-    
 }
