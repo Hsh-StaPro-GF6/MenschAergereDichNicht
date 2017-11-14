@@ -237,11 +237,17 @@ public class Ai {
         return 0;
     }
 
+    private int checkHomePosition(Figure figure) {
+        if (figure.isInHome() != -1)
+            return new int[]{40, 30, 20, 10, 0}[behaviour];
+        return 0;
+    }
+
     //F
     private int checkLeaderHunt(Figure figure) {
         // Position des nächsten (initialen) Ziels:
         int nextTargetPos = gameManager.getMap().isFigureInStreet(figure);
-        if (nextTargetPos < 0) 
+        if (nextTargetPos < 0)
             return 0;
         
 
