@@ -32,14 +32,50 @@ public class Ai {
         return isTrue ? new int[]{0, 10, 20, 30, 40}[behaviour] : 0;
     }
 
-    //B/N
     private int checkSpawnCamping(Figure figure) {
-
+    	Player [] players = gameManager.getPlayers();
+    	
+    	int position = figure.isInStreet();
+    	
+    	// Überhaupt auf der Straße?
+    	if(position == -1)
+    		return 0;
+    	
+    	switch (position){
+    		// Wenn die Figur 1 feld vor dem Spawn steht und ist das nicht unser 
+			// Spawn und die base von player dem  des Spawnfeld gehort nicht leer ist return 0 (warte)
+    		case 9:
+    			if(position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[1])>0)
+    				return 0;
+    			break;
+    		
+    		case 19:
+    			if(position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[2])>0)
+    				return 0;
+    			break;
+        		
+    		
+    		case 29:
+    			if(position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[3])>0)
+    				return 0;
+    			break;
+        		
+    	
+    		case 39:
+    			if(position != player.getEnd() && gameManager.getMap().getFigureCountInBase(players[0])>0)
+    				return 0;
+    			break;
+        		
+    		// Sonst nicht warten
+    		default: 
+    			return new int[]{40, 25, 20, 0, 0}[behaviour];
+    	}
     }
 
     //B/N
-    private int checkHomeboy(Figure figure) {
-
+    private int checkHomeboy(Figure figure, Decision decision) {
+    	int stepsToHome = player.getEnd()-figureAtStreetPosition
+    			decision.getFields()
     }
 
     //E
