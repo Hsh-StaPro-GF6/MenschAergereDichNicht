@@ -92,12 +92,46 @@ public class Ai {
 
     }
 
-    private int checkFutureImpactPrevention(Figure figure) {
+    private int checkFutureImpactPrevention(Figure figure, Decision decision) {
+        int pos = figure.isInStreet();
 
+        // Überhaupt auf der Straße?
+        if (pos == -1)
+            return 0;
+
+        pos =+ decision.getFields();
+
+        // Überprüft die letzten 5 Felder auf Spieler
+        Figure possibleImpact;
+        for (int i = 1; i < 6; i++) {
+            possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionfromBacksteps(pos, i));
+            if (possibleImpact != null)
+                return new int[]{0, 5, 20, 30, 40}[behaviour];
+        }
+
+        // Keine Gefahr!
+        return 0;
     }
 
-    private int checkFutureImpactChance(Figure figure) {
+    private int checkFutureImpactChance(Figure figure, Decision decision) {
+        int pos = figure.isInStreet();
 
+        // Überhaupt auf der Straße?
+        if (pos == -1)
+            return 0;
+
+        pos =+ decision.getFields();
+
+        // Überprüft die nächsten 5 Felder auf Spieler
+        Figure possibleImpact;
+        for (int i = 1; i < 6; i++) {
+            possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionfromSteps(pos, i));
+            if (possibleImpact != null)
+                return new int[]{40, 30, 20, 10, 0}[behaviour];
+        }
+
+        // Nichts da, was man schlagen könnte
+        return 0;
     }
 
     //F
