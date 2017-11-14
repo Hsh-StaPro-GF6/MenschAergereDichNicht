@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 import greenfoot.*;
 
 /**
@@ -8,51 +5,61 @@ import greenfoot.*;
  */
 public class Ai {
     private final Map map;
-    private final int playerId;
-    private final int start;
-    private final int end;
-    private final Figure[] figures;
+    private final Player player;
+    private final int behaviour;
 
     /**
-     * 
+     * Instanziert eine neue KI.
+     *
+     * @param player    Der Spieler, für den die KI handelt.
+     * @param behaviour Der Schwierigkeitsgrad der KI.
      */
-    public Ai (Map map, int playerId, int start, int end) {
+    public Ai(Player player, int behaviour) {
+        this.player = player;
+        this.behaviour = behaviour;
+    }
+
+    public void processDecision(Decision decision) {
+
+    }
+
+    private int checkAvoidForeignSpawn(Figure figure) {
         
     }
 
-    private int AvoidSpawn() {
-    	
-    }
-    
-    private int SpawnCamping() {
-    	
-    }
-    
-    private int Homeboy() {
-    	
-    }
-    
-    private int impactPrevention() {
-    	
-    }
-    
-    private int impactChance() {
-    	
+    private int checkSpawnCamping(Figure figure) {
+
     }
 
-    private int ensurespacing() {
-    	
+    private int checkHomeboy(Figure figure) {
+
     }
-    
-    private int fuimpactPrevention() {
-    	
+
+    private int checkImpactPrevention(Figure figure) {
+
     }
-    
-    private int fuimpactChance() {
-    	
+
+    private int checkImpactChance(Figure figure) {
+
     }
-    
-    private int leaderHunt() {
-    	
-    }       
+
+    private int checkEnsureSpacing(Figure figure) {
+
+    }
+
+    private int checkPreventSpacing(Figure figure) {
+
+    }
+
+    private int checkFutureImpactPrevention(Figure figure) {
+
+    }
+
+    private int checkFutureImpactChance(Figure figure) {
+
+    }
+
+    private int checkLeaderHunt(Figure figure) {
+
+    }
 }
