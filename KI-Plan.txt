@@ -1,29 +1,37 @@
 avoidSpawn
 	bestzter Gegnerspawn meiden
+		-> parameter setzen
 
 impactPrevention
 	check 5 Felder hinter Figur: wenn gegner -> Flucht
+		-> parameter setzen
 
 impactChance
 	check 5 Felder vor Figur: wenn gegner a. nicht schlagen können -> warten
-
+		-> parameter nicht setzen
 spawnCamping
 	1 Feld hinter besetzter Gegner Spawn warten
+		-> parameter nicht setzen
 
 homeboy
 	Ins Homefeld gehen
+		-> parameter setzen
 
 ensurespacing
 	direckte freundlich nachbarn auflösen
+		-> parameter setzen
 
 fuImpactPrevention
 	check 5 Felder nach Würfeln hinter Figur: wenn gegner -> Flucht
+		-> parameter setzen
 
 fuImpactChance
 	check 5 Felder nach Würfeln vor Figur: wenn gegner -> warten
+		-> parameter nicht setzen
 
 leaderHunt
 	12 Felder hinter Figur von Spieler (meiste Figuren in Home) -> Figur setzen
+		-> parameter setzen
 
 Modi:
 	Sehr aggressiv
