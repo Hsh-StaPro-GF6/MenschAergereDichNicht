@@ -4,16 +4,19 @@ import greenfoot.*;
  * Alle Ki Handlungen.
  */
 public class Ai {
+    private final Map map;
     private final Player player;
     private final int behaviour;
 
     /**
      * Instanziert eine neue KI.
      *
+     * @param map       Das Spielfeld.
      * @param player    Der Spieler, für den die KI handelt.
      * @param behaviour Der Schwierigkeitsgrad der KI.
      */
-    public Ai(Player player, int behaviour) {
+    public Ai(Map map, Player player, int behaviour) {
+        this.map = map;
         this.player = player;
         this.behaviour = behaviour;
     }
