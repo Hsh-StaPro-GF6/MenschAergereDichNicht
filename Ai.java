@@ -40,7 +40,10 @@ public class Ai {
     }
 
     private int checkImpactPrevention(Figure figure) {
-
+        int pos = figure.isInStreet();
+        if (pos == -1)
+            return 0;
+        for 
     }
 
     private int checkImpactChance(Figure figure) {
