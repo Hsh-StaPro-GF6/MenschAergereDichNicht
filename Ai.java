@@ -52,30 +52,26 @@ public class Ai {
 
     }
 
-    //T
+// Überprüft ob eigene Figuren auf haufen stehen
     private int checkEnsureSpacing(Figure figure) {
-<<<<<<< HEAD
     	boolean isTrue = false; 
-    	int position1 =map.isFigureInStreet(figure);
-    	
+    	int position1 =gameManager.getMap().isFigureInStreet(figure);    	
+    	// Alle Figuren des Spielers
     	for (Figure figure2: player.getFigures()){
+    		// Aktuelle Figur ausgewählt?
     		if (figure==figure2){
     				continue;
     			}
-    		int position2 =map.isFigureInStreet(figure2);
+    		int position2 =gameManager.getMap().isFigureInStreet(figure2);
     		
     		int Distance=getDistanceBetweenStreetPositions(position1,position2);
-    		if (Distance == 1){
-    			isTrue = true;
-    		
-    		}
-    			
+    		// Disatnz gleich 1? 
+       		if (Distance == 1){
+    			isTrue = true;    		
+    		}	
     	}
     		 
     return isTrue ? new int[]{0, 10, 20, 30, 40}[behaviour] : 0;
-=======
-        int position = map.isFigureInStreet(figure);
->>>>>>> d9ae3179d6bb929d327f077072cca921338f2572
     }
 
     //T
@@ -97,12 +93,7 @@ public class Ai {
     }
 
     // Die Distance zwischen zwei Straßen Positionen
-<<<<<<< HEAD
     private int getDistanceBetweenStreetPositions(int position1, int position2) {
     	return (position2 - position1) < 0 ? position2 + (40 - position1) : position2 - position1;    	
-=======
-    private int distanceBetweenStreetPositions(int position1, int position2) {
-        return (position2 - position1) < 0 ? position2 + (40 - position1) : position2 - position1;
->>>>>>> d9ae3179d6bb929d327f077072cca921338f2572
     }
 }
