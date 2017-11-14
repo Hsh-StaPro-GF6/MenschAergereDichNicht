@@ -52,31 +52,66 @@ public class Ai {
 
     }
 
-// Überprüft ob eigene Figuren auf haufen stehen
+    // Überprüft ob eigene Figuren auf einem Haufen stehen
     private int checkEnsureSpacing(Figure figure) {
-    	boolean isTrue = false; 
-    	int position1 =gameManager.getMap().isFigureInStreet(figure);    	
+    	int ownPosition =gameManager.getMap().isFigureInStreet(figure);    	
+    	
+    	// Überhaupt auf der Straße
+    	if (ownPosition == -1)
+    		return 0;
+    	
     	// Alle Figuren des Spielers
     	for (Figure figure2: player.getFigures()){
     		// Aktuelle Figur ausgewählt?
-    		if (figure==figure2){
+    		if (figure==figure2)
     				continue;
-    			}
-    		int position2 =gameManager.getMap().isFigureInStreet(figure2);
+    			
+    		int figure2Position =gameManager.getMap().isFigureInStreet(figure2);
     		
-    		int Distance=getDistanceBetweenStreetPositions(position1,position2);
-    		// Disatnz gleich 1? 
-       		if (Distance == 1){
-    			isTrue = true;    		
-    		}	
+        	// Überhaupt auf der Straße
+        	if (ownPosition == -1)
+        		return 0;
+    		
+    		int distance=getDistanceBetweenStreetPositions(ownPosition,figure2Position);
+    		
+    		// Distanz gleich 1? 
+       		if (distance == 1)
+    			return new int[]{10, 10, 20, 30, 30}[behaviour];	
+    		
     	}
     		 
-    return isTrue ? new int[]{0, 10, 20, 30, 40}[behaviour] : 0;
+    return 0;
     }
 
-    //T
-    private int checkPreventSpacing(Figure figure) {
-
+    // Überprüft ob eigene Figuren nach Zug auf haufen stehen
+    private int checkPreventSpacing(Figure figure, Decision decision ) {
+    	int ownPosition = getStreetPositionFromSteps(gameManager.getMap().isFigureInStreet(figure), decision.getFields());    	
+    	
+    	// Überhaupt auf der Straße
+    	if (ownPosition == -1)
+    		return 0;
+    	
+    	// Alle Figuren des Spielers
+    	for (Figure figure2: player.getFigures()){
+    		// Aktuelle Figur ausgewählt?
+    		if (figure==figure2)
+    				continue;
+    			
+    		int figure2Position =gameManager.getMap().isFigureInStreet(figure2);
+    		
+        	// Überhaupt auf der Straße
+        	if (ownPosition == -1)
+        		return 0;
+    		
+    		int distance=getDistanceBetweenStreetPositions(ownPosition,figure2Position);
+    		
+    		// Distanz gleich 1? 
+       		if (distance == 1)
+    			return 0;	
+    		
+    	}
+    		 
+    	return new int[]{10, 10, 20, 30, 30}[behaviour];
     }
 
     private int checkFutureImpactPrevention(Figure figure) {
