@@ -1,3 +1,4 @@
+Taktik:
 avoidforeignSpawn
 	bestzter Gegnerspawn meiden
 		-> parameter nicht setzen
@@ -57,3 +58,18 @@ leaderHunt		40		40		20		10		5
 					
 homeboy			0		30		20		40		40
 
+gesamt			180		195		200		215		215
+
+Geschwindigkeit:
+
+frontRunner
+	Figur mit geringsten abstand zum Home setzen
+
+groupmoving
+	Figur mit geringsten Absatnd 
+
+
+
+Geschwindigkeit		sehr schnell	schnell		random		langsam		sehr langsam
+frontRunner		100		50		0		0		0
+groupMoving		0		0		10		50		100
