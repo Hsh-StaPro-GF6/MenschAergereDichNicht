@@ -146,7 +146,7 @@ public class Ai {
     		int figure2Position =gameManager.getMap().isFigureInStreet(figure2);
     		
         	// Überhaupt auf der Straße
-        	if (ownPosition == -1)
+        	if (figure2Position == -1)
         		return 0;
     		
     		int distance=getDistanceBetweenStreetPositions(ownPosition,figure2Position);
@@ -177,7 +177,7 @@ public class Ai {
     		int figure2Position =gameManager.getMap().isFigureInStreet(figure2);
     		
         	// Überhaupt auf der Straße
-        	if (ownPosition == -1)
+        	if (figure2Position == -1)
         		return 0;
     		
     		int distance=getDistanceBetweenStreetPositions(ownPosition,figure2Position);

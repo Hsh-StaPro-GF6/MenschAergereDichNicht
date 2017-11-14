@@ -94,7 +94,6 @@ public class Figure {
      * @return True, falls die Figur vorwärts-bewegt werden könnte, sonst False.
      */
     public boolean canMoveForward(int fields) {
-
         int position = this.isInStreet();
         int endPosition = this.getPlayer().getEnd();
 
@@ -114,7 +113,7 @@ public class Figure {
             if (stepsToHome + 1 <= fields) {
                 // Stehen Figuren im Home im Weg?
                 int newPositionInHome = fields - (stepsToHome + 1);
-                for (int i = 0; i < newPositionInHome; i++)
+                for (int i = 0; i <= newPositionInHome; i++)
                     if (map.getFigureAtHomePosition(this.getPlayer(), i) != null)
                         return false;
                 return true;
