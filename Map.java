@@ -94,7 +94,26 @@ public class Map {
 
         return count;
     }
+    
+    /**
+     * Fragt ab, wie viele Figuren sich im Home befinden.
+     *
+     * @param player Der Spieler, dessen Home geprüft werden soll.
+     * @return Die Anzahl der Figuren im Home des Spielers.
+     */
+    public int getFigureCountInHome(Player player) {
 
+        int playerId = player.getId();
+        int count = 0;
+
+        // Figuren im Home zählen
+        for (int i = 0; i < homes[playerId].length; i++)
+            if (homes[playerId][i] != null)
+                count++;
+
+        return count;
+    }
+   
     /**
      * Fragt ab, welche Figur sich an einer angegebenen absoluten Position auf dem Haupt-Spielfeld befindet.
      *
