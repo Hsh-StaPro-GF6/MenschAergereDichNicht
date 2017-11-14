@@ -5,6 +5,7 @@ import java.util.List;
  * Alle Ki Handlungen.
  */
 public class Ai {
+    public static final int[] CHECK_CLEAR_FOREIGN_SPAWN = {0, 10, 20, 30, 40};
     public static final int[] CHECK_AVOID_FOREIGN_SPAWN = {0, 10, 20, 30, 40};
     public static final int[] CHECK_SPAWN_CAMPING = {40, 25, 20, 0, 0};
     public static final int[] CHECK_HOMEBOY = {0, 30, 20, 40, 40};
@@ -37,13 +38,44 @@ public class Ai {
     public void processDecision(Decision decision) {
 
     }
-
-    //B/N
-    private int checkAvoidForeignSpawn(Figure figure) {
-        boolean isTrue = false;
-
-        return isTrue ? CHECK_AVOID_FOREIGN_SPAWN[behaviour] : 0;
+    
+    // Die Figur sollte fremde Spawnpunkte möglichst verlassen.
+    private int checkClearForeignSpawn(Figure figure, Decision decision){
+    	int position = figure.isInStreet(); 
+        
+        // Überhaupt auf der Straße?
+       	if(position == -1)
+       		return 0;
+           
+                	
+           if(position == player.getStart())
+           	return 0;
+           
+           if(position == 0 || position == 10 || position == 20 || position == 30)
+           	return CHECK_CLEAR_FOREIGN_SPAWN[behaviour];
+           
+           return 0;
     }
+
+    // Die Figur sollte fremde Spawnpunkte möglichst nicht betreten.
+    private int checkAvoidForeignSpawn(Figure figure, Decision decision) {
+        int position = figure.isInStreet(); 
+        
+     // Überhaupt auf der Straße?
+    	if(position == -1)
+    		return 0;
+        
+        int nextPosition = getStreetPositionfromSteps(position,decision.getFields());
+    	
+        if(nextPosition == player.getStart())
+        	return CHECK_AVOID_FOREIGN_SPAWN[behaviour];
+        
+        if(nextPosition == 0 || nextPosition == 10 || nextPosition == 20 || nextPosition == 30)
+        	return 0;
+        
+        return CHECK_AVOID_FOREIGN_SPAWN[behaviour];
+   }
+    
     // Checkt ob sich die Figur ein Feld vom Spawnfeld entfernt befindet, also dieses "belagert"
     private int checkSpawnCamping(Figure figure) {
     	Player [] players = gameManager.getPlayers();
