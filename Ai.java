@@ -4,7 +4,6 @@ import greenfoot.*;
  * Alle Ki Handlungen.
  */
 public class Ai {
-    private final Map map;
     private final Player player;
     private final int behaviour;
 
@@ -24,7 +23,9 @@ public class Ai {
     }
 
     private int checkAvoidForeignSpawn(Figure figure) {
-        
+        boolean isTrue = false;
+
+        return isTrue ? new int[]{0, 10, 20, 30, 40}[behaviour] : 0;
     }
 
     private int checkSpawnCamping(Figure figure) {
