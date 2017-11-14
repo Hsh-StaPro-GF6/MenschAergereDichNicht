@@ -15,6 +15,7 @@ public class Ai {
     public static final int[] CHECK_FUTURE_IMPACT_PREVENTION = {0, 5, 20, 30, 40};
     public static final int[] CHECK_FUTURE_IMPACT_CHANCE = {40, 30, 20, 10, 0};
     public static final int[] CHECK_LEADER_HUNT = {40, 40, 20, 10, 5};
+    public static final int[] CHECK_HOME_POSITION = {40, 30, 20, 10, 0};
 
 
     private final GameManager gameManager;
@@ -249,7 +250,7 @@ public class Ai {
 
     private int checkHomePosition(Figure figure) {
         if (figure.isInHome() != -1)
-            return new int[]{40, 30, 20, 10, 0}[behaviour];
+            return CHECK_HOME_POSITION[behaviour];
         return 0;
     }
 
