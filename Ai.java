@@ -4,19 +4,19 @@ import greenfoot.*;
  * Alle Ki Handlungen.
  */
 public class Ai {
-    private final Map map;
+    private final GameManager gameManager;
     private final Player player;
     private final int behaviour;
 
     /**
      * Instanziert eine neue KI.
      *
-     * @param map       Das Spielfeld.
-     * @param player    Der Spieler, für den die KI handelt.
-     * @param behaviour Der Schwierigkeitsgrad der KI.
+     * @param gameManager Der GameManager des aktuellen Spiels (Wird benötigt um Informationen über das aktuelle Spiel abzurufen).
+     * @param player      Der Spieler, für den die KI handelt.
+     * @param behaviour   Der Schwierigkeitsgrad der KI.
      */
-    public Ai(Map map, Player player, int behaviour) {
-        this.map = map;
+    public Ai(GameManager gameManager, Player player, int behaviour) {
+        this.gameManager = gameManager;
         this.player = player;
         this.behaviour = behaviour;
     }
@@ -24,33 +24,40 @@ public class Ai {
     public void processDecision(Decision decision) {
 
     }
-//B/N
+
+    //B/N
     private int checkAvoidForeignSpawn(Figure figure) {
         boolean isTrue = false;
 
         return isTrue ? new int[]{0, 10, 20, 30, 40}[behaviour] : 0;
     }
-//B/N
+
+    //B/N
     private int checkSpawnCamping(Figure figure) {
 
     }
-//B/N
+
+    //B/N
     private int checkHomeboy(Figure figure) {
 
     }
-//E
+
+    //E
     private int checkImpactPrevention(Figure figure) {
 
     }
-//E
+
+    //E
     private int checkImpactChance(Figure figure) {
 
     }
-//T
+
+    //T
     private int checkEnsureSpacing(Figure figure) {
-    	 int position =map.isFigureInStreet(figure);
+        int position = map.isFigureInStreet(figure);
     }
-//T
+
+    //T
     private int checkPreventSpacing(Figure figure) {
 
     }
@@ -62,7 +69,8 @@ public class Ai {
     private int checkFutureImpactChance(Figure figure) {
 
     }
-//F
+
+    //F
     private int checkLeaderHunt(Figure figure) {
         //Variablen:
         boolean isTrue    = false;
@@ -104,9 +112,9 @@ public class Ai {
         
         return isTrue ? new int[]{40, 40, 20, 10, 5}[behaviour] : 0;
     }
-    
+
     // Die Distance zwischen zwei Straßen Positionen
     private int distanceBetweenStreetPositions(int position1, int position2) {
-    	return (position2 - position1) < 0 ? position2 + (40 - position1) : position2 - position1;    	
+        return (position2 - position1) < 0 ? position2 + (40 - position1) : position2 - position1;
     }
 }

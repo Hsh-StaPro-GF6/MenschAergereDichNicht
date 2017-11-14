@@ -91,41 +91,40 @@ public class Player {
     public Decision rollDice() {
         System.out.println("Player.rollDice");
 
+        // Eine Zahl würfeln
         int fields = Greenfoot.getRandomNumber(6) + 1;
 
         // Steht eine Figur im Spawn und kann diesen verlassen? => Dann muss sies auch.
-        for (Figure figure : figures) {
-            List<Figure> movableFigures = new ArrayList<Figure>(figures.length);
-            if (map.isFigureInStreet(figure) == start && figure.canMoveForward(fields))
-                movableFigures.add(figure);
-
-            return new Decision(this, fields, false, false, true, movableFigures.toArray(new Figure[movableFigures.size()]));
-        }
-
-        // Wenn der Spieler mit einer Figur die Base verlassen kann, muss er es auch.
-        for (Figure figure : figures) {
-            List<Figure> movableFigures = new ArrayList<Figure>(figures.length);
-            if (figure.canLeaveBase(fields))
-                movableFigures.add(figure);
-
-            return new Decision(this, fields, false, true, false, movableFigures.toArray(new Figure[movableFigures.size()]));
-        }
-
-        // Es besteht Schlag-Zwang, wenn eine Figur eine Figur schlagen kann.
-        for (Figure figure : figures) {
-            List<Figure> movableFigures = new ArrayList<Figure>(figures.length);
-            if (figure.canKickFigure(fields))
-                movableFigures.add(figure);
-
-            return new Decision(this, fields, true, false, false, movableFigures.toArray(new Figure[movableFigures.size()]));
-        }
-
         List<Figure> movableFigures = new ArrayList<Figure>(figures.length);
         for (Figure figure : figures)
-            if (figure.canMoveForward(fields) || figure.canLeaveBase(fields))
+            if (map.isFigureInStreet(figure) == start && figure.canMoveForward(fields))
                 movableFigures.add(figure);
+        if (movableFigures.size() > 0)
+            return new Decision(this, fields, false, false, true, movableFigures.toArray(new Figure[movableFigures.size()]));
 
-        return new Decision(this, fields, false, false, false, movableFigures.toArray(new Figure[movableFigures.size()]));
+        // Wenn der Spieler mit einer Figur die Base verlassen kann, muss er es auch.
+        List<Figure> leavingFigures = new ArrayList<Figure>(figures.length);
+        for (Figure figure : figures)
+            if (figure.canLeaveBase(fields))
+                leavingFigures.add(figure);
+        if (leavingFigures.size() > 0)
+            return new Decision(this, fields, false, true, false, leavingFigures.toArray(new Figure[leavingFigures.size()]));
+
+        // Es besteht Schlag-Zwang, wenn eine Figur eine Figur schlagen kann.
+        List<Figure> impactingFigures = new ArrayList<Figure>(figures.length);
+        for (Figure figure : figures)
+            if (figure.canKickFigure(fields))
+                impactingFigures.add(figure);
+        if (impactingFigures.size() > 0)
+            return new Decision(this, fields, true, false, false, impactingFigures.toArray(new Figure[impactingFigures.size()]));
+
+        // Es besteht kein Zwang, die Figur kann frei gewählt werden
+        List<Figure> selectableFigures = new ArrayList<Figure>(figures.length);
+        for (Figure figure : figures)
+            if (figure.canMoveForward(fields) || figure.canLeaveBase(fields))
+                selectableFigures.add(figure);
+
+        return new Decision(this, fields, false, false, false, selectableFigures.toArray(new Figure[selectableFigures.size()]));
     }
 
     /**
