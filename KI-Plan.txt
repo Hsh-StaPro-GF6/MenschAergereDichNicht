@@ -1,43 +1,50 @@
 Taktik:
-avoidforeignSpawn
+
+checkClearforeignSpawn
 	bestzter Gegnerspawn meiden
 		-> parameter nicht setzen
-
-impactPrevention
-	check 5 Felder hinter Figur: wenn gegner -> Flucht
-		-> parameter setzen
-
-impactChance
-	check 5 Felder vor Figur: wenn gegner a. nicht schlagen können -> warten
+		
+checkAvoidforeignSpawn
+	bestzter Gegnerspawn meiden
 		-> parameter nicht setzen
-spawnCamping
+		
+checkSpawnCamping
 	1 Feld hinter besetzter Gegner Spawn warten
 		-> parameter nicht setzen
-
-homeboy
+		
+checkHomeboy
 	Ins Homefeld gehen
 		-> parameter setzen
 
-Homeposition
+checkHomeposition		---
 	Im Home vorwärts gehen
 
-ensurespacing
-	direckte freundlich nachbarn auflösen
+checkImpactPrevention
+	check 5 Felder hinter Figur: wenn gegner -> Flucht
 		-> parameter setzen
-		
-preventspacing
-	direckte freundlich nachbarn verhindern
+
+checkImpactChance
+	check 5 Felder vor Figur: wenn gegner a. nicht schlagen können -> warten
 		-> parameter nicht setzen
 
-futureImpactPrevention
+checkFutureImpactPrevention	---
 	check 5 Felder nach Würfeln hinter Figur: wenn gegner -> Flucht
 		-> parameter setzen
 
-futureImpactChance
+checkFutureImpactChance		---
 	check 5 Felder nach Würfeln vor Figur: wenn gegner -> warten
 		-> parameter nicht setzen
 
-leaderHunt
+checkEnsureSpacing
+	direckte freundlich nachbarn auflösen
+		-> parameter setzen
+		
+checkPreventSpacing
+	direckte freundlich nachbarn verhindern
+		-> parameter nicht setzen
+
+
+checkLeaderHunt
 	12 Felder hinter Figur von Spieler (meiste Figuren in Home) -> Figur setzen
 		-> parameter setzen
 
@@ -48,31 +55,32 @@ Modi:
 	Defensiv
 	Sehr defensiv
 	
-Taktik			sehr agressiv	agressiv	mittel		defensiv	Sehr devensiv
-avoid Spawn		0		10		20		30		40
-impactPrevention	0		5		20		30		40
-impactChance		40		30		20		10		0
-spawncamping		40		25		20		0		0
-ensurespacing		10		10		20		30		30
-preventspacing		10		10		20		30		30
-futureImpactprevention	0		5		20		30		40
-futureImpactChance	40		30		20		5		0
-leaderHunt		40		40		20		10		5
-					
-homeboy			0		30		20		40		40
+Taktik				sehr agressiv	agressiv	mittel		defensiv	Sehr devensiv
+checkClearforeignSpawn		0		10		20		30		40
+checkAvoidforeignSpawn		0		10		20		30		40
+checkSpawnCamping		40		25		20		0		0
+checkHomeboy			0		30		20		40		40
+checkHomeposition		0		10		20		30		40
+checkImpactPrevention		0		5		20		30		40
+checkImpactChance		40		30		20		10		0
+checkFutureImpactPrevention --	0		5		20		30		40
+checkFutureImpactChance	---	40		30		20		5		0
+checkEnsureSpacing		10		10		20		30		30
+checkPreventSpacing		10		10		20		30		30
+checkLeaderHunt			40		40		20		10		5
 
-gesamt			180		195		200		215		215
+gesamt	
 
 Geschwindigkeit:
 
-frontRunner
+checkFirstPosition
 	Figur mit geringsten abstand zum Home setzen
 
-groupMoving
+checkLastPosition
 	Figur mit geringsten Absatnd 
 
 
 
 Geschwindigkeit		sehr schnell	schnell		random		langsam		sehr langsam
-frontRunner		100		50		0		0		0
-groupMoving		0		0		10		50		100
+checkFirstPosition	100		50		0		0		0
+checkLastPosition	0		0		10		50		100
