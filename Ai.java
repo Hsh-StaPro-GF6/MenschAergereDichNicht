@@ -5,6 +5,18 @@ import java.util.List;
  * Alle Ki Handlungen.
  */
 public class Ai {
+    public static final int[] CHECK_AVOID_FOREIGN_SPAWN = {0, 10, 20, 30, 40};
+    public static final int[] CHECK_SPAWN_CAMPING = {40, 25, 20, 0, 0};
+    public static final int[] CHECK_HOMEBOY = {0, 30, 20, 40, 40};
+    public static final int[] CHECK_IMPACT_PREVENTION = {0, 5, 20, 30, 40};
+    public static final int[] CHECK_IMPACT_CHANCE = {40, 30, 20, 10, 0};
+    public static final int[] CHECK_ENSURE_SPACING = {10, 10, 20, 30, 30};
+    public static final int[] CHECK_PREVENT_SPACING = {10, 10, 20, 30, 30};
+    public static final int[] CHECK_FUTURE_IMPACT_PREVENTION = {0, 5, 20, 30, 40};
+    public static final int[] CHECK_FUTURE_IMPACT_CHANCE = {40, 30, 20, 10, 0};
+    public static final int[] CHECK_LEADER_HUNT = {40, 40, 20, 10, 5};
+
+
     private final GameManager gameManager;
     private final Player player;
     private final int behaviour;
@@ -30,7 +42,7 @@ public class Ai {
     private int checkAvoidForeignSpawn(Figure figure) {
         boolean isTrue = false;
 
-        return isTrue ? new int[]{0, 10, 20, 30, 40}[behaviour] : 0;
+        return isTrue ? CHECK_AVOID_FOREIGN_SPAWN[behaviour] : 0;
     }
     // Checkt ob sich die Figur ein Feld vom Spawnfeld entfernt befindet, also dieses "belagert"
     private int checkSpawnCamping(Figure figure) {
@@ -70,7 +82,7 @@ public class Ai {
         		
     		// Sonst nicht warten
     		default: 
-    			return new int[]{40, 25, 20, 0, 0}[behaviour];
+    			return CHECK_SPAWN_CAMPING[behaviour];
     	}
     }
 
@@ -102,7 +114,7 @@ public class Ai {
         for (int i = 1; i < 6; i++) {
             possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionfromBacksteps(pos, i));
             if (possibleImpact != null)
-                return new int[]{0, 5, 20, 30, 40}[behaviour];
+                return CHECK_IMPACT_PREVENTION[behaviour];
         }
 
         // Keine Gefahr!
@@ -122,7 +134,7 @@ public class Ai {
         for (int i = 1; i < 6; i++) {
             possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionfromSteps(pos, i));
             if (possibleImpact != null)
-                return new int[]{40, 30, 20, 10, 0}[behaviour];
+                return CHECK_IMPACT_CHANCE[behaviour];
         }
 
         // Nichts da, was man schlagen könnte
@@ -153,7 +165,7 @@ public class Ai {
     		
     		// Distanz gleich 1? 
        		if (distance == 1)
-    			return new int[]{10, 10, 20, 30, 30}[behaviour];	
+    			return CHECK_ENSURE_SPACING[behaviour];
     		
     	}
     		 
@@ -188,7 +200,7 @@ public class Ai {
     		
     	}
     		 
-    	return new int[]{10, 10, 20, 30, 30}[behaviour];
+    	return CHECK_PREVENT_SPACING[behaviour];
     }
 
     //check 5 Felder nach Würfeln hinter Figur: wenn gegner -> Flucht
@@ -206,7 +218,7 @@ public class Ai {
         for (int i = 1; i < 6; i++) {
             possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionfromBacksteps(pos, i));
             if (possibleImpact != null)
-                return new int[]{0, 5, 20, 30, 40}[behaviour];
+                return CHECK_FUTURE_IMPACT_PREVENTION[behaviour];
         }
 
         // Keine Gefahr!
@@ -228,7 +240,7 @@ public class Ai {
         for (int i = 1; i < 6; i++) {
             possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionfromSteps(pos, i));
             if (possibleImpact != null)
-                return new int[]{40, 30, 20, 10, 0}[behaviour];
+                return CHECK_FUTURE_IMPACT_CHANCE[behaviour];
         }
 
         // Nichts da, was man schlagen könnte
@@ -280,7 +292,7 @@ public class Ai {
             if (nextTarget != null) {
                 // Nächstes Ziel = Leader => Bedingung erfüllt
                 if (leaders.contains(nextTarget.getPlayer())) 
-                    return new int[]{40, 40, 20, 10, 5}[behaviour];
+                    return CHECK_LEADER_HUNT[behaviour];
                 
             }
         }
