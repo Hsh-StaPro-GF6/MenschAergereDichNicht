@@ -2,51 +2,51 @@ Taktik:
 
 checkClearforeignSpawn
 	bestzter Gegnerspawn meiden
-		-> parameter nicht setzen
+		
 		
 checkAvoidforeignSpawn
 	bestzter Gegnerspawn meiden
-		-> parameter nicht setzen
+		
 		
 checkSpawnCamping
 	1 Feld hinter besetzter Gegner Spawn warten
-		-> parameter nicht setzen
+		
 		
 checkHomeboy
 	Ins Homefeld gehen
-		-> parameter setzen
+		
 
-checkHomeposition		---
+checkHomeposition		
 	Im Home vorwärts gehen
+		
 
 checkImpactPrevention
 	check 5 Felder hinter Figur: wenn gegner -> Flucht
-		-> parameter setzen
+		
 
 checkImpactChance
 	check 5 Felder vor Figur: wenn gegner a. nicht schlagen können -> warten
-		-> parameter nicht setzen
+		
 
-checkFutureImpactPrevention	---
+checkFutureImpactPrevention	
 	check 5 Felder nach Würfeln hinter Figur: wenn gegner -> Flucht
-		-> parameter setzen
+		
 
-checkFutureImpactChance		---
+checkFutureImpactChance		
 	check 5 Felder nach Würfeln vor Figur: wenn gegner -> warten
-		-> parameter nicht setzen
+		
 
 checkEnsureSpacing
 	direckte freundlich nachbarn auflösen
-		-> parameter setzen
+		
 		
 checkPreventSpacing
 	direckte freundlich nachbarn verhindern
-		-> parameter nicht setzen
-
+		
 
 checkLeaderHunt
 	12 Felder hinter Figur von Spieler (meiste Figuren in Home) -> Figur setzen
-		-> parameter setzen
+		
 
 Modi:
 	Sehr aggressiv
