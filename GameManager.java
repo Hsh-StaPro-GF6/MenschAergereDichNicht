@@ -4,7 +4,7 @@
 public class GameManager {
 
     private final Map map;
-    private final Player[] players = new Player[4];
+        private final Player[] players = new Player[4];
     private int currentPlayer = 0;
 
     /**
