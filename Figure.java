@@ -52,8 +52,6 @@ public class Figure {
      * @return Die Position der Figur im Home, wobei 0 ganz am Anfang und 3 ganz am Ende ist. Wenn sich die Figur nicht im Home befindet: -1.
      */
     public int isInHome() {
-        //System.out.println("Figure.isInHome");
-
         return map.isFigureInHome(this);
     }
 
@@ -89,7 +87,7 @@ public class Figure {
 
     /**
      * TODO: Figur darf sich nicht bewegen wenn an der neuem Position schon eine eigene Figur steht
-     * 
+     * <p>
      * Prüft, ob die Figur um die angegebene Schritt-Zahl vorwärts-bewergt werden könnte.
      *
      * @param fields Die Schritt-Zahl.
@@ -110,7 +108,7 @@ public class Figure {
             // Man darf nicht über das Ende des Homes hinaus gehen
             if (stepsToHome + 4 < fields)
                 return false;
-                        
+
             // Geht er ins Home?
             if (stepsToHome + 1 <= fields) {
                 // Stehen Figuren im Home im Weg?
