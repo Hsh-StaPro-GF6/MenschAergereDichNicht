@@ -114,13 +114,17 @@ public class GameBoard extends World {
 
     // Spielfeld zeichnen
     public void act() {
+        Ai ai = new Ai(gameManager, gameManager.getCurrentPlayer(), 1, 4);
+
         // TODO: Nur fürs testen!
         if (Greenfoot.isKeyDown("0")) {
             // Erste Runde?
             if (decision != null) {
 
                 if (decision.getMovableFigures().length > 0)
-                    decision.setSelectedFigure(decision.getMovableFigures()[0]);
+                    ai.processDecision(decision);
+
+                System.out.println();
 
                 boolean won = gameManager.exertDecision(decision);
 
@@ -170,11 +174,6 @@ public class GameBoard extends World {
             for (int i = 0; i < decision.getMovableFigures().length; i++) {
                 System.out.print(" " + decision.getMovableFigures()[i] + " ");
             }
-            System.out.println();
-
-            Ai ai = new Ai(gameManager, gameManager.getCurrentPlayer(), 1, 1);
-            ai.processDecision(decision);
-
             System.out.println();
                 /*try {
                     Thread.sleep(400);

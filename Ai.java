@@ -43,18 +43,25 @@ public class Ai {
     }
 
     public void processDecision(Decision decision) {
+        int highestParameter = 0;
+        Figure highestFigure = null;
+
         for (Figure figure : decision.getMovableFigures()) {
             System.out.println(" Figur steht an Position: " + figure.isInStreet());
-            callcuateFigurParameter(decision, figure);
+            int figureParameter = callcuateFigurParameter(decision, figure);
+
+            if (figureParameter >= highestParameter) {
+                highestParameter = figureParameter;
+                highestFigure = figure;
+            }
         }
 
-        // TODO: decision selected figure setzen
+        System.out.println("highestFigure = " + highestFigure);
+
+        decision.setSelectedFigure(highestFigure);
     }
 
-    /**
-     * TODO: methode "checkLeaderHunt" auf Richtigkeit/Bugs überprüfen
-     */
-    public void callcuateFigurParameter(Decision decision, Figure figure) {
+    private int callcuateFigurParameter(Decision decision, Figure figure) {
         int figurParameter = 0;
         figurParameter += checkClearForeignSpawn(figure, decision);
         //checked    System.out.print("| " + figure + ": checkClearForeignSpawn:  " + checkClearForeignSpawn( decision.getMovableFigures()[i],decision) + " ");
@@ -88,6 +95,8 @@ public class Ai {
         //checked    System.out.println("| " + figure + ": checkLastPosition:  " + checkLastPosition( decision.getMovableFigures()[i],decision) + " ");
 
         System.out.println("| " + figure + ": gesamt:  " + figurParameter + " ");
+
+        return figurParameter;
     }
 
     /**
@@ -522,8 +531,6 @@ public class Ai {
             nextTargetPos = getStreetPositionFromSteps(gameManager.getMap().isFigureInStreet(figure), 1);
 
             // Aktuelle Position über Ende hinaus:
-//            if (nextTargetPos > figure.getPlayer().getEnd())
-//                break;
             int playerEnd = figure.getPlayer().getEnd();
             int myDistance = this.getDistanceBetweenStreetPositions(gameManager.getMap().isFigureInStreet(figure), playerEnd);
             int nextTargetDistance = this.getDistanceBetweenStreetPositions(nextTargetPos, playerEnd);

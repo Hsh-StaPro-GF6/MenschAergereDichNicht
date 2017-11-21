@@ -141,9 +141,7 @@ public class Player {
 
         int fields = decision.getFields();
         Figure selectedFigure = decision.getSelectedFigure();
-        if (selectedFigure.canMoveForward(fields) || selectedFigure.canLeaveBase(fields)) {
-            selectedFigure.processMove(fields);
-        }
+        selectedFigure.processMove(fields);
 
         return this.isFinished();
     }
