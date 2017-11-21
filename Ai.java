@@ -87,7 +87,7 @@ public class Ai {
         figurParameter += checkLastPosition(figure, decision);
         //checked    System.out.println("| " + figure + ": checkLastPosition:  " + checkLastPosition( decision.getMovableFigures()[i],decision) + " ");
 
-        System.out.println("| " + i + ": gesamt:  " + figurParameter + " ");
+        System.out.println("| " + figure + ": gesamt:  " + figurParameter + " ");
     }
 
     /**
