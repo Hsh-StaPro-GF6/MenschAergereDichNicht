@@ -2,3 +2,6 @@
 
 *.class
 *.ctxt
+project\.greenfoot
+
+images/\.DS_Store
