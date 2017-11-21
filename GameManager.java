@@ -5,7 +5,11 @@ public class GameManager {
 
     private final Map map;
     private final Player[] players = new Player[4];
+
     private int currentPlayer = 0;
+
+    private int sixRepeatCount = 0;
+    private int leaveBaseRepeatCount = 0;
 
     /**
      * Instanziert einen neuen GameManager. Dieser sollte nur einmal existieren.
@@ -73,12 +77,24 @@ public class GameManager {
      * @param decision Die getroffene Entscheidung für diesen Spielzug.
      * @return True, falls der Spieler durch diesen Spielzug gewonnen hat, sonst False.
      */
+    // TODO: Ende implementieren
     public boolean exertDecision(Decision decision) {
         boolean won = players[currentPlayer].processMove(decision);
+        int figureCountInBase = map.getFigureCountInBase(players[currentPlayer]);
+
+        int figureCountAtEndOfHome = 0;
+        for (int i = 3; i > 0; i--) {
+            if (map.getFigureAtHomePosition(players[currentPlayer], i) == null)
+                break;
+            figureCountAtEndOfHome++;
+        }
+
+        boolean repeat = !won && ((decision.getFields() == 6 && sixRepeatCount++ < 2) || (figureCountInBase + figureCountAtEndOfHome == 4 && leaveBaseRepeatCount++ < 2));
 
         // Bei 6 nochmal würfeln
-        // TODO: Achtung endlosschleife!
-        if (decision.getFields() != 6 || won) {
+        if (!repeat) {
+            sixRepeatCount = 0;
+            leaveBaseRepeatCount = 0;
             do {
                 if (currentPlayer == 3)
                     currentPlayer = 0;

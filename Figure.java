@@ -82,7 +82,9 @@ public class Figure {
      * @return True, falls die Figur die Base verlassen könnte, sonst False.
      */
     public boolean canLeaveBase(int fields) {
-        return (fields == 6 && this.isInBase());
+        Figure figureAtStartPosition = map.getFigureAtStreetPosition(player.getStart());
+
+        return (fields == 6 && this.isInBase() && (figureAtStartPosition == null || figureAtStartPosition.getPlayer() != player));
     }
 
     /**
