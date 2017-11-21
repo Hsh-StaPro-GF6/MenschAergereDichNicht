@@ -452,6 +452,7 @@ public class Ai {
 
         return 0;
     }
+    
 
     /**
      * Prüft, die ausgewählte Figur nach dem Würfeln, dierckte freundliche Feldnachbarn hat
@@ -495,6 +496,14 @@ public class Ai {
         return CHECK_PREVENT_SPACING[behaviour];
     }
 
+    /**
+     * Prüft, ob die ausgewählte Figur 12 Felder hinter einer 
+     * Figur von führendem Spieler (meiste Figuren in Home) steht
+     *
+     * @param figure, die Figur welche geprüft wird   
+     * @return CHECK_LEADER_HUNT[behaviour],fals die ausgewählte Figur 12 Felder hinter einer 
+     * Figur von führendem Spieler (meiste Figuren in Home) steht, sonst 0.
+     */ 
     // 12 Felder hinter Figur von führendem Spieler (meiste Figuren in Home) -> Figur setzen
     private int checkLeaderHunt(Figure figure, Decision decision) {
         // Position des nächsten (initialen) Ziels:
@@ -512,7 +521,7 @@ public class Ai {
 
             // Spieler-Score holen:
             int curPlayerScore = gameManager.getMap().getFigureCountInHome(curPlayer);
-
+            System.out.print(curPlayer.getId() + " : " + curPlayerScore + " | ");
             // Neuen Score setzen und Liste clearen, falls höher:
             if (curPlayerScore > maxScore) {
                 maxScore = curPlayerScore;
@@ -524,11 +533,13 @@ public class Ai {
                 leaders.add(curPlayer);
 
         }
-
+        System.out.println();
+        System.out.print("größe"+leaders.size());
+        
         // Nächste 12 Felder checken:
         for (int i = 0; i < 12; i++) {
             // Nächste Position:
-            nextTargetPos = getStreetPositionFromSteps(gameManager.getMap().isFigureInStreet(figure), 1);
+            nextTargetPos = getStreetPositionFromSteps(nextTargetPos, 1);
 
             // Aktuelle Position über Ende hinaus:
             int playerEnd = figure.getPlayer().getEnd();
