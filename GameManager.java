@@ -77,11 +77,14 @@ public class GameManager {
         boolean won = players[currentPlayer].processMove(decision);
 
         // Bei 6 nochmal würfeln
-        if (decision.getFields() != 6) {
-            if (currentPlayer == 3)
-                currentPlayer = 0;
-            else
-                currentPlayer++;
+        // TODO: Achtung endlosschleife!
+        if (decision.getFields() != 6 || won) {
+            do {
+                if (currentPlayer == 3)
+                    currentPlayer = 0;
+                else
+                    currentPlayer++;
+            } while (players[currentPlayer].isFinished());
         }
 
         return won;

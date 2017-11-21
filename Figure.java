@@ -105,6 +105,11 @@ public class Figure {
         if (isInStreet() != -1) {
             int stepsToHome = (endPosition - position) < 0 ? endPosition + (40 - position) : endPosition - position;
 
+            // Steht an der Zielposition eine eigene Figur?
+            int newPosition = (position + fields) % 40;
+            if (map.getFigureAtStreetPosition(newPosition) != null && map.getFigureAtStreetPosition(newPosition).getPlayer() == player)
+                return false;
+
             // Man darf nicht über das Ende des Homes hinaus gehen
             if (stepsToHome + 4 < fields)
                 return false;
