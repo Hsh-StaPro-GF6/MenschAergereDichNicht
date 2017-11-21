@@ -171,16 +171,10 @@ public class GameBoard extends World {
                 System.out.print(" " + decision.getMovableFigures()[i] + " ");
             }
             System.out.println();
-            for (int i = 0; i < decision.getMovableFigures().length; i++) {
-                Figure figure =decision.getMovableFigures()[i];   System.out.println(" Figur steht an Position: " + figure .isInStreet() );
-                Ai ai = new Ai(gameManager,gameManager.getCurrentPlayer(),1,1);  
-                ai.processDecision(decision,i);
-                if (figure.isInStreet()==-1)
-                    break;
-                    
-                    
-               
-            }
+
+            Ai ai = new Ai(gameManager, gameManager.getCurrentPlayer(), 1, 1);
+            ai.processDecision(decision);
+
             System.out.println();
                 /*try {
                     Thread.sleep(400);

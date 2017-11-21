@@ -97,7 +97,7 @@ public class Player {
         // Steht eine Figur im Spawn und kann diesen verlassen? => Dann muss sies auch.
         List<Figure> movableFigures = new ArrayList<Figure>(figures.length);
         for (Figure figure : figures)
-            if (map.isFigureInStreet(figure) == start && figure.canMoveForward(fields)&&map.getFigureCountInBase(figure.getPlayer())>0)
+            if (map.isFigureInStreet(figure) == start && figure.canMoveForward(fields) && map.getFigureCountInBase(figure.getPlayer()) > 0)
                 movableFigures.add(figure);
         if (movableFigures.size() > 0)
             return new Decision(this, fields, false, false, true, movableFigures.toArray(new Figure[movableFigures.size()]));
