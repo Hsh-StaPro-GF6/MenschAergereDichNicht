@@ -522,7 +522,12 @@ public class Ai {
             nextTargetPos = getStreetPositionFromSteps(gameManager.getMap().isFigureInStreet(figure), 1);
 
             // Aktuelle Position über Ende hinaus:
-            if (nextTargetPos > figure.getPlayer().getEnd())
+//            if (nextTargetPos > figure.getPlayer().getEnd())
+//                break;
+            int playerEnd = figure.getPlayer().getEnd();
+            int myDistance = this.getDistanceBetweenStreetPositions(gameManager.getMap().isFigureInStreet(figure), playerEnd);
+            int nextTargetDistance = this.getDistanceBetweenStreetPositions(nextTargetPos, playerEnd);
+            if (myDistance < nextTargetDistance)
                 break;
 
             // Nächstes Ziel holen:
