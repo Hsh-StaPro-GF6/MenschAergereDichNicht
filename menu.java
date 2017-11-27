@@ -11,16 +11,18 @@ import java.util.*;
 public class menu extends World {
 
     private static final int SPACING = 60;
-
+    
     private static final HashMap<String, Integer> player0 = new HashMap<>();
     private static final HashMap<String, Integer> player1 = new HashMap<>();
     private static final HashMap<String, Integer> player2 = new HashMap<>();
     private static final HashMap<String, Integer> player3 = new HashMap<>();
-
+    
+    private NameBracket [] bracket = new NameBracket[4];
+    
 
     private static final HashMap<Integer, HashMap<String, Integer>> player = new HashMap<>();
-
-
+    
+    
     /**
      * Constructor for objects of class menu.
      */
@@ -75,9 +77,34 @@ public class menu extends World {
         showText("Spieler 2:", 3 * SPACING, 4 * SPACING);
         showText("Spieler 3:", 3 * SPACING, 5 * SPACING);
         showText("Spieler 4:", 3 * SPACING, 6 * SPACING);
-
-        showText("TEXT HERE", 6 * SPACING, 3 * SPACING);
+        
+        
+        // bracket for player 0
+        bracket[0] = new NameBracket(player0);
+        addObject(bracket[0], 7 * SPACING, 3 * SPACING);        
+        addObject(new LeftArrow(bracket[0]),  5 * SPACING, 3 * SPACING);
+        addObject(new RightArrow(bracket[0]), 9 * SPACING, 3 * SPACING); 
+        // bracket for player 1
+        bracket[1] = new NameBracket(player1);
+        addObject(bracket[1], 7 * SPACING, 4 * SPACING);      
+        addObject(new LeftArrow(bracket[1]),  5 * SPACING, 4 * SPACING);
+        addObject(new RightArrow(bracket[1]), 9 * SPACING, 4 * SPACING);
+        // bracket for player 2
+        bracket[2] = new NameBracket(player2);
+        addObject(bracket[2], 7 * SPACING, 5 * SPACING);        
+        addObject(new LeftArrow(bracket[2]),  5 * SPACING, 5 * SPACING);
+        addObject(new RightArrow(bracket[2]), 9 * SPACING, 5 * SPACING);
+        // bracket for player 3
+        bracket[3] = new NameBracket(player3);
+        addObject(bracket[3], 7 * SPACING, 6 * SPACING);
+        addObject(new LeftArrow(bracket[3]),  5 * SPACING, 6 * SPACING);
+        addObject(new RightArrow(bracket[3]), 9 * SPACING, 6 * SPACING);
+        
+        //showText("TEXT HERE", 5 * SPACING, 3 * SPACING);
+        addObject(new StartButton(), 6 * SPACING,10 * SPACING);
     }
+    
+    
 
     private void setBackgroundImage() {
         GreenfootImage backgroundImage = new GreenfootImage("images/Board.png");
