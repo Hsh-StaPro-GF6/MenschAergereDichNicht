@@ -158,14 +158,6 @@ public class GameBoard extends World {
                     }
                     System.out.print("|");
                 }
-
-                if (won) {
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
 
             // Beginn der nächsten Runde
