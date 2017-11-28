@@ -78,6 +78,7 @@ public class GameManager {
      * @return True, falls der Spieler durch diesen Spielzug gewonnen hat, sonst False.
      */
     // TODO: Ende implementieren
+    // TODO: Muss auch bei weniger Spielern funktionieren
     public boolean exertDecision(Decision decision) {
         boolean won = players[currentPlayer].processMove(decision);
         int figureCountInBase = map.getFigureCountInBase(players[currentPlayer]);

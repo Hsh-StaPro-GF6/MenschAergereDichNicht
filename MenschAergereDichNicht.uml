@@ -3,234 +3,54 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="1238.5908923059965" y="2316.0">BaseField</node>
-    <node x="233.37214230599636" y="0.0">Player</node>
-    <node x="309.0" y="2349.0">StatusDisplay</node>
-    <node x="782.7039008760173" y="1797.7161862527716">GameManager</node>
-    <node x="0.0" y="1896.0">Ai</node>
-    <node x="116.30507881393294" y="1452.0">Decision</node>
-    <node x="369.2238288139329" y="1128.0">Figure</node>
-    <node x="639.5908923059964" y="2316.0">Field</node>
-    <node x="942.5908923059964" y="2316.0">HomeField</node>
-    <node x="486.48632881393297" y="2584.0">GameBoard</node>
-    <node x="480.296589781746" y="498.0">Map</node>
+    <node x="1051.0" y="960.0">BaseField</node>
+    <node x="1144.0" y="0.0">GameManager</node>
+    <node x="1391.9634146341466" y="400.6219512195122">Ai</node>
+    <node x="402.0" y="960.0">Field</node>
+    <node x="448.25" y="627.0">UI</node>
+    <node x="225.0" y="729.0">NameBracket</node>
+    <node x="539.0" y="762.0">RightArrow</node>
+    <node x="859.0" y="0.0">Player</node>
+    <node x="274.0" y="1235.0">StatusDisplay</node>
+    <node x="0.0" y="960.0">menu</node>
+    <node x="356.0" y="0.0">Decision</node>
+    <node x="938.0" y="627.0">Figure</node>
+    <node x="772.0" y="796.0">StartButton</node>
+    <node x="730.0" y="960.0">HomeField</node>
+    <node x="0.0" y="1235.0">GameBoard</node>
+    <node x="0.0" y="762.0">LeftArrow</node>
+    <node x="0.0" y="0.0">Map</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="Player" target="Decision">
-      <point x="-68.57142857142856" y="159.0" />
-      <point x="284.8007137345678" y="468.0" />
-      <point x="171.9123208774248" y="468.0" />
-      <point x="171.9123208774248" y="1422.0" />
-      <point x="249.5193645282186" y="1422.0" />
-      <point x="-53.285714285714334" y="-192.0" />
+    <edge source="RightArrow" target="UI">
+      <point x="0.0" y="-60.0" />
+      <point x="645.5" y="709.0" />
+      <point x="523.875" y="709.0" />
+      <point x="15.125" y="26.0" />
     </edge>
-    <edge source="Field" target="GameManager">
-      <point x="70.75" y="-104.0" />
-      <point x="851.8408923059964" y="2296.0" />
-      <point x="753.8613288139329" y="2296.0" />
-      <point x="12.0" y="126.0" />
+    <edge source="StartButton" target="UI">
+      <point x="0.0" y="-26.0" />
+      <point x="832.5" y="699.0" />
+      <point x="554.125" y="699.0" />
+      <point x="45.375" y="26.0" />
     </edge>
-    <edge source="Map" target="Figure">
-      <point x="-58.3125" y="280.0" />
-      <point x="577.484089781746" y="1088.0" />
-      <point x="542.4738288139329" y="1088.0" />
-      <point x="57.75" y="-137.0" />
-    </edge>
-    <edge source="GameBoard" target="Figure">
-      <point x="-25.444444444444457" y="-93.0" />
-      <point x="575.5418843694886" y="2564.0" />
-      <point x="565.3" y="2564.0" />
-      <point x="565.3" y="1432.0" />
-      <point x="542.4738288139329" y="1432.0" />
-      <point x="57.75" y="137.0" />
-    </edge>
-    <edge source="GameManager" target="Map">
-      <point x="15.0" y="-126.0" />
-      <point x="756.8613288139329" y="1876.0" />
-      <point x="747.3613288139329" y="1876.0" />
-      <point x="747.3613288139329" y="1108.0" />
-      <point x="771.859089781746" y="1108.0" />
-      <point x="136.0625" y="280.0" />
-    </edge>
-    <edge source="Map" target="Player">
-      <point x="-103.66666666666674" y="-280.0" />
-      <point x="532.1299231150792" y="428.0" />
-      <point x="364.8007137345678" y="428.0" />
-      <point x="11.428571428571445" y="159.0" />
-    </edge>
-    <edge source="HomeField" target="GameManager">
-      <point x="-34.5" y="-104.0" />
-      <point x="1046.0908923059965" y="2276.0" />
-      <point x="801.8613288139329" y="2276.0" />
-      <point x="60.0" y="126.0" />
-    </edge>
-    <edge source="Ai" target="Figure">
-      <point x="108.0" y="-170.0" />
-      <point x="252.0" y="1876.0" />
-      <point x="510.23007881393295" y="1876.0" />
-      <point x="510.23007881393295" y="1432.0" />
-      <point x="503.9738288139329" y="1432.0" />
-      <point x="19.25" y="137.0" />
-    </edge>
-    <edge source="GameBoard" target="Field">
-      <point x="50.888888888888914" y="-93.0" />
-      <point x="651.8752177028218" y="2544.0" />
-      <point x="781.0908923059964" y="2544.0" />
-      <point x="0.0" y="104.0" />
-    </edge>
-    <edge source="BaseField" target="GameManager">
-      <point x="-34.375" y="-104.0" />
-      <point x="1341.7158923059965" y="2256.0" />
-      <point x="849.8613288139329" y="2256.0" />
-      <point x="108.0" y="126.0" />
-    </edge>
-    <edge source="Player" target="Map">
-      <point x="22.857142857142833" y="159.0" />
-      <point x="376.2292851631392" y="418.0" />
-      <point x="635.796589781746" y="418.0" />
-      <point x="0.0" y="-280.0" />
-    </edge>
-    <edge source="GameManager" target="Decision">
-      <point x="-105.0" y="-126.0" />
-      <point x="636.8613288139329" y="1866.0" />
-      <point x="452.005078813933" y="1866.0" />
-      <point x="149.20000000000005" y="192.0" />
-    </edge>
-    <edge source="Player" target="Figure">
-      <point x="-22.85714285714289" y="159.0" />
-      <point x="330.5149994488535" y="458.0" />
-      <point x="395.57382881393295" y="458.0" />
-      <point x="395.57382881393295" y="1088.0" />
-      <point x="426.9738288139329" y="1088.0" />
-      <point x="-57.75" y="-137.0" />
-    </edge>
-    <edge source="Figure" target="Player">
-      <point x="-80.84999999999997" y="-137.0" />
-      <point x="403.87382881393296" y="1098.0" />
-      <point x="384.57382881393295" y="1098.0" />
-      <point x="384.57382881393295" y="468.0" />
-      <point x="319.0864280202821" y="468.0" />
-      <point x="-34.28571428571428" y="159.0" />
-    </edge>
-    <edge source="Ai" target="Player">
-      <point x="-108.0" y="-170.0" />
-      <point x="36.0" y="1876.0" />
-      <point x="52.93007881393294" y="1876.0" />
-      <point x="52.93007881393294" y="428.0" />
-      <point x="239.08642802028209" y="428.0" />
-      <point x="-114.28571428571428" y="159.0" />
-    </edge>
-    <edge source="StatusDisplay" target="Decision">
-      <point x="-86.25" y="-71.0" />
-      <point x="337.75" y="2296.0" />
-      <point x="355.427839781746" y="2296.0" />
-      <point x="355.427839781746" y="1856.0" />
-      <point x="302.80507881393294" y="1856.0" />
-      <point x="0.0" y="192.0" />
-    </edge>
-    <edge source="GameBoard" target="BaseField">
-      <point x="101.77777777777783" y="-93.0" />
-      <point x="702.7641065917107" y="2564.0" />
-      <point x="1376.0908923059965" y="2564.0" />
-      <point x="0.0" y="104.0" />
-    </edge>
-    <edge source="Decision" target="Figure">
-      <point x="53.28571428571422" y="-192.0" />
-      <point x="356.09079309964716" y="1432.0" />
-      <point x="388.4738288139329" y="1432.0" />
-      <point x="-96.25" y="137.0" />
-    </edge>
-    <edge source="Decision" target="Player">
-      <point x="-106.57142857142867" y="-192.0" />
-      <point x="196.23365024250427" y="1432.0" />
-      <point x="160.9123208774248" y="1432.0" />
-      <point x="160.9123208774248" y="458.0" />
-      <point x="273.37214230599636" y="458.0" />
-      <point x="-80.0" y="159.0" />
-    </edge>
-    <edge source="Ai" target="Decision">
-      <point x="36.0" y="-170.0" />
-      <point x="180.0" y="1876.0" />
-      <point x="153.6050788139329" y="1876.0" />
-      <point x="-149.2" y="192.0" />
-    </edge>
-    <edge source="GameManager" target="Player">
-      <point x="105.0" y="-126.0" />
-      <point x="846.8613288139329" y="1876.0" />
-      <point x="901.7431313381833" y="1876.0" />
-      <point x="901.7431313381833" y="378.0" />
-      <point x="421.94357087742486" y="378.0" />
-      <point x="68.5714285714285" y="159.0" />
-    </edge>
-    <edge source="GameBoard" target="GameManager">
+    <edge source="NameBracket" target="UI">
       <point x="0.0" y="-93.0" />
-      <point x="600.9863288139329" y="2564.0" />
-      <point x="610.4658923059964" y="2564.0" />
-      <point x="610.4658923059964" y="2276.0" />
-      <point x="681.8613288139329" y="2276.0" />
-      <point x="-60.0" y="126.0" />
+      <point x="372.0" y="709.0" />
+      <point x="493.625" y="709.0" />
+      <point x="-15.125" y="26.0" />
     </edge>
-    <edge source="StatusDisplay" target="GameManager">
-      <point x="28.75" y="-71.0" />
-      <point x="452.75" y="2256.0" />
-      <point x="633.8613288139329" y="2256.0" />
-      <point x="-108.0" y="126.0" />
-    </edge>
-    <edge source="HomeField" target="Player">
-      <point x="34.5" y="-104.0" />
-      <point x="1115.0908923059965" y="2296.0" />
-      <point x="1144.0908923059965" y="2296.0" />
-      <point x="1144.0908923059965" y="368.0" />
-      <point x="433.37214230599625" y="368.0" />
-      <point x="79.99999999999989" y="159.0" />
-    </edge>
-    <edge source="GameBoard" target="Decision">
-      <point x="-101.77777777777783" y="-93.0" />
-      <point x="499.20855103615514" y="2564.0" />
-      <point x="298.5" y="2564.0" />
-      <point x="298.5" y="1866.0" />
-      <point x="228.20507881393291" y="1866.0" />
-      <point x="-74.60000000000002" y="192.0" />
-    </edge>
-    <edge source="GameManager" target="Figure">
-      <point x="-75.0" y="-126.0" />
-      <point x="666.8613288139329" y="1856.0" />
-      <point x="598.55" y="1856.0" />
-      <point x="598.55" y="1432.0" />
-      <point x="580.9738288139329" y="1432.0" />
-      <point x="96.25" y="137.0" />
-    </edge>
-    <edge source="Figure" target="Map">
-      <point x="11.550000000000011" y="-137.0" />
-      <point x="496.27382881393294" y="1108.0" />
-      <point x="499.734089781746" y="1108.0" />
-      <point x="-136.0625" y="280.0" />
-    </edge>
-    <edge source="GameBoard" target="StatusDisplay">
-      <point x="-76.33333333333337" y="-93.0" />
-      <point x="524.6529954805997" y="2554.0" />
-      <point x="366.5" y="2554.0" />
-      <point x="-57.5" y="71.0" />
-    </edge>
-    <edge source="GameBoard" target="HomeField">
-      <point x="76.33333333333337" y="-93.0" />
-      <point x="677.3196621472664" y="2554.0" />
-      <point x="1080.5908923059965" y="2554.0" />
-      <point x="0.0" y="104.0" />
-    </edge>
-    <edge source="BaseField" target="Player">
-      <point x="34.375" y="-104.0" />
-      <point x="1410.4658923059965" y="2296.0" />
-      <point x="1439.3408923059965" y="2296.0" />
-      <point x="1439.3408923059965" y="348.0" />
-      <point x="456.22928516313914" y="348.0" />
-      <point x="102.85714285714278" y="159.0" />
+    <edge source="LeftArrow" target="UI">
+      <point x="0.0" y="-60.0" />
+      <point x="102.5" y="699.0" />
+      <point x="463.375" y="699.0" />
+      <point x="-45.375" y="26.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.3232974910394265" x="757.0" y="1385.0" />
+  <settings layout="Hierarchic Group" zoom="0.616541353383459" x="593.318258807586" y="846.2493224932256" />
   <SelectedNodes>
-    <node>GameManager</node>
+    <node>Ai</node>
   </SelectedNodes>
   <Categories>
     <Category>Fields</Category>

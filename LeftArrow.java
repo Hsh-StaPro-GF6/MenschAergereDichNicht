@@ -1,25 +1,15 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
-/**
- * Write a description of class LeftArrow here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class LeftArrow extends UI
-{
-    public String name = "Arrow";
-    NameBracket bracket;
-    LeftArrow(NameBracket bracket){
+public class LeftArrow extends Actor {
+    private NameBracket bracket;
+
+    public LeftArrow(NameBracket bracket) {
         this.bracket = bracket;
     }
-    
-    public void act() 
-    {
-        if (Greenfoot.mouseClicked(this)){
-            bracket.setName(-1);
+
+    public void act() {
+        if (Greenfoot.mouseClicked(this)) {
+            bracket.changeSelection(false);
         }
-    }    
-       
-   
+    }
 }

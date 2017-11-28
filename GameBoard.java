@@ -15,7 +15,7 @@ public class GameBoard extends World {
     /**
      * Erstellt ein neues Spielfeld.
      */
-    public GameBoard() {
+    public GameBoard(GameMember member0, GameMember member1, GameMember member2, GameMember member3) {
         super(12 * SPACING, 12 * SPACING, 1);
 
         // Hintergrund setzen
