@@ -103,7 +103,7 @@ public class GameManager {
      */
     public boolean exertDecision() {
         boolean won = players[currentPlayer].processMove(currentDecision);
-        
+
         int figureCountInBase = map.getFigureCountInBase(players[currentPlayer]);
 
         int figureCountAtEndOfHome = 0;
@@ -123,7 +123,7 @@ public class GameManager {
             int finishedPlayers = 0;
             do {
                 if (finishedPlayers >= 4) {
-                    Greenfoot.setWorld(new GameEnd());
+                    Greenfoot.setWorld(new Menu());
 
                     // Spielende
                     break;

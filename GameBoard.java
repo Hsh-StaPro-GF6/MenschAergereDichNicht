@@ -138,7 +138,10 @@ public class GameBoard extends World {
 
                 System.out.println();
 
+                Player lastPlayer = gameManager.getCurrentPlayer();
                 boolean won = gameManager.exertDecision();
+                if (won)
+                    addObject(new PlayerWonDisplay(lastPlayer), getWidth() / 2, getHeight() / 2);
 
                 System.out.println();
 
