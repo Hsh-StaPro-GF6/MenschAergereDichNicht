@@ -48,7 +48,7 @@ public class Ai {
 
         for (Figure figure : decision.getMovableFigures()) {
             System.out.println(" Figur steht an Position: " + figure.isInStreet());
-            int figureParameter = callcuateFigurParameter(decision, figure);
+            int figureParameter = calculateFigureParameter(decision, figure);
 
             if (figureParameter >= highestParameter) {
                 highestParameter = figureParameter;
@@ -61,7 +61,7 @@ public class Ai {
         decision.setSelectedFigure(highestFigure);
     }
 
-    private int callcuateFigurParameter(Decision decision, Figure figure) {
+    private int calculateFigureParameter(Decision decision, Figure figure) {
         int figurParameter = 0;
         figurParameter += checkClearForeignSpawn(figure, decision);
         //checked    System.out.print("| " + figure + ": checkClearForeignSpawn:  " + checkClearForeignSpawn( decision.getMovableFigures()[i],decision) + " ");
