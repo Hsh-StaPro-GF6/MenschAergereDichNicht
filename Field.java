@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Gibt ein Streetfeld auf dem Gameboard aus.
@@ -9,6 +10,8 @@ public class Field extends Actor {
 
     // Bild, wenn das Feld leer ist
     private GreenfootImage image;
+    //test
+    private GreenfootImage test;
 
     // Bild, wenn auf dem Feld eine Figur steht
     // Player: 0 = Rot, 1 = Blau, 2 = Grün, 3 = Gelb
@@ -29,6 +32,10 @@ public class Field extends Actor {
      * Feld zeichnen.
      */
     public void act() {
+        
+        // Feld auf dem eine Figur steht
+        Figure figureAtStreetPosition = gameManager.getMap().getFigureAtStreetPosition(fieldId);        
+        
         // Prüfen, ob dies das Startfeld eines Spielers ist
         int startFieldOfPlayer = -1;
         switch (fieldId) {
@@ -55,17 +62,27 @@ public class Field extends Actor {
         }
 
         // Ist das Feld belegt?
-        boolean fieldOccupied = (gameManager.getMap().getFigureAtStreetPosition(fieldId) != null);
+        boolean fieldOccupied = (figureAtStreetPosition != null);
 
         // Feldstatus darstellen
-        int figureOwner = fieldOccupied ? gameManager.getMap().getFigureAtStreetPosition(fieldId).getPlayer().getId() : -1;
+        int figureOwner = fieldOccupied ? figureAtStreetPosition.getPlayer().getId() : -1;
 
         // Steht auf dem Feld eine Figur?
         if (fieldOccupied) {
             this.setImage(imageWhenOccupied[figureOwner]);
             return;
         }
+        //
+        //
+        // Ist das Feld mit einer bewegbaren Figur belegt && Ist ein Mensch an der Reihe
+       
+       if (gameManager.getCurrentDecision() != null &&
+       Arrays.asList(gameManager.getCurrentDecision().getMovableFigures()).contains(figureAtStreetPosition) && gameManager.getCurrentDecision().getPlayer().getMember() instanceof HumanMember   ){
+            this.setImage(test);
+            return;
+        }
 
+        
         // Start-Feld eines Spielers?
         if (startFieldOfPlayer != -1) {
             this.setImage(startImage[startFieldOfPlayer]);
@@ -87,5 +104,6 @@ public class Field extends Actor {
         startImage[1] = new GreenfootImage("images/BLUE-Start.png");
         startImage[2] = new GreenfootImage("images/GREEN-Start.png");
         startImage[3] = new GreenfootImage("images/YELLOW-Start.png");
+        test = new GreenfootImage("images/1.png");
     }
 }

@@ -49,6 +49,14 @@ public class GameManager {
     }
 
     /**
+     * Ruft die aktuelle Entscheidung auf.
+     *
+     * @return die aktuelle Entscheidung.
+     */
+    public Decision getCurrentDecision() {
+        return currentDecision;
+    }
+    /**
      * Ruft alle Spieler des Spiels ab.
      *
      * @return Array mit allen Spielern.
