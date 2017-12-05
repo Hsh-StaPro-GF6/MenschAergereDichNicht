@@ -85,6 +85,13 @@ public class Field extends Actor {
             this.setImage(startImage[startFieldOfPlayer]);
             return;
         }
+        
+        if (Greenfoot.mouseClicked(this) && selectable) {
+        	Player lastPlayer = gameManager.getCurrentPlayer();
+            boolean won = gameManager.exertDecision();
+            if (won)
+                getWorld().addObject(new PlayerWonDisplay(lastPlayer),getWorld().getWidth() / 2, getWorld().getHeight() / 2);
+        }
 
         // Leeres Feld zeichnen
         this.setImage(image);
