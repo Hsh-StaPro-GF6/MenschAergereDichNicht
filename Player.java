@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import greenfoot.*;
@@ -12,6 +11,8 @@ public class Player {
     private final int playerId;
     private final int start;
     private final int end;
+    private GameMember member;
+
     private final Figure[] figures;
 
     /**
@@ -19,12 +20,14 @@ public class Player {
      *
      * @param map      Die Instanz der Map.
      * @param playerId Eine eindeutige Spieler-Nummer zwischen von 0-3.
+     * @param member   Der Spielteilnehmer, der diesen Spieler steuert.
      */
-    public Player(Map map, int playerId, int start, int end) {
+    public Player(Map map, int playerId, int start, int end, GameMember member) {
         this.map = map;
         this.playerId = playerId;
         this.start = start;
         this.end = end;
+        this.member = member;
 
         this.figures = new Figure[4];
         for (int i = 0; i < figures.length; i++)
@@ -47,6 +50,24 @@ public class Player {
      */
     public int getEnd() {
         return end;
+    }
+
+    /**
+     * Gibt den Spielteilnehmer zurück, der diesen Spieler steuert.
+     *
+     * @return Spielteilnehmer.
+     */
+    public GameMember getMember() {
+        return member;
+    }
+
+    /**
+     * Gibt an, ob es sich um einen aktiven Spieler wie eine KI oder einen Menschen handelt.
+     *
+     * @return True, wenns ein aktiver Spielteilnehmer ist, sonst False.
+     */
+    public boolean isActiveMember() {
+        return member instanceof HumanMember || member instanceof AiMember;
     }
 
     /**

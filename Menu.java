@@ -6,8 +6,8 @@ public class Menu extends World {
     private static final int SPACING = 60;
 
     private static final GameMember[] memberTypes = new GameMember[]{
-            new GameMember("Kein Spieler"),
-            new GameMember("Mensch"),
+            new DeadMember(),
+            new HumanMember(),
             new AiMember("Kevin (KI)", 0, 0),  // TODO: kleinste Punktzahl benutzen
             new AiMember("Donald (KI)", 2, 0),
             new AiMember("Gitte (KI)", 1, 1),

@@ -6,17 +6,29 @@ import greenfoot.*;
 public class GameBoard extends World {
     private static final int SPACING = 60;
 
-    private final GameManager gameManager = new GameManager();
+    private final GameManager gameManager;
     private Decision decision;
     private Ai ai;
 
     private final StatusDisplay statusDisplay;
+
+    private final GameMember member0;
+    private final GameMember member1;
+    private final GameMember member2;
+    private final GameMember member3;
 
     /**
      * Erstellt ein neues Spielfeld.
      */
     public GameBoard(GameMember member0, GameMember member1, GameMember member2, GameMember member3) {
         super(12 * SPACING, 12 * SPACING, 1);
+
+        this.member0 = member0;
+        this.member1 = member1;
+        this.member2 = member2;
+        this.member3 = member3;
+
+        gameManager = new GameManager(member0, member1, member2, member3);
 
         // Hintergrund setzen
         setBackgroundImage();

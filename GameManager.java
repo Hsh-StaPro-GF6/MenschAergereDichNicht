@@ -2,6 +2,10 @@
  * Haupt-Klasse, die einfache Methoden zum Verwalten des Spiels bereitstellt.
  */
 public class GameManager {
+    private final GameMember member0;
+    private final GameMember member1;
+    private final GameMember member2;
+    private final GameMember member3;
 
     private final Map map;
     private final Player[] players = new Player[4];
@@ -14,12 +18,18 @@ public class GameManager {
     /**
      * Instanziert einen neuen GameManager. Dieser sollte nur einmal existieren.
      */
-    public GameManager() {
+    public GameManager(GameMember member0, GameMember member1, GameMember member2, GameMember member3) {
+        this.member0 = member0;
+        this.member1 = member1;
+        this.member2 = member2;
+        this.member3 = member3;
+
         map = new Map();
-        players[0] = new Player(map, 0, 0, 39);
-        players[1] = new Player(map, 1, 10, 9);
-        players[2] = new Player(map, 2, 20, 19);
-        players[3] = new Player(map, 3, 30, 29);
+
+        players[0] = new Player(map, 0, 0, 39, member0);
+        players[1] = new Player(map, 1, 10, 9, member1);
+        players[2] = new Player(map, 2, 20, 19, member2);
+        players[3] = new Player(map, 3, 30, 29, member3);
 
         resetGame();
     }
@@ -77,8 +87,6 @@ public class GameManager {
      * @param decision Die getroffene Entscheidung für diesen Spielzug.
      * @return True, falls der Spieler durch diesen Spielzug gewonnen hat, sonst False.
      */
-    // TODO: Ende implementieren
-    // TODO: Muss auch bei weniger Spielern funktionieren
     public boolean exertDecision(Decision decision) {
         boolean won = players[currentPlayer].processMove(decision);
         int figureCountInBase = map.getFigureCountInBase(players[currentPlayer]);
@@ -96,12 +104,22 @@ public class GameManager {
         if (!repeat) {
             sixRepeatCount = 0;
             leaveBaseRepeatCount = 0;
+
+            int finishedPlayers = 0;
             do {
+                if(finishedPlayers >= 4){
+                    // TODO: irgendwas. Feuerwerk, Explosion, irgendwas...
+
+                    // Spielende
+                    break;
+                }
+
                 if (currentPlayer == 3)
                     currentPlayer = 0;
                 else
                     currentPlayer++;
-            } while (players[currentPlayer].isFinished());
+            }
+            while (!players[currentPlayer].isActiveMember() || (players[currentPlayer].isFinished() && ++finishedPlayers == finishedPlayers));
         }
 
         return won;
