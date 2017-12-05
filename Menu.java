@@ -63,6 +63,8 @@ public class Menu extends World {
 
     public void act() {
         if (Greenfoot.mouseClicked(startButton)) {
+            if (brackets[0].getSelectedIndex() + brackets[1].getSelectedIndex() + brackets[2].getSelectedIndex() + brackets[3].getSelectedIndex() == 0)
+                return;
 
             Greenfoot.setWorld(new GameBoard(
                     memberTypes[brackets[0].getSelectedIndex()],
@@ -71,7 +73,6 @@ public class Menu extends World {
                     memberTypes[brackets[3].getSelectedIndex()]
             ));
         }
-
     }
 
     private void setBackgroundImage() {

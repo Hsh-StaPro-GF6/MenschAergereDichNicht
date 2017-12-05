@@ -1,3 +1,5 @@
+import greenfoot.*;
+
 /**
  * Haupt-Klasse, die einfache Methoden zum Verwalten des Spiels bereitstellt.
  */
@@ -10,7 +12,8 @@ public class GameManager {
     private final Map map;
     private final Player[] players = new Player[4];
 
-    private int currentPlayer = 0;
+    private int currentPlayer = -1;
+    private Decision currentDecision = null;
 
     private int sixRepeatCount = 0;
     private int leaveBaseRepeatCount = 0;
@@ -19,6 +22,8 @@ public class GameManager {
      * Instanziert einen neuen GameManager. Dieser sollte nur einmal existieren.
      */
     public GameManager(GameMember member0, GameMember member1, GameMember member2, GameMember member3) {
+        System.out.println("--- NEUES SPIEL ---");
+
         this.member0 = member0;
         this.member1 = member1;
         this.member2 = member2;
@@ -65,9 +70,18 @@ public class GameManager {
      * Setzt das Spiel auf den Anfangszustand zurück.
      */
     public void resetGame() {
-        for (Player player : players)
+        currentPlayer = -1;
+        currentDecision = null;
+
+        for (Player player : players) {
             for (Figure figure : player.getFigures())
                 map.moveFigureToBase(figure);
+            if (player.isActiveMember() && currentPlayer == -1)
+                currentPlayer = player.getId();
+        }
+
+        if (currentPlayer == -1)
+            System.out.println("KEIN SPIELER AKTIV! - Wer hat da verkackt?");
     }
 
     /**
@@ -77,7 +91,7 @@ public class GameManager {
      * @return Ein neues Entscheidungs-Objekt.
      */
     public Decision rollDice() {
-        return players[currentPlayer].rollDice();
+        return currentDecision = players[currentPlayer].rollDice();
     }
 
     /**
@@ -87,8 +101,9 @@ public class GameManager {
      * @param decision Die getroffene Entscheidung für diesen Spielzug.
      * @return True, falls der Spieler durch diesen Spielzug gewonnen hat, sonst False.
      */
-    public boolean exertDecision(Decision decision) {
-        boolean won = players[currentPlayer].processMove(decision);
+    public boolean exertDecision() {
+        boolean won = players[currentPlayer].processMove(currentDecision);
+        
         int figureCountInBase = map.getFigureCountInBase(players[currentPlayer]);
 
         int figureCountAtEndOfHome = 0;
@@ -98,7 +113,7 @@ public class GameManager {
             figureCountAtEndOfHome++;
         }
 
-        boolean repeat = !won && ((decision.getFields() == 6 && sixRepeatCount++ < 2) || (figureCountInBase + figureCountAtEndOfHome == 4 && leaveBaseRepeatCount++ < 2));
+        boolean repeat = !won && ((currentDecision.getFields() == 6 && sixRepeatCount++ < 2) || (figureCountInBase + figureCountAtEndOfHome == 4 && leaveBaseRepeatCount++ < 2));
 
         // Bei 6 nochmal würfeln
         if (!repeat) {
@@ -107,8 +122,8 @@ public class GameManager {
 
             int finishedPlayers = 0;
             do {
-                if(finishedPlayers >= 4){
-                    // TODO: irgendwas. Feuerwerk, Explosion, irgendwas...
+                if (finishedPlayers >= 4) {
+                    Greenfoot.setWorld(new GameEnd());
 
                     // Spielende
                     break;

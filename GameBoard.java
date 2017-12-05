@@ -138,7 +138,7 @@ public class GameBoard extends World {
 
                 System.out.println();
 
-                boolean won = gameManager.exertDecision(decision);
+                boolean won = gameManager.exertDecision();
 
                 System.out.println();
 
