@@ -23,10 +23,14 @@ public class Field extends Actor {
     // Bild, wenn das Feld das Startfeld eines Spielers ist
     // Player: 0 = Rot, 1 = Blau, 2 = Grün, 3 = Gelb
     private GreenfootImage[] startImage = new GreenfootImage[4];
+    
+    // Animation für dieses Feld aktiv
+    private boolean animationInProgress;
 
     public Field(GameManager gameManager, int fieldId) {
         this.gameManager = gameManager;
         this.fieldId = fieldId;
+        this.animationInProgress = false;
 
         loadImages();
     }
@@ -74,8 +78,16 @@ public class Field extends Actor {
         boolean selectable = (gameManager.getCurrentDecision() != null && Arrays.asList(gameManager.getCurrentDecision().getMovableFigures()).contains(figureAtStreetPosition) &&
                 gameManager.getCurrentDecision().getPlayer().getMember() instanceof HumanMember);
 
+        if (Greenfoot.mouseClicked(this) && selectable) {
+            System.out.println("Klick auf klickbare Figur!");
+            gameManager.getCurrentDecision().setSelectedFigure(figureAtStreetPosition);
+            Player lastPlayer = gameManager.getCurrentPlayer();
+            boolean won = gameManager.exertDecision();
+            if (won)
+                getWorld().addObject(new PlayerWonDisplay(lastPlayer),getWorld().getWidth() / 2, getWorld().getHeight() / 2);
+        }
         // Steht auf dem Feld eine Figur?
-        if (fieldOccupied) {
+        if (fieldOccupied && !animationInProgress) {
             this.setImage(selectable ? imageWhenOccupiedSelectable[figureOwner] : imageWhenOccupied[figureOwner]);
             return;
         }
@@ -84,13 +96,6 @@ public class Field extends Actor {
         if (startFieldOfPlayer != -1) {
             this.setImage(startImage[startFieldOfPlayer]);
             return;
-        }
-        
-        if (Greenfoot.mouseClicked(this) && selectable) {
-        	Player lastPlayer = gameManager.getCurrentPlayer();
-            boolean won = gameManager.exertDecision();
-            if (won)
-                getWorld().addObject(new PlayerWonDisplay(lastPlayer),getWorld().getWidth() / 2, getWorld().getHeight() / 2);
         }
 
         // Leeres Feld zeichnen
@@ -112,5 +117,9 @@ public class Field extends Actor {
         startImage[1] = new GreenfootImage("images/BLUE-Start.png");
         startImage[2] = new GreenfootImage("images/GREEN-Start.png");
         startImage[3] = new GreenfootImage("images/YELLOW-Start.png");
+    }
+    
+    public void setAnimationInProgress(boolean animationInProgress) {
+        this.animationInProgress = animationInProgress;
     }
 }

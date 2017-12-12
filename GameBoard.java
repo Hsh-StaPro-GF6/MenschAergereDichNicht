@@ -9,6 +9,7 @@ public class GameBoard extends World {
     private final GameManager gameManager;
     private Decision decision;
     private Ai ai;
+    private boolean DiceRolled = false;
 
     private final StatusDisplay statusDisplay;
 
@@ -16,6 +17,9 @@ public class GameBoard extends World {
     private final GameMember member1;
     private final GameMember member2;
     private final GameMember member3;
+    
+    private final Field [] fields = new Field[40];
+        
 
     /**
      * Erstellt ein neues Spielfeld.
@@ -27,56 +31,56 @@ public class GameBoard extends World {
         this.member1 = member1;
         this.member2 = member2;
         this.member3 = member3;
-
-        gameManager = new GameManager(member0, member1, member2, member3);
+       
+        gameManager = new GameManager(member0, member1, member2, member3, this);
 
         // Hintergrund setzen
         setBackgroundImage();
 
         // Street-Felder anlegen
-        addObject(new Field(gameManager, 0), SPACING, 5 * SPACING);
-        addObject(new Field(gameManager, 1), 2 * SPACING, 5 * SPACING);
-        addObject(new Field(gameManager, 2), 3 * SPACING, 5 * SPACING);
-        addObject(new Field(gameManager, 3), 4 * SPACING, 5 * SPACING);
-        addObject(new Field(gameManager, 4), 5 * SPACING, 5 * SPACING);
-        addObject(new Field(gameManager, 5), 5 * SPACING, 4 * SPACING);
-        addObject(new Field(gameManager, 6), 5 * SPACING, 3 * SPACING);
-        addObject(new Field(gameManager, 7), 5 * SPACING, 2 * SPACING);
-        addObject(new Field(gameManager, 8), 5 * SPACING, SPACING);
-        addObject(new Field(gameManager, 9), 6 * SPACING, SPACING);
+        addObject(fields[0] = new Field(gameManager, 0), SPACING, 5 * SPACING);
+        addObject(fields[1] = new Field(gameManager, 1), 2 * SPACING, 5 * SPACING);
+        addObject(fields[2] = new Field(gameManager, 2), 3 * SPACING, 5 * SPACING);
+        addObject(fields[3] = new Field(gameManager, 3), 4 * SPACING, 5 * SPACING);
+        addObject(fields[4] = new Field(gameManager, 4), 5 * SPACING, 5 * SPACING);
+        addObject(fields[5] = new Field(gameManager, 5), 5 * SPACING, 4 * SPACING);
+        addObject(fields[6] = new Field(gameManager, 6), 5 * SPACING, 3 * SPACING);
+        addObject(fields[7] = new Field(gameManager, 7), 5 * SPACING, 2 * SPACING);
+        addObject(fields[8] = new Field(gameManager, 8), 5 * SPACING, SPACING);
+        addObject(fields[9] = new Field(gameManager, 9), 6 * SPACING, SPACING);
 
-        addObject(new Field(gameManager, 10), 7 * SPACING, SPACING);
-        addObject(new Field(gameManager, 11), 7 * SPACING, 2 * SPACING);
-        addObject(new Field(gameManager, 12), 7 * SPACING, 3 * SPACING);
-        addObject(new Field(gameManager, 13), 7 * SPACING, 4 * SPACING);
-        addObject(new Field(gameManager, 14), 7 * SPACING, 5 * SPACING);
-        addObject(new Field(gameManager, 15), 8 * SPACING, 5 * SPACING);
-        addObject(new Field(gameManager, 16), 9 * SPACING, 5 * SPACING);
-        addObject(new Field(gameManager, 17), 10 * SPACING, 5 * SPACING);
-        addObject(new Field(gameManager, 18), 11 * SPACING, 5 * SPACING);
-        addObject(new Field(gameManager, 19), 11 * SPACING, 6 * SPACING);
+        addObject(fields[10] = new Field(gameManager, 10), 7 * SPACING, SPACING);
+        addObject(fields[11] = new Field(gameManager, 11), 7 * SPACING, 2 * SPACING);
+        addObject(fields[12] = new Field(gameManager, 12), 7 * SPACING, 3 * SPACING);
+        addObject(fields[13] = new Field(gameManager, 13), 7 * SPACING, 4 * SPACING);
+        addObject(fields[14] = new Field(gameManager, 14), 7 * SPACING, 5 * SPACING);
+        addObject(fields[15] = new Field(gameManager, 15), 8 * SPACING, 5 * SPACING);
+        addObject(fields[16] = new Field(gameManager, 16), 9 * SPACING, 5 * SPACING);
+        addObject(fields[17] = new Field(gameManager, 17), 10 * SPACING, 5 * SPACING);
+        addObject(fields[18] = new Field(gameManager, 18), 11 * SPACING, 5 * SPACING);
+        addObject(fields[19] = new Field(gameManager, 19), 11 * SPACING, 6 * SPACING);
 
-        addObject(new Field(gameManager, 20), 11 * SPACING, 7 * SPACING);
-        addObject(new Field(gameManager, 21), 10 * SPACING, 7 * SPACING);
-        addObject(new Field(gameManager, 22), 9 * SPACING, 7 * SPACING);
-        addObject(new Field(gameManager, 23), 8 * SPACING, 7 * SPACING);
-        addObject(new Field(gameManager, 24), 7 * SPACING, 7 * SPACING);
-        addObject(new Field(gameManager, 25), 7 * SPACING, 8 * SPACING);
-        addObject(new Field(gameManager, 26), 7 * SPACING, 9 * SPACING);
-        addObject(new Field(gameManager, 27), 7 * SPACING, 10 * SPACING);
-        addObject(new Field(gameManager, 28), 7 * SPACING, 11 * SPACING);
-        addObject(new Field(gameManager, 29), 6 * SPACING, 11 * SPACING);
+        addObject(fields[20] = new Field(gameManager, 20), 11 * SPACING, 7 * SPACING);
+        addObject(fields[21] = new Field(gameManager, 21), 10 * SPACING, 7 * SPACING);
+        addObject(fields[22] = new Field(gameManager, 22), 9 * SPACING, 7 * SPACING);
+        addObject(fields[23] = new Field(gameManager, 23), 8 * SPACING, 7 * SPACING);
+        addObject(fields[24] = new Field(gameManager, 24), 7 * SPACING, 7 * SPACING);
+        addObject(fields[25] = new Field(gameManager, 25), 7 * SPACING, 8 * SPACING);
+        addObject(fields[26] = new Field(gameManager, 26), 7 * SPACING, 9 * SPACING);
+        addObject(fields[27] = new Field(gameManager, 27), 7 * SPACING, 10 * SPACING);
+        addObject(fields[28] = new Field(gameManager, 28), 7 * SPACING, 11 * SPACING);
+        addObject(fields[29] = new Field(gameManager, 29), 6 * SPACING, 11 * SPACING);
 
-        addObject(new Field(gameManager, 30), 5 * SPACING, 11 * SPACING);
-        addObject(new Field(gameManager, 31), 5 * SPACING, 10 * SPACING);
-        addObject(new Field(gameManager, 32), 5 * SPACING, 9 * SPACING);
-        addObject(new Field(gameManager, 33), 5 * SPACING, 8 * SPACING);
-        addObject(new Field(gameManager, 34), 5 * SPACING, 7 * SPACING);
-        addObject(new Field(gameManager, 35), 4 * SPACING, 7 * SPACING);
-        addObject(new Field(gameManager, 36), 3 * SPACING, 7 * SPACING);
-        addObject(new Field(gameManager, 37), 2 * SPACING, 7 * SPACING);
-        addObject(new Field(gameManager, 38), SPACING, 7 * SPACING);
-        addObject(new Field(gameManager, 39), SPACING, 6 * SPACING);
+        addObject(fields[30] = new Field(gameManager, 30), 5 * SPACING, 11 * SPACING);
+        addObject(fields[31] = new Field(gameManager, 31), 5 * SPACING, 10 * SPACING);
+        addObject(fields[32] = new Field(gameManager, 32), 5 * SPACING, 9 * SPACING);
+        addObject(fields[33] = new Field(gameManager, 33), 5 * SPACING, 8 * SPACING);
+        addObject(fields[34] = new Field(gameManager, 34), 5 * SPACING, 7 * SPACING);
+        addObject(fields[35] = new Field(gameManager, 35), 4 * SPACING, 7 * SPACING);
+        addObject(fields[36] = new Field(gameManager, 36), 3 * SPACING, 7 * SPACING);
+        addObject(fields[37] = new Field(gameManager, 37), 2 * SPACING, 7 * SPACING);
+        addObject(fields[38] = new Field(gameManager, 38), SPACING, 7 * SPACING);
+        addObject(fields[39] = new Field(gameManager, 39), SPACING, 6 * SPACING);
 
         // Base-Felder anlegen
         addObject(new BaseField(gameManager, gameManager.getPlayers()[0], 0), SPACING, SPACING);
@@ -126,54 +130,10 @@ public class GameBoard extends World {
 
     // Spielfeld zeichnen
     public void act() {
-        Ai ai = new Ai(gameManager, gameManager.getCurrentPlayer(), 1, 4);
 
-        // TODO: Nur fürs testen!
-        if (Greenfoot.isKeyDown("0")) {
-            // Erste Runde?
-            if (decision != null) {
+        if ((!DiceRolled && !gameManager.status() && Greenfoot.mouseClicked(statusDisplay)) || gameManager.isNextKi()) {
 
-                if (decision.getMovableFigures().length > 0)
-                    ai.processDecision(decision);
-
-                System.out.println();
-
-                Player lastPlayer = gameManager.getCurrentPlayer();
-                boolean won = gameManager.exertDecision();
-                if (won)
-                    addObject(new PlayerWonDisplay(lastPlayer), getWidth() / 2, getHeight() / 2);
-
-                System.out.println();
-
-                for (int p = 0; p < 4; p++) {
-                    System.out.print(" " + gameManager.getPlayers()[p].getId() + ":");
-                    for (int i = 0; i < 4; i++) {
-                        if (gameManager.getPlayers()[p].getFigures()[i].isInBase())
-                            System.out.print(" B ");
-                        else
-                            System.out.print(" - ");
-                    }
-                    System.out.print("|");
-                }
-
-                System.out.println();
-
-                for (int i = 0; i < 40; i++) {
-                    Figure figure = gameManager.getMap().getFigureAtStreetPosition(i);
-                    System.out.print(figure == null ? " - " : " " + figure.getPlayer().getId() + " ");
-                }
-
-                System.out.println();
-
-                for (int p = 0; p < 4; p++) {
-                    System.out.print(" " + gameManager.getPlayers()[p].getId() + ":");
-                    for (int i = 0; i < 4; i++) {
-                        Figure figure = gameManager.getMap().getFigureAtHomePosition(gameManager.getPlayers()[p], i);
-                        System.out.print(figure == null ? " - " : " " + figure.getPlayer().getId() + " ");
-                    }
-                    System.out.print("|");
-                }
-            }
+            DiceRolled = true;
 
             // Beginn der nächsten Runde
 
@@ -186,10 +146,45 @@ public class GameBoard extends World {
 
             System.out.println(" Gewürfelt: " + decision.getFields() + " | Bewegbare Figuren: " + decision.getMovableFigures().length);
 
+
+
+            /*
             for (int i = 0; i < decision.getMovableFigures().length; i++) {
                 System.out.print(" " + decision.getMovableFigures()[i] + " ");
             }
             System.out.println();
+            */
+
+            //Ai Process
+            if (decision != null && decision.getPlayer().getMember() instanceof AiMember) {
+
+                long curTime = System.currentTimeMillis();
+
+                while (System.currentTimeMillis() <= curTime + 2000) {}
+
+                if (decision.getMovableFigures().length > 0)
+                    gameManager.getAi().processDecision(decision);
+
+                System.out.println();
+
+                Player lastPlayer = gameManager.getCurrentPlayer();
+                boolean won = gameManager.exertDecision();
+                if (won)
+                    addObject(new PlayerWonDisplay(lastPlayer), getWidth() / 2, getHeight() / 2);
+
+                curTime = System.currentTimeMillis();
+
+                while (System.currentTimeMillis() <= curTime + 1000) {}
+
+            } else {
+                if (decision != null && decision.getMovableFigures().length == 0) {
+                    Player lastPlayer = gameManager.getCurrentPlayer();
+                    boolean won = gameManager.exertDecision();
+                    if (won)
+                        addObject(new PlayerWonDisplay(lastPlayer), getWidth() / 2, getHeight() / 2);
+                }
+            }
+            DiceRolled = false;
         }
     }
 
@@ -198,5 +193,9 @@ public class GameBoard extends World {
 
         backgroundImage.scale(getHeight(), getWidth());
         this.setBackground(backgroundImage);
+    }
+    
+    public Field[] getFieldsArray(){
+        return fields;
     }
 }
