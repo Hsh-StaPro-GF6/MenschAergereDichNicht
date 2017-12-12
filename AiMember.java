@@ -7,6 +7,7 @@ public class AiMember extends GameMember {
 
         this.behaviour = behaviour;
         this.speedBehaviour = speedBehaviour;
+
     }
 
     public int getBehaviour() {

@@ -9,6 +9,7 @@ public class GameBoard extends World {
     private final GameManager gameManager;
     private Decision decision;
     private Ai ai;
+    private boolean DiceRolled = false;
 
     private final StatusDisplay statusDisplay;
 
@@ -126,54 +127,10 @@ public class GameBoard extends World {
 
     // Spielfeld zeichnen
     public void act() {
-        Ai ai = new Ai(gameManager, gameManager.getCurrentPlayer(), 1, 4);
 
-        // TODO: Nur fürs testen!
-        if (Greenfoot.isKeyDown("0")) {
-            // Erste Runde?
-            if (decision != null) {
+        if ((!DiceRolled && !gameManager.status() && Greenfoot.mouseClicked(statusDisplay)) || gameManager.isNextKi()) {
 
-                if (decision.getMovableFigures().length > 0)
-                    ai.processDecision(decision);
-
-                System.out.println();
-
-                Player lastPlayer = gameManager.getCurrentPlayer();
-                boolean won = gameManager.exertDecision();
-                if (won)
-                    addObject(new PlayerWonDisplay(lastPlayer), getWidth() / 2, getHeight() / 2);
-
-                System.out.println();
-
-                for (int p = 0; p < 4; p++) {
-                    System.out.print(" " + gameManager.getPlayers()[p].getId() + ":");
-                    for (int i = 0; i < 4; i++) {
-                        if (gameManager.getPlayers()[p].getFigures()[i].isInBase())
-                            System.out.print(" B ");
-                        else
-                            System.out.print(" - ");
-                    }
-                    System.out.print("|");
-                }
-
-                System.out.println();
-
-                for (int i = 0; i < 40; i++) {
-                    Figure figure = gameManager.getMap().getFigureAtStreetPosition(i);
-                    System.out.print(figure == null ? " - " : " " + figure.getPlayer().getId() + " ");
-                }
-
-                System.out.println();
-
-                for (int p = 0; p < 4; p++) {
-                    System.out.print(" " + gameManager.getPlayers()[p].getId() + ":");
-                    for (int i = 0; i < 4; i++) {
-                        Figure figure = gameManager.getMap().getFigureAtHomePosition(gameManager.getPlayers()[p], i);
-                        System.out.print(figure == null ? " - " : " " + figure.getPlayer().getId() + " ");
-                    }
-                    System.out.print("|");
-                }
-            }
+            DiceRolled = true;
 
             // Beginn der nächsten Runde
 
@@ -186,10 +143,45 @@ public class GameBoard extends World {
 
             System.out.println(" Gewürfelt: " + decision.getFields() + " | Bewegbare Figuren: " + decision.getMovableFigures().length);
 
+
+
+            /*
             for (int i = 0; i < decision.getMovableFigures().length; i++) {
                 System.out.print(" " + decision.getMovableFigures()[i] + " ");
             }
             System.out.println();
+            */
+
+            //Ai Process
+            if (decision != null && decision.getPlayer().getMember() instanceof AiMember) {
+
+                long curTime = System.currentTimeMillis();
+
+                while (System.currentTimeMillis() <= curTime + 2000) {}
+
+                if (decision.getMovableFigures().length > 0)
+                    gameManager.getAi().processDecision(decision);
+
+                System.out.println();
+
+                Player lastPlayer = gameManager.getCurrentPlayer();
+                boolean won = gameManager.exertDecision();
+                if (won)
+                    addObject(new PlayerWonDisplay(lastPlayer), getWidth() / 2, getHeight() / 2);
+
+                curTime = System.currentTimeMillis();
+
+                while (System.currentTimeMillis() <= curTime + 1000) {}
+
+            } else {
+                if (decision != null && decision.getMovableFigures().length == 0) {
+                    Player lastPlayer = gameManager.getCurrentPlayer();
+                    boolean won = gameManager.exertDecision();
+                    if (won)
+                        addObject(new PlayerWonDisplay(lastPlayer), getWidth() / 2, getHeight() / 2);
+                }
+            }
+            DiceRolled = false;
         }
     }
 

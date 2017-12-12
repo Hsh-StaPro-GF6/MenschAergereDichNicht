@@ -125,6 +125,17 @@ public class Map {
         return street[position];
     }
 
+
+    public Figure getFirstFigureInBase(Player player) {
+        int playerId = player.getId();
+
+        for (int i = 0; i < 4; i++) {
+            if (bases[playerId][i] != null)
+                return bases[playerId][i];
+        }
+        return null;
+    }
+
     /**
      * Fragt ab, welche Figur sich an einer angegebenen absoluten Position im Home befindet.
      *

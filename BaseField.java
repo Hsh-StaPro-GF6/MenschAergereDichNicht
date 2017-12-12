@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Gibt ein Basefeld auf dem Gameboard aus.
@@ -27,8 +28,26 @@ public class BaseField extends Actor {
      * Feld zeichnen.
      */
     public void act() {
+
+        Figure firstFigureInBase = gameManager.getMap().getFirstFigureInBase(player);
+
         // Muss auf diesem Feld eine Figur stehen, um die korrekte Anzahl an Figuren wiederzugeben?
         boolean fieldOccupied = (gameManager.getMap().getFigureCountInBase(player) > fieldId);
+
+        boolean selectable = (gameManager.getCurrentDecision() != null && Arrays.asList(gameManager.getCurrentDecision().getMovableFigures()).contains(firstFigureInBase) &&
+                gameManager.getCurrentDecision().getPlayer().getMember() instanceof HumanMember);
+
+        if (Greenfoot.mouseClicked(this) && selectable) {
+            System.out.println("Klick auf klickbare Figur!");
+            gameManager.getCurrentDecision().setSelectedFigure(firstFigureInBase);
+
+            Player lastPlayer = gameManager.getCurrentPlayer();
+            boolean won = gameManager.exertDecision();
+            if (won)
+                getWorld().addObject(new PlayerWonDisplay(lastPlayer),getWorld().getWidth() / 2, getWorld().getHeight() / 2);
+
+        }
+
 
         // Steht auf dem Feld eine Figur?
         if (fieldOccupied) {

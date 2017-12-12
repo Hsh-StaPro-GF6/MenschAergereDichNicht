@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Gibt ein Homefeld auf dem Gameboard aus.
@@ -29,6 +30,21 @@ public class HomeField extends Actor {
     public void act() {
         // Ist das Feld belegt?
         boolean fieldOccupied = (gameManager.getMap().getFigureAtHomePosition(player, fieldId) != null);
+
+        Figure figureAtHomePosition = gameManager.getMap().getFigureAtHomePosition(player, fieldId);
+
+        // Ist das Feld mit einer bewegbaren Figur belegt && Ist ein Mensch an der Reihe
+        boolean selectable = (gameManager.getCurrentDecision() != null && Arrays.asList(gameManager.getCurrentDecision().getMovableFigures()).contains(figureAtHomePosition) &&
+                gameManager.getCurrentDecision().getPlayer().getMember() instanceof HumanMember);
+
+        if (Greenfoot.mouseClicked(this) && selectable) {
+            System.out.println("Klick auf klickbare Figur!");
+            gameManager.getCurrentDecision().setSelectedFigure(figureAtHomePosition);
+            Player lastPlayer = gameManager.getCurrentPlayer();
+            boolean won = gameManager.exertDecision();
+            if (won)
+                getWorld().addObject(new PlayerWonDisplay(lastPlayer),getWorld().getWidth() / 2, getWorld().getHeight() / 2);
+        }
 
         // Steht auf dem Feld eine Figur?
         if (fieldOccupied) {

@@ -115,6 +115,8 @@ public class Player {
         // Eine Zahl würfeln
         int fields = Greenfoot.getRandomNumber(6) + 1;
 
+        StatusDisplay.getInstance().rollDice(fields);
+
         // Steht eine Figur im Spawn und kann diesen verlassen? => Dann muss sies auch.
         List<Figure> movableFigures = new ArrayList<Figure>(figures.length);
         for (Figure figure : figures)

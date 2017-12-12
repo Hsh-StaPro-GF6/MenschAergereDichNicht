@@ -9,11 +9,15 @@ public class GameManager {
     private final GameMember member2;
     private final GameMember member3;
 
+    private Ai[] ai = new Ai[4];
+
     private final Map map;
     private final Player[] players = new Player[4];
 
     private int currentPlayer = -1;
     private Decision currentDecision = null;
+    private boolean diceRolled = false;
+    private boolean nextKi = false;
 
     private int sixRepeatCount = 0;
     private int leaveBaseRepeatCount = 0;
@@ -36,6 +40,15 @@ public class GameManager {
         players[2] = new Player(map, 2, 20, 19, member2);
         players[3] = new Player(map, 3, 30, 29, member3);
 
+        if (member0 instanceof AiMember)
+            ai[0] = new Ai(this, players[0], ((AiMember)member0).getBehaviour(), ((AiMember)member0).getSpeedBehaviour());
+        if (member1 instanceof AiMember)
+            ai[1] = new Ai(this, players[1], ((AiMember)member1).getBehaviour(), ((AiMember)member1).getSpeedBehaviour());
+        if (member2 instanceof AiMember)
+            ai[2] = new Ai(this, players[2], ((AiMember)member2).getBehaviour(), ((AiMember)member2).getSpeedBehaviour());
+        if (member3 instanceof AiMember)
+            ai[3] = new Ai(this, players[3], ((AiMember)member3).getBehaviour(), ((AiMember)member3).getSpeedBehaviour());
+
         resetGame();
     }
 
@@ -46,6 +59,11 @@ public class GameManager {
      */
     public Map getMap() {
         return map;
+    }
+
+
+    public Ai getAi() {
+        return ai[currentPlayer];
     }
 
     /**
@@ -99,7 +117,19 @@ public class GameManager {
      * @return Ein neues Entscheidungs-Objekt.
      */
     public Decision rollDice() {
+        diceRolled = true;
         return currentDecision = players[currentPlayer].rollDice();
+    }
+
+
+    public boolean status() {
+        return diceRolled;
+    }
+
+    public boolean isNextKi() {
+        boolean i = nextKi;
+        nextKi = false;
+        return i;
     }
 
     /**
@@ -110,6 +140,11 @@ public class GameManager {
      * @return True, falls der Spieler durch diesen Spielzug gewonnen hat, sonst False.
      */
     public boolean exertDecision() {
+        if (!diceRolled)
+            return false;
+
+        diceRolled = false;
+
         boolean won = players[currentPlayer].processMove(currentDecision);
 
         int figureCountInBase = map.getFigureCountInBase(players[currentPlayer]);
@@ -144,6 +179,9 @@ public class GameManager {
             }
             while (!players[currentPlayer].isActiveMember() || (players[currentPlayer].isFinished() && ++finishedPlayers == finishedPlayers));
         }
+
+        if (players[currentPlayer].getMember() instanceof AiMember)
+            nextKi = true;
 
         return won;
     }
