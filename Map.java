@@ -18,11 +18,13 @@ public class Map {
 
     private final Figure[][] bases = {base0, base1, base2, base3};
     private final Figure[][] homes = {home0, home1, home2, home3};
-
+    
+    private GameManager gameManager;
     /**
      * Erstellt eine neue Map-Instanz.
      */
-    public Map() {
+    public Map(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
 
     /**
@@ -206,15 +208,32 @@ public class Map {
         // Figur aus der Base löschen
         if (isFigureInBase(figure))
             removeFigureFromBase(playerId, figure);
-
+                
         // Figur aus dem Home löschen
         if (isFigureInHome(figure) >= 0)
             removeFigureFromHome(playerId, figure);
+           
 
-        // Figur von der Straße löschen
-        if (isFigureInStreet(figure) >= 0)
+       // Figur von der Straße löschen und animation abspielen
+        if (isFigureInStreet(figure) >= 0){
+            int fields = gameManager.getCurrentDecision().getFields();
+            Figure thatfigure = figure;
+            
+            Field [] fieldsArray = gameManager.getGameBoard().getFieldsArray();
+            int startPos = isFigureInStreet(figure);
+            int endPos = (position + fields) % 40;
+            Field [] way = new Field[fields+1];
+            for(int i=0; i<fields+1; i++){
+                if(startPos+i > 39)
+                    way[i] = fieldsArray[(startPos+i) % 40];
+                else
+                    way[i] = fieldsArray[startPos+i];
+            }
+            Animation animation = new Animation(gameManager.getGameBoard(), fieldsArray[startPos], fieldsArray[endPos], way);
+            gameManager.getGameBoard().addObject(animation, fieldsArray[startPos].getX(), fieldsArray[startPos].getY() );
+            
             removeFigureFromStreet(playerId, figure);
-
+        }
         // Figur setzen
         street[position] = figure;
     }

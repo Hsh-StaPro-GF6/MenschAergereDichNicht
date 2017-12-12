@@ -21,19 +21,21 @@ public class GameManager {
 
     private int sixRepeatCount = 0;
     private int leaveBaseRepeatCount = 0;
-
+    
+    private GameBoard gameBoard;
     /**
      * Instanziert einen neuen GameManager. Dieser sollte nur einmal existieren.
      */
-    public GameManager(GameMember member0, GameMember member1, GameMember member2, GameMember member3) {
+    public GameManager(GameMember member0, GameMember member1, GameMember member2, GameMember member3, GameBoard gameBoard) {
         System.out.println("--- NEUES SPIEL ---");
-
+        
+        this.gameBoard = gameBoard;
         this.member0 = member0;
         this.member1 = member1;
         this.member2 = member2;
         this.member3 = member3;
 
-        map = new Map();
+        map = new Map(this);
 
         players[0] = new Player(map, 0, 0, 39, member0);
         players[1] = new Player(map, 1, 10, 9, member1);
@@ -182,7 +184,10 @@ public class GameManager {
 
         if (players[currentPlayer].getMember() instanceof AiMember)
             nextKi = true;
-
         return won;
+    }
+    
+    public GameBoard getGameBoard(){
+        return this.gameBoard;
     }
 }
