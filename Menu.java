@@ -57,6 +57,11 @@ public class Menu extends World {
         addObject(brackets[3], 7 * SPACING, 6 * SPACING);
         addObject(new LeftArrow(brackets[3]), 5 * SPACING, 6 * SPACING);
         addObject(new RightArrow(brackets[3]), 9 * SPACING, 6 * SPACING);
+        
+        TextField textField= new TextField();
+                addObject(textField, 6 * SPACING, 8* SPACING);
+        /*addObject(new LeftArrow(brackets[3]), 5 * SPACING, 6 * SPACING);
+        addObject(new RightArrow(brackets[3]), 9 * SPACING, 6 * SPACING);*/
 
         addObject(startButton = new StartButton(), 6 * SPACING, 10 * SPACING);
     }

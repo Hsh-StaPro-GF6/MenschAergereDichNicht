@@ -26,7 +26,8 @@ public class NameBracket extends Actor {
 
     private void updateImage() {
         GreenfootImage imageWithName = new GreenfootImage("images/Kastchen.png");
-        imageWithName.drawString(memberTypes[currentIndex].getName(), 10, 16);
+        imageWithName.setFont(imageWithName.getFont().deriveFont(20f));
+        imageWithName.drawString(memberTypes[currentIndex].getName(), 10, 30);
         this.setImage(imageWithName);
     }
 }
