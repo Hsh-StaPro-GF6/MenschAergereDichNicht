@@ -10,6 +10,7 @@ public class GameBoard extends World {
     private Decision decision;
     private Ai ai;
     private boolean DiceRolled = false;
+    private boolean animationInProgress;
 
     private final StatusDisplay statusDisplay;
 
@@ -31,6 +32,8 @@ public class GameBoard extends World {
         this.member1 = member1;
         this.member2 = member2;
         this.member3 = member3;
+
+        this.animationInProgress = false;
        
         gameManager = new GameManager(member0, member1, member2, member3, this);
 
@@ -131,7 +134,9 @@ public class GameBoard extends World {
     // Spielfeld zeichnen
     public void act() {
 
-        if ((!DiceRolled && !gameManager.status() && Greenfoot.mouseClicked(statusDisplay)) || gameManager.isNextKi()) {
+        if (((!DiceRolled && !gameManager.status() && Greenfoot.mouseClicked(statusDisplay)) || gameManager.isNextKi()) && !animationInProgress) {
+
+            gameManager.resetNextKi();
 
             DiceRolled = true;
 
@@ -140,6 +145,8 @@ public class GameBoard extends World {
             System.out.println();
             System.out.println("------------------------");
             System.out.println("Spieler " + gameManager.getCurrentPlayer().getId() + " ist an der Reihe!");
+
+
 
             decision = gameManager.rollDice();
             statusDisplay.updateStatus(decision);
@@ -197,5 +204,10 @@ public class GameBoard extends World {
     
     public Field[] getFieldsArray(){
         return fields;
+    }
+
+
+    public void setAnimationInProgress(boolean animationInProgress) {
+            this.animationInProgress = animationInProgress;
     }
 }

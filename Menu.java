@@ -2,6 +2,7 @@ import greenfoot.*;
 
 import java.util.*;
 
+
 public class Menu extends World {
     private static final int SPACING = 60;
 
@@ -18,24 +19,34 @@ public class Menu extends World {
             new AiMember("Ernst-August (KI)", 4, 3),
             new AiMember("Ronni (KI)", 3, 4),
             new AiMember("Balduin (KI)", 4, 4),
-            new AiMember("Albus Percival Wulfric Brian (KI)", 5, 4),
+            new AiMember("Albus Percival (KI)", 5, 4),
             new AiMember("Jussi (KI)", 4, 4) // overloard
     };
 
     private NameBracket[] brackets = new NameBracket[4];
     private StartButton startButton;
+    private TextField textField;
 
     public Menu() {
         super(12 * SPACING, 12 * SPACING, 1);
 
         setBackgroundImage();
 
-        showText("Mensch ärgere dich nicht!", 6 * SPACING, 1 * SPACING);
+        //showText("Mensch ärgere dich nicht!", 6 * SPACING, 1 * SPACING);
+        
+        Name name0= new Name(0);
+        addObject(name0,6 * SPACING, 3 * SPACING);
+        
+        Name name1= new Name(1);
+        addObject(name1,3 * SPACING, 3 * SPACING);
+        Name name2= new Name(2);
+        addObject(name2,3 * SPACING, 4 * SPACING);
+        Name name3= new Name(3);
+        addObject(name3,3 * SPACING, 5 * SPACING);
+        Name name4= new Name(4);
+        addObject(name4,3 * SPACING, 6 * SPACING);
 
-        showText("Spieler 1:", 3 * SPACING, 3 * SPACING);
-        showText("Spieler 2:", 3 * SPACING, 4 * SPACING);
-        showText("Spieler 3:", 3 * SPACING, 5 * SPACING);
-        showText("Spieler 4:", 3 * SPACING, 6 * SPACING);
+        
 
         // bracket for player 0
         brackets[0] = new NameBracket(memberTypes, 0);
@@ -59,9 +70,9 @@ public class Menu extends World {
         addObject(new RightArrow(brackets[3]), 9 * SPACING, 6 * SPACING);
         
         TextField textField= new TextField();
-                addObject(textField, 6 * SPACING, 8* SPACING);
-        /*addObject(new LeftArrow(brackets[3]), 5 * SPACING, 6 * SPACING);
-        addObject(new RightArrow(brackets[3]), 9 * SPACING, 6 * SPACING);*/
+        addObject(textField, 6 * SPACING, 8* SPACING);
+        addObject(new RightTextArrow(textField), 11 * SPACING, 8 * SPACING);
+        addObject(new LeftTextArrow(textField), 1 * SPACING, 8 * SPACING);
 
         addObject(startButton = new StartButton(), 6 * SPACING, 10 * SPACING);
     }

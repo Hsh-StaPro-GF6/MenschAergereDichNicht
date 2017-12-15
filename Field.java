@@ -26,6 +26,7 @@ public class Field extends Actor {
     
     // Animation für dieses Feld aktiv
     private boolean animationInProgress;
+    private boolean test;
 
     public Field(GameManager gameManager, int fieldId) {
         this.gameManager = gameManager;
@@ -89,6 +90,12 @@ public class Field extends Actor {
         // Steht auf dem Feld eine Figur?
         if (fieldOccupied && !animationInProgress) {
             this.setImage(selectable ? imageWhenOccupiedSelectable[figureOwner] : imageWhenOccupied[figureOwner]);
+
+            if (test) {
+                test = false;
+                gameManager.getGameBoard().setAnimationInProgress(false);
+            }
+
             return;
         }
 
@@ -120,6 +127,8 @@ public class Field extends Actor {
     }
     
     public void setAnimationInProgress(boolean animationInProgress) {
+        if (animationInProgress == false)
+            test = true;
         this.animationInProgress = animationInProgress;
     }
 }

@@ -236,6 +236,7 @@ public class Map {
         }
         // Figur setzen
         street[position] = figure;
+        System.out.println("1");
     }
 
     /**

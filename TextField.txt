@@ -1,22 +1,41 @@
-1--------------------------------------------------------
-Test ttwejsadjkfsdfsswdsdridlg
-fgf
-fgf
-2--------------------------------------------------------
-Terf
+|06|: Anzahl aller Blöcke (Muss immer zweistellig sein)
+Schreib Konvention:
+der Inhalt von jedem Block muss in den ersten 3 Zeilen nach dem Zeilenbegrenzer stehen, Kommentare können in den Folgenden Zeilen stehen und müssen mit "//" begonen werden.
+einzelne Blöcke müssen mit folgendem Zeilenbegrenzer getrennt werden:
+
+X----------------------------------------------------- 
+
+X entspricht der Block nummer
+Einzelne Zeilen dürfen nicht mit einer Zahl beginnen und nicht länger als die Zeilenbegrenzer sein.
+
+1----------------------------------------------------- 
+ Willkommen zum Spiel: "Mensch äreger dich nicht"
+     der Gruppe GF6 des Startprojekts WiSe 17/18
+
+// Begrüßung
+// Anleitung
+2-----------------------------------------------------
+#2 Terf
+ 2
+
+3-----------------------------------------------------
+#3 Test ttwejsadjkfsdfsswdsdridlg
+ 3
 fgf
 
-3--------------------------------------------------------
-Test ttwejsadjkfsdfsswdsdridlg
-fgf
-fgf
-4--------------------------------------------------------
-Test ttwejsadjkfsdfsswdsdridlg
-fgf
-fgf
-5--------------------------------------------------------
-Test ttwejsadjkfsdfsswdsdridlg
-fgf
-fgf
-6--------------------------------------------------------
+// test komentar1
+// test kommentar 2
+4-----------------------------------------------------
 
+ 4
+fgf
+5-----------------------------------------------------
+#5Test ttwejsadjkfsdfsswdsdridlg
+ 5
+fgf
+6-----------------------------------------------------
+#6
+
+
+#-----------------------------------------------------
+Ende des Dokuments

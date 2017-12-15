@@ -24,8 +24,12 @@ public class Animation extends Actor
         this.finalField = finalField;
         
         //Animation für Feld setzen:
+
+        System.out.println("4");
         way[way.length-1].setAnimationInProgress(true);
-        image = startField.getImage();       
+        gameBoard.setAnimationInProgress(true);
+        System.out.println("5");
+        image = startField.getImage();
         this.setImage(image);
     }
     
@@ -43,8 +47,12 @@ public class Animation extends Actor
         } catch (ArrayIndexOutOfBoundsException ex) {
             
             this.getWorld().removeObject(this);
+            System.out.println("3");
             way[way.length-1].setAnimationInProgress(false);
-            
+
+            System.out.println("2");
+
+
         }
     } 
     

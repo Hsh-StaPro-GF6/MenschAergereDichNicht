@@ -129,9 +129,11 @@ public class GameManager {
     }
 
     public boolean isNextKi() {
-        boolean i = nextKi;
+        return nextKi;
+    }
+
+    public void resetNextKi() {
         nextKi = false;
-        return i;
     }
 
     /**
