@@ -1,5 +1,5 @@
 #Greenfoot properties
-#Fri Dec 15 13:52:48 CET 2017
+#Fri Dec 15 13:57:47 CET 2017
 target16.name=StatusDisplay
 dependency35.to=TextField
 target26.width=80
@@ -69,7 +69,7 @@ target27.showInterface=false
 target18.width=110
 dependency55.type=UsesDependency
 dependency52.from=Figure
-editor.fx.0.height=0
+editor.fx.0.height=1200
 project.charset=UTF-8
 dependency40.to=Decision
 target12.typeParameters=
@@ -283,7 +283,7 @@ dependency36.type=UsesDependency
 editor.fx.0.x=0
 dependency11.to=HumanMember
 target6.height=50
-editor.fx.0.width=0
+editor.fx.0.width=1920
 target24.width=80
 target25.y=0
 target25.x=0
