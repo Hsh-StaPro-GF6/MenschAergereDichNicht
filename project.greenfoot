@@ -1,5 +1,9 @@
 #Greenfoot properties
+<<<<<<< HEAD
 #Tue Dec 19 09:51:01 CET 2017
+=======
+#Tue Dec 19 08:21:32 CET 2017
+>>>>>>> master
 target16.name=StatusDisplay
 dependency35.to=TextField
 target26.width=80
@@ -18,20 +22,29 @@ target23.x=0
 dependency18.type=UsesDependency
 dependency15.from=GameManager
 target21.showInterface=false
-target19.width=80
 dependency65.type=UsesDependency
+<<<<<<< HEAD
 dependency62.from=HomeField
+=======
+dependency62.from=GameBoard
+target19.width=80
+>>>>>>> master
 dependency69.from=GameBoard
-target5.naviview.expanded=true
 dependency8.to=Map
+target5.naviview.expanded=true
 target20.naviview.expanded=true
 dependency77.to=NameBracket
 target14.type=ClassTarget
 target19.naviview.expanded=true
+<<<<<<< HEAD
 target15.width=120
 simulation.speed=47
+=======
+simulation.speed=43
+>>>>>>> master
 dependency25.type=UsesDependency
 dependency22.from=Field
+target15.width=120
 dependency72.type=UsesDependency
 dependency29.from=Menu
 target15.height=50
@@ -56,8 +69,8 @@ target21.naviview.expanded=true
 dependency46.to=HumanMember
 dependency1.type=UsesDependency
 target16.y=0
-target16.x=0
 dependency41.type=UsesDependency
+target16.x=0
 dependency8.type=UsesDependency
 dependency5.from=BaseField
 dependency67.to=Field
@@ -68,21 +81,26 @@ target12.y=0
 target12.x=0
 target27.typeParameters=
 target27.showInterface=false
-target18.width=110
 dependency55.type=UsesDependency
+<<<<<<< HEAD
 dependency52.from=StatusDisplay
 editor.fx.0.height=722
+=======
+dependency52.from=Figure
+target18.width=110
+editor.fx.0.height=1200
+>>>>>>> master
 project.charset=UTF-8
 dependency40.to=Player
 target12.typeParameters=
 dependency15.to=GameBoard
 dependency59.from=HomeField
 class.LeftArrow.superclass=greenfoot.Actor
-target5.height=50
 target15.name=RightTextArrow
+target5.height=50
 target1.name=AiMember
-version=3.0.0
 target11.naviview.expanded=true
+version=3.0.0
 target8.name=NameBracket
 dependency61.to=HumanMember
 dependency36.to=Name
@@ -93,9 +111,13 @@ dependency14.from=GameManager
 dependency64.type=UsesDependency
 dependency61.from=HomeField
 package.numTargets=27
+<<<<<<< HEAD
 dependency82.to=Animation
 target26.showInterface=false
+=======
+>>>>>>> master
 class.Player.superclass=
+target26.showInterface=false
 dependency68.from=GameBoard
 dependency57.to=GameBoard
 target13.type=ClassTarget
@@ -106,12 +128,17 @@ dependency71.type=UsesDependency
 dependency28.from=Menu
 target12.naviview.expanded=true
 dependency9.to=Figure
-target24.typeParameters=
 class.RightTextArrow.superclass=greenfoot.Actor
-target6.type=ClassTarget
+target24.typeParameters=
 dependency78.type=UsesDependency
+<<<<<<< HEAD
 dependency75.from=Animation
 dependency78.to=Figure
+=======
+target6.type=ClassTarget
+dependency75.from=Map
+dependency78.to=Animation
+>>>>>>> master
 target27.height=50
 target19.height=50
 dependency30.to=NameBracket
@@ -128,15 +155,20 @@ target3.x=0
 dependency82.from=Map
 target7.typeParameters=
 class.GameBoard.superclass=greenfoot.World
+<<<<<<< HEAD
 dependency51.to=GameManager
 target8.height=50
+=======
+dependency51.to=Map
+>>>>>>> master
 target25.showInterface=false
 dependency26.to=GameMember
+target8.height=50
 mainWindow.y=23
 mainWindow.x=564
 target26.naviview.expanded=true
-target3.showInterface=false
 target12.showInterface=false
+target3.showInterface=false
 target17.typeParameters=
 dependency3.to=PlayerWonDisplay
 dependency72.to=Player
@@ -148,8 +180,8 @@ dependency7.type=UsesDependency
 dependency4.from=BaseField
 dependency47.type=UsesDependency
 dependency44.from=Player
-target26.y=0
 class.LeftArrow.image=LeftArrow.png
+target26.y=0
 target26.x=0
 dependency68.to=BaseField
 dependency20.to=GameManager
@@ -159,14 +191,19 @@ target22.y=0
 target22.x=0
 dependency58.from=HomeField
 target14.name=Player
-target9.height=50
 target2.naviview.expanded=true
-target2.showInterface=false
+target9.height=50
 target11.showInterface=false
+target2.showInterface=false
 target7.name=DeadMember
+<<<<<<< HEAD
 dependency41.to=GifImage
 target16.naviview.expanded=true
+=======
+dependency41.to=Figure
+>>>>>>> master
 dependency16.to=GameManager
+target16.naviview.expanded=true
 target21.name=StartButton
 dependency13.from=GameManager
 dependency16.type=UsesDependency
@@ -179,24 +216,34 @@ target8.width=90
 dependency67.from=GameBoard
 target22.width=80
 class.Figure.superclass=
-target21.height=50
 target12.type=ClassTarget
+target21.height=50
 target13.height=50
 dependency23.type=UsesDependency
 dependency20.from=Field
 target19.type=ClassTarget
 target4.width=80
 dependency70.type=UsesDependency
-target9.showInterface=false
-target18.showInterface=false
 dependency27.from=Menu
+<<<<<<< HEAD
 target10.showInterface=false
 target1.showInterface=false
 dependency58.to=GameManager
+=======
+target18.showInterface=false
+target9.showInterface=false
+dependency58.to=PlayerWonDisplay
+>>>>>>> master
 class.StartButton.image=StartButton.png
-target5.type=ClassTarget
+target10.showInterface=false
+target1.showInterface=false
 dependency77.type=UsesDependency
+<<<<<<< HEAD
 dependency74.from=GameBoard
+=======
+target5.type=ClassTarget
+dependency74.from=Map
+>>>>>>> master
 dependency10.to=GameMember
 target17.naviview.expanded=true
 class.GameMember.superclass=
@@ -216,13 +263,18 @@ target11.y=0
 target11.x=0
 readme.height=58
 target26.typeParameters=
+<<<<<<< HEAD
 dependency52.to=Decision
 target8.showInterface=false
+=======
+dependency52.to=Player
+>>>>>>> master
 target17.showInterface=false
+target8.showInterface=false
 dependency27.to=DeadMember
 class.StatusDisplay.superclass=greenfoot.Actor
-target11.typeParameters=
 dependency3.from=BaseField
+target11.typeParameters=
 dependency6.type=UsesDependency
 dependency43.from=Player
 dependency46.type=UsesDependency
@@ -251,37 +303,51 @@ target22.naviview.expanded=true
 class.HomeField.superclass=greenfoot.Actor
 target20.name=Figure
 target27.name=Map
-target14.width=80
 dependency15.type=UsesDependency
 dependency42.to=Map
 dependency12.from=GameManager
+target14.width=80
 target23.typeParameters=
 dependency17.to=Player
 dependency62.type=UsesDependency
-target6.y=0
 dependency19.from=Ai
 class.UI.superclass=greenfoot.Actor
+target6.y=0
 target6.x=0
 dependency69.type=UsesDependency
 dependency66.from=GameBoard
-target2.y=0
 target10.width=80
-target2.x=0
+target2.y=0
 target11.type=ClassTarget
+<<<<<<< HEAD
 dependency63.to=GameManager
 dependency22.type=UsesDependency
 target25.height=50
 target18.type=ClassTarget
 dependency38.to=LeftTextArrow
+=======
+target2.x=0
+dependency63.to=Field
+dependency22.type=UsesDependency
+target25.height=50
+dependency38.to=GifImage
+target18.type=ClassTarget
+>>>>>>> master
 target17.height=50
-target6.typeParameters=
 dependency29.type=UsesDependency
 dependency26.from=Menu
-target4.type=ClassTarget
+target6.typeParameters=
 dependency76.type=UsesDependency
+<<<<<<< HEAD
 dependency73.from=GameBoard
 target25.type=ClassTarget
 dependency59.to=Player
+=======
+target4.type=ClassTarget
+dependency73.from=LeftArrow
+dependency59.to=GameManager
+target25.type=ClassTarget
+>>>>>>> master
 class.Field.superclass=greenfoot.Actor
 dependency33.from=Menu
 editor.fx.0.y=151
@@ -297,30 +363,44 @@ target25.x=0
 dependency32.to=LeftArrow
 target21.y=0
 target21.x=0
-target20.typeParameters=
 class.AiMember.superclass=GameMember
-dependency5.type=UsesDependency
+target20.typeParameters=
 dependency2.from=BaseField
-target17.width=100
-dependency45.type=UsesDependency
+dependency5.type=UsesDependency
 dependency42.from=Player
+dependency45.type=UsesDependency
+target17.width=100
 dependency9.from=GameManager
+<<<<<<< HEAD
 dependency53.to=Player
 dependency49.from=Player
 target10.height=50
+=======
+dependency53.to=GameBoard
+dependency49.from=Decision
+>>>>>>> master
 dependency28.to=HumanMember
+target10.height=50
 target13.naviview.expanded=true
 class.NameBracket.superclass=greenfoot.Actor
-target3.typeParameters=
-target13.width=120
 class.DeadMember.superclass=GameMember
-dependency52.type=UsesDependency
+target13.width=120
+target3.typeParameters=
 dependency5.to=Player
+<<<<<<< HEAD
 dependency74.to=AiMember
 dependency59.type=UsesDependency
 dependency56.from=Figure
 target12.name=LeftTextArrow
 dependency49.to=GameBoard
+=======
+dependency52.type=UsesDependency
+dependency74.to=Figure
+dependency56.from=HomeField
+dependency59.type=UsesDependency
+dependency49.to=Player
+target12.name=LeftTextArrow
+>>>>>>> master
 target19.name=Decision
 target13.typeParameters=
 target5.name=Name
@@ -329,96 +409,145 @@ class.LeftTextArrow.superclass=greenfoot.Actor
 target27.naviview.expanded=true
 dependency22.to=HumanMember
 target26.name=LeftArrow
-target14.naviview.expanded=true
-dependency14.type=UsesDependency
 dependency11.from=GameManager
+dependency14.type=UsesDependency
+target14.naviview.expanded=true
 dependency61.type=UsesDependency
-target18.y=0
 dependency18.from=Ai
+target18.y=0
 target18.x=0
-dependency68.type=UsesDependency
 dependency65.from=GameBoard
+<<<<<<< HEAD
 target14.y=0
 dependency43.to=Decision
 target14.x=0
+=======
+dependency68.type=UsesDependency
+dependency43.to=HumanMember
+target14.y=0
+>>>>>>> master
 target10.type=ClassTarget
+target14.x=0
 dependency18.to=Decision
+<<<<<<< HEAD
 package.numDependencies=82
 class.Ai.superclass=
 dependency21.type=UsesDependency
+=======
+package.numDependencies=78
+dependency21.type=UsesDependency
+class.Ai.superclass=
+>>>>>>> master
 target17.type=ClassTarget
-dependency28.type=UsesDependency
 dependency25.from=RightArrow
+dependency28.type=UsesDependency
 target10.y=0
+<<<<<<< HEAD
 target3.type=ClassTarget
 target10.x=0
 dependency75.type=UsesDependency
 dependency72.from=GameBoard
+=======
+dependency72.from=Animation
+dependency75.type=UsesDependency
+target10.x=0
+target3.type=ClassTarget
+>>>>>>> master
 target23.showInterface=false
 dependency79.from=Map
 dependency64.to=Figure
 dependency39.to=TextField
 target25.typeParameters=
 target3.naviview.expanded=true
-target24.type=ClassTarget
 readme.name=@README
-target16.width=90
-dependency35.type=UsesDependency
+target24.type=ClassTarget
 dependency32.from=Menu
+<<<<<<< HEAD
 dependency82.type=UsesDependency
 dependency39.from=LeftTextArrow
+=======
+dependency35.type=UsesDependency
+target16.width=90
+dependency39.from=Player
+>>>>>>> master
 target10.typeParameters=
-target8.typeParameters=
 dependency12.to=AiMember
-class.PlayerWonDisplay.superclass=greenfoot.Actor
+target8.typeParameters=
+class.LeftTextArrow.image=LeftArrow.png
 class.NameBracket.image=Kastchen.png
-target22.showInterface=true
-dependency4.type=UsesDependency
+class.PlayerWonDisplay.superclass=greenfoot.Actor
 dependency1.from=BaseField
+<<<<<<< HEAD
 dependency44.type=UsesDependency
 dependency41.from=PlayerWonDisplay
+=======
+dependency4.type=UsesDependency
+target22.showInterface=true
+>>>>>>> master
 dependency33.to=RightArrow
+dependency41.from=Player
+dependency44.type=UsesDependency
 dependency8.from=GameManager
+<<<<<<< HEAD
 target4.naviview.expanded=true
 dependency48.from=Player
+=======
+dependency48.from=StatusDisplay
+target4.naviview.expanded=true
+>>>>>>> master
 target22.height=50
 target14.height=50
 target18.naviview.expanded=true
 target9.y=0
 target9.x=0
+<<<<<<< HEAD
 dependency54.to=Figure
+=======
+>>>>>>> master
 dependency51.type=UsesDependency
+dependency54.to=GameManager
 dependency29.to=AiMember
+<<<<<<< HEAD
 dependency58.type=UsesDependency
 dependency55.from=Figure
+=======
+dependency55.from=HomeField
+dependency58.type=UsesDependency
+>>>>>>> master
 target11.name=Menu
 target5.y=0
 target5.x=0
-target22.typeParameters=
 target18.name=HumanMember
+target22.typeParameters=
 target3.height=50
 dependency6.to=Player
 target4.name=Ai
+<<<<<<< HEAD
 target1.y=0
 dependency75.to=Field
 target19.typeParameters=
+=======
+dependency75.to=Player
+target1.y=0
+>>>>>>> master
 target1.x=0
+target19.typeParameters=
 target25.name=Animation
-target5.typeParameters=
-dependency13.type=UsesDependency
 dependency10.from=GameManager
+dependency13.type=UsesDependency
+target5.typeParameters=
 target7.showInterface=false
-target3.width=110
 dependency60.type=UsesDependency
+target3.width=110
 dependency17.from=Ai
-dependency67.type=UsesDependency
 dependency64.from=GameBoard
+dependency67.type=UsesDependency
 dependency23.to=Player
 target23.height=50
 dependency20.type=UsesDependency
 target16.type=ClassTarget
-dependency27.type=UsesDependency
 dependency24.from=Field
+<<<<<<< HEAD
 target2.type=ClassTarget
 dependency74.type=UsesDependency
 dependency71.from=GameBoard
@@ -427,21 +556,39 @@ dependency44.to=Figure
 target9.type=ClassTarget
 target24.x=0
 class.Decision.superclass=
+=======
+dependency27.type=UsesDependency
+dependency71.from=Animation
+dependency74.type=UsesDependency
+target2.type=ClassTarget
+dependency44.to=AiMember
+target24.y=0
+>>>>>>> master
 dependency78.from=Map
+class.Decision.superclass=
+target24.x=0
+target9.type=ClassTarget
 dependency19.to=Figure
 target4.height=50
 target23.type=ClassTarget
 target20.y=0
-target20.x=0
-dependency34.type=UsesDependency
+class.RightTextArrow.image=RightArrow.png
 dependency31.from=Menu
+dependency34.type=UsesDependency
+target20.x=0
 target8.naviview.expanded=true
-target6.showInterface=false
 target15.showInterface=false
+<<<<<<< HEAD
 dependency81.type=UsesDependency
 target23.naviview.expanded=true
 dependency38.from=Menu
 dependency65.to=Decision
+=======
+target6.showInterface=false
+dependency38.from=PlayerWonDisplay
+target23.naviview.expanded=true
+dependency65.to=HomeField
+>>>>>>> master
 readme.y=10
 readme.x=10
 target10.naviview.expanded=true
@@ -451,9 +598,15 @@ class.menu.superclass=greenfoot.World
 target2.typeParameters=
 dependency13.to=Menu
 dependency3.type=UsesDependency
+<<<<<<< HEAD
 class.TextField.superclass=greenfoot.Actor
 dependency43.type=UsesDependency
 dependency40.from=PlayerWonDisplay
+=======
+dependency40.from=Player
+dependency43.type=UsesDependency
+class.TextField.superclass=greenfoot.Actor
+>>>>>>> master
 dependency7.from=GameManager
 target6.width=80
 dependency47.from=Player
@@ -461,17 +614,22 @@ readme.width=47
 target20.width=80
 mainWindow.height=1057
 target9.naviview.expanded=true
-target5.showInterface=false
-target24.naviview.expanded=true
 target14.showInterface=false
+target24.naviview.expanded=true
+target5.showInterface=false
 target26.height=50
-target18.height=50
 dependency34.to=GameBoard
-target2.width=80
+target18.height=50
 dependency50.type=UsesDependency
+target2.width=80
 class.GifImage.superclass=
+<<<<<<< HEAD
 dependency57.type=UsesDependency
 dependency54.from=Decision
+=======
+dependency54.from=HomeField
+dependency57.type=UsesDependency
+>>>>>>> master
 target10.name=TextField
 target17.y=0
 target17.x=0
@@ -479,42 +637,59 @@ target17.name=GameMember
 dependency80.to=GameManager
 dependency55.to=Map
 target3.name=GameManager
-target7.height=50
 target13.y=0
+target7.height=50
 target13.x=0
 target24.name=GameBoard
 dependency7.to=Decision
 dependency12.type=UsesDependency
+<<<<<<< HEAD
 dependency76.to=GameBoard
 dependency19.type=UsesDependency
+=======
+dependency76.to=GameManager
+>>>>>>> master
 dependency16.from=Ai
-target4.showInterface=false
+dependency19.type=UsesDependency
 target13.showInterface=false
-dependency66.type=UsesDependency
+target4.showInterface=false
 dependency63.from=GameBoard
+dependency66.type=UsesDependency
 target27.width=80
 target15.type=ClassTarget
-dependency23.from=Field
 dependency26.type=UsesDependency
+dependency23.from=Field
 target11.height=50
-target1.type=ClassTarget
-dependency24.to=PlayerWonDisplay
-dependency73.type=UsesDependency
 dependency70.from=GameBoard
+dependency73.type=UsesDependency
+dependency24.to=PlayerWonDisplay
+target1.type=ClassTarget
 target9.width=80
+<<<<<<< HEAD
 target8.type=ClassTarget
 dependency77.from=LeftArrow
+=======
+>>>>>>> master
 class.HumanMember.superclass=GameMember
+dependency77.from=Map
+target8.type=ClassTarget
 target23.width=80
-target22.type=ClassTarget
 dependency1.to=Figure
-dependency33.type=UsesDependency
+target22.type=ClassTarget
 dependency30.from=Menu
+<<<<<<< HEAD
 dependency70.to=Ai
 target5.width=80
 dependency80.type=UsesDependency
 dependency45.to=GameMember
 dependency37.from=Menu
+=======
+dependency33.type=UsesDependency
+dependency70.to=AiMember
+dependency45.to=StatusDisplay
+target5.width=80
+dependency37.from=PlayerWonDisplay
+>>>>>>> master
 target1.naviview.expanded=true
 target15.naviview.expanded=true
 class.StartButton.superclass=greenfoot.Actor
@@ -524,24 +699,33 @@ target8.x=0
 target12.width=110
 dependency2.type=UsesDependency
 target4.y=0
-target4.x=0
 dependency42.type=UsesDependency
+target4.x=0
 target20.height=50
-target12.height=50
-dependency9.type=UsesDependency
 dependency6.from=GameManager
+<<<<<<< HEAD
 dependency49.type=UsesDependency
 dependency46.from=Player
+=======
+dependency9.type=UsesDependency
+target12.height=50
+dependency46.from=RightTextArrow
+dependency49.type=UsesDependency
+>>>>>>> master
 target21.typeParameters=
 world.lastInstantiated=Menu
 class.RightArrow.image=RightArrow.png
 dependency14.to=Ai
 target18.typeParameters=
 target19.showInterface=false
+<<<<<<< HEAD
 dependency53.from=Decision
+=======
+>>>>>>> master
 dependency56.type=UsesDependency
+dependency53.from=StartButton
 target1.height=50
-target4.typeParameters=
 mainWindow.width=1356
-=\=\=\=\=\=\=
+target4.typeParameters=
 dependency60.to=Figure
+=\=\=\=\=\=\=

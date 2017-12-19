@@ -22,7 +22,8 @@ public class GameBoard extends World {
     private final GameMember member3;
     
     private final Field [] fields = new Field[40];
-        
+    
+    
 
     /**
      * Erstellt ein neues Spielfeld.
@@ -155,14 +156,24 @@ public class GameBoard extends World {
         }
 
         if (((!DiceRolled && !gameManager.status() && Greenfoot.mouseClicked(statusDisplay)) || gameManager.isNextKi()) && !animationInProgress) {
-
+            
+            if(decision != null){ 
+                if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[0]) statusDisplay.setLocation(3 * SPACING, 1 * SPACING);
+                if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[1]) statusDisplay.setLocation(11 * SPACING, 3 * SPACING);
+                if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[2]) statusDisplay.setLocation(9 * SPACING, 11 * SPACING);
+                if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[3]) statusDisplay.setLocation(1 * SPACING, 9 * SPACING);
+            }
+            
             gameManager.resetNextKi();
 
             DiceRolled = true;
 
             decision = gameManager.rollDice();
             statusDisplay.updateStatus(decision);
-
+            
+             
+            
+            
             System.out.println(" Gewürfelt: " + decision.getFields() + " | Bewegbare Figuren: " + decision.getMovableFigures().length);
 
             //Ai Process
@@ -196,6 +207,7 @@ public class GameBoard extends World {
                         addObject(new PlayerWonDisplay(lastPlayer), getWidth() / 2, getHeight() / 2);
                 }
             }
+                               
             DiceRolled = false;
         }
     }
