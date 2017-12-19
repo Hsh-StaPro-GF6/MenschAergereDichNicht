@@ -49,7 +49,7 @@ public class TextField extends Actor
                 GreenfootImage bild = new GreenfootImage("images/Kastchen.png");
                 bild.scale(550,70);
                 this.setImage(bild);
-                bild.setFont(bild.getFont().deriveFont(20f));
+                bild.setFont(bild.getFont().deriveFont(15f));
                 this.getImage().drawString(zeile1,10,20);
                 this.setImage(bild);
                 this.getImage().drawString(zeile2,10,40);

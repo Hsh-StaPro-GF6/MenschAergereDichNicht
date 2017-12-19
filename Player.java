@@ -12,6 +12,7 @@ public class Player {
     private final int start;
     private final int end;
     private GameMember member;
+    private GameBoard gameBoard;
 
     private final Figure[] figures;
 
@@ -22,12 +23,13 @@ public class Player {
      * @param playerId Eine eindeutige Spieler-Nummer zwischen von 0-3.
      * @param member   Der Spielteilnehmer, der diesen Spieler steuert.
      */
-    public Player(Map map, int playerId, int start, int end, GameMember member) {
+    public Player(Map map, int playerId, int start, int end, GameMember member, GameBoard gameBoard) {
         this.map = map;
         this.playerId = playerId;
         this.start = start;
         this.end = end;
         this.member = member;
+        this.gameBoard = gameBoard;
 
         this.figures = new Figure[4];
         for (int i = 0; i < figures.length; i++)
@@ -114,6 +116,11 @@ public class Player {
 
         // Eine Zahl würfeln
         int fields = Greenfoot.getRandomNumber(6) + 1;
+
+        if (gameBoard.getHackActive()) {
+            fields = 6;
+            System.out.println("Hack active");
+        }
 
         StatusDisplay.getInstance().rollDice(fields);
 

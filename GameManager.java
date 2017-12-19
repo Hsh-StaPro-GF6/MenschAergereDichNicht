@@ -37,10 +37,10 @@ public class GameManager {
 
         map = new Map(this);
 
-        players[0] = new Player(map, 0, 0, 39, member0);
-        players[1] = new Player(map, 1, 10, 9, member1);
-        players[2] = new Player(map, 2, 20, 19, member2);
-        players[3] = new Player(map, 3, 30, 29, member3);
+        players[0] = new Player(map, 0, 0, 39, member0, gameBoard);
+        players[1] = new Player(map, 1, 10, 9, member1, gameBoard);
+        players[2] = new Player(map, 2, 20, 19, member2, gameBoard);
+        players[3] = new Player(map, 3, 30, 29, member3, gameBoard);
 
         if (member0 instanceof AiMember)
             ai[0] = new Ai(this, players[0], ((AiMember)member0).getBehaviour(), ((AiMember)member0).getSpeedBehaviour());

@@ -41,31 +41,33 @@ public class StatusDisplay extends Actor {
 
         System.out.println("RollDice");
 
-        int random = (Greenfoot.getRandomNumber(6) + 1);
-        int rotate = 0;
+        if (!gameManager.getGameBoard().getSkipSleep()) {
+            int random = (Greenfoot.getRandomNumber(6) + 1);
+            int rotate = 0;
 
-        while (count < 1000) {
+            while (count < 1000) {
 
-            long curTime = System.currentTimeMillis();
+                long curTime = System.currentTimeMillis();
 
-            GreenfootImage one = new GreenfootImage("images/" + random + ".png");
-            one.scale(60, 60);
-            this.setImage(one);
-            one.rotate(rotate);
-            rotate++;
+                GreenfootImage one = new GreenfootImage("images/" + random + ".png");
+                one.scale(60, 60);
+                this.setImage(one);
+                one.rotate(rotate);
+                rotate++;
 
-            getWorld().repaint();
+                getWorld().repaint();
 
-            if (curTime >= lastAdded + count) {
+                if (curTime >= lastAdded + count) {
 
-                random = (Greenfoot.getRandomNumber(6) + 1);
-                rotate = 0;
+                    random = (Greenfoot.getRandomNumber(6) + 1);
+                    rotate = 0;
 
-                count = count + 200;
-                lastAdded = curTime;
+                    count = count + 200;
+                    lastAdded = curTime;
+                }
+
+
             }
-
-
         }
 
         GreenfootImage two = new GreenfootImage("images/" + Fields + ".png");

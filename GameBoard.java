@@ -11,6 +11,8 @@ public class GameBoard extends World {
     private Ai ai;
     private boolean DiceRolled = false;
     private boolean animationInProgress;
+    private boolean skipSleep = false;
+    private boolean hackActive = false;
 
     private final StatusDisplay statusDisplay;
 
@@ -134,40 +136,42 @@ public class GameBoard extends World {
     // Spielfeld zeichnen
     public void act() {
 
+        if (Greenfoot.isKeyDown("0")) {
+            skipSleep = true;
+        } else {
+            skipSleep = false;
+        }
+
+        //Hack aktivieren
+        if (Greenfoot.isKeyDown("A") && Greenfoot.isKeyDown("9") && Greenfoot.isKeyDown("Ä")) {
+            hackActive = true;
+        } else {
+            hackActive = false;
+        }
+
+        //Instant win für den current player
+        if (Greenfoot.isKeyDown("control") && Greenfoot.isKeyDown("1") && Greenfoot.isKeyDown("#")) {
+            addObject(new PlayerWonDisplay(gameManager.getCurrentPlayer()), getWidth() / 2, getHeight() / 2);
+        }
+
         if (((!DiceRolled && !gameManager.status() && Greenfoot.mouseClicked(statusDisplay)) || gameManager.isNextKi()) && !animationInProgress) {
 
             gameManager.resetNextKi();
 
             DiceRolled = true;
 
-            // Beginn der nächsten Runde
-
-            System.out.println();
-            System.out.println("------------------------");
-            System.out.println("Spieler " + gameManager.getCurrentPlayer().getId() + " ist an der Reihe!");
-
-
-
             decision = gameManager.rollDice();
             statusDisplay.updateStatus(decision);
 
             System.out.println(" Gewürfelt: " + decision.getFields() + " | Bewegbare Figuren: " + decision.getMovableFigures().length);
 
-
-
-            /*
-            for (int i = 0; i < decision.getMovableFigures().length; i++) {
-                System.out.print(" " + decision.getMovableFigures()[i] + " ");
-            }
-            System.out.println();
-            */
-
             //Ai Process
             if (decision != null && decision.getPlayer().getMember() instanceof AiMember) {
 
-                long curTime = System.currentTimeMillis();
-
-                while (System.currentTimeMillis() <= curTime + 2000) {}
+                if (!skipSleep) {
+                    long curTime = System.currentTimeMillis();
+                    while (System.currentTimeMillis() <= curTime + 2000) {}
+                }
 
                 if (decision.getMovableFigures().length > 0)
                     gameManager.getAi().processDecision(decision);
@@ -179,9 +183,10 @@ public class GameBoard extends World {
                 if (won)
                     addObject(new PlayerWonDisplay(lastPlayer), getWidth() / 2, getHeight() / 2);
 
-                curTime = System.currentTimeMillis();
-
-                while (System.currentTimeMillis() <= curTime + 1000) {}
+                if (!skipSleep) {
+                    long curTime = System.currentTimeMillis();
+                    while (System.currentTimeMillis() <= curTime + 1000) {}
+                }
 
             } else {
                 if (decision != null && decision.getMovableFigures().length == 0) {
@@ -204,6 +209,14 @@ public class GameBoard extends World {
     
     public Field[] getFieldsArray(){
         return fields;
+    }
+
+    public boolean getSkipSleep() {
+        return skipSleep;
+    }
+
+    public boolean getHackActive() {
+        return hackActive;
     }
 
 
