@@ -13,6 +13,7 @@ public class GameBoard extends World {
     private boolean animationInProgress;
     private boolean skipSleep = false;
     private boolean hackActive = false;
+    private int initState = 0;
 
     private final StatusDisplay statusDisplay;
 
@@ -132,11 +133,20 @@ public class GameBoard extends World {
 
         // Status-Anzeige anlegen
         addObject(statusDisplay = new StatusDisplay(gameManager), 6 * SPACING, 6 * SPACING);
+
+        gameManager.kiStarter();
     }
 
     // Spielfeld zeichnen
     public void act() {
 
+        //Delay um Welt aufbauen zu lassen
+        if (initState < 20) {
+            initState++;
+            return;
+        }
+
+        //Taste um sleep zu skippen
         if (Greenfoot.isKeyDown("0")) {
             skipSleep = true;
         } else {
@@ -155,51 +165,53 @@ public class GameBoard extends World {
             addObject(new PlayerWonDisplay(gameManager.getCurrentPlayer()), getWidth() / 2, getHeight() / 2);
         }
 
+        //Setze Würfel an aktuelle Spielerbase
+            if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[0]) statusDisplay.setLocation(3 * SPACING, 1 * SPACING);
+            if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[1]) statusDisplay.setLocation(11 * SPACING, 3 * SPACING);
+            if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[2]) statusDisplay.setLocation(9 * SPACING, 11 * SPACING);
+            if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[3]) statusDisplay.setLocation(1 * SPACING, 9 * SPACING);
+
+
+        //Entweder (Würfel rollt nicht und wird angeklickt) oder (KI ist dran und keine Animation in gange)
         if (((!DiceRolled && !gameManager.status() && Greenfoot.mouseClicked(statusDisplay)) || gameManager.isNextKi()) && !animationInProgress) {
-            
-            if(decision != null){ 
-                if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[0]) statusDisplay.setLocation(3 * SPACING, 1 * SPACING);
-                if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[1]) statusDisplay.setLocation(11 * SPACING, 3 * SPACING);
-                if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[2]) statusDisplay.setLocation(9 * SPACING, 11 * SPACING);
-                if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[3]) statusDisplay.setLocation(1 * SPACING, 9 * SPACING);
-            }
-            
+
+            //setzt KI trigger zurück
             gameManager.resetNextKi();
 
+            //Sperrt solange der Würfel rollt
             DiceRolled = true;
 
+            //Würfelt und startet dessen Animation
             decision = gameManager.rollDice();
             statusDisplay.updateStatus(decision);
-            
-             
-            
-            
-            System.out.println(" Gewürfelt: " + decision.getFields() + " | Bewegbare Figuren: " + decision.getMovableFigures().length);
 
             //Ai Process
             if (decision != null && decision.getPlayer().getMember() instanceof AiMember) {
 
+                //Überspringt Delay wenn 0 gedrückt
                 if (!skipSleep) {
                     long curTime = System.currentTimeMillis();
                     while (System.currentTimeMillis() <= curTime + 2000) {}
                 }
 
+                //AI verarbeitet Entscheidung
                 if (decision.getMovableFigures().length > 0)
                     gameManager.getAi().processDecision(decision);
 
-                System.out.println();
-
+                //Führt Entscheidung aus
                 Player lastPlayer = gameManager.getCurrentPlayer();
                 boolean won = gameManager.exertDecision();
                 if (won)
                     addObject(new PlayerWonDisplay(lastPlayer), getWidth() / 2, getHeight() / 2);
 
+                //Überspringt Delay wenn 0 gedrückt
                 if (!skipSleep) {
                     long curTime = System.currentTimeMillis();
                     while (System.currentTimeMillis() <= curTime + 1000) {}
                 }
 
             } else {
+                //Falls kein Zug möglich ist wird zum nächsten Spieler gesprungen
                 if (decision != null && decision.getMovableFigures().length == 0) {
                     Player lastPlayer = gameManager.getCurrentPlayer();
                     boolean won = gameManager.exertDecision();
@@ -207,7 +219,8 @@ public class GameBoard extends World {
                         addObject(new PlayerWonDisplay(lastPlayer), getWidth() / 2, getHeight() / 2);
                 }
             }
-                               
+
+            //Sperre wird aufgehoben
             DiceRolled = false;
         }
     }
@@ -230,7 +243,6 @@ public class GameBoard extends World {
     public boolean getHackActive() {
         return hackActive;
     }
-
 
     public void setAnimationInProgress(boolean animationInProgress) {
             this.animationInProgress = animationInProgress;

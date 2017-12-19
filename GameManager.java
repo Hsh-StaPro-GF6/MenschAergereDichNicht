@@ -136,6 +136,11 @@ public class GameManager {
         nextKi = false;
     }
 
+    public void kiStarter() {
+        if (member0 instanceof AiMember)
+            this.nextKi = true;
+    }
+
     /**
      * Führt den nächsten Spielzug des aktuellen Spielers aus, nachdem dieser eine Entscheidung getroffen hat
      * und wechselt dannach zum nächsten Spieler, der an der Reihe ist.
