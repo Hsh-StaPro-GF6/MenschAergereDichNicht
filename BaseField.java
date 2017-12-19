@@ -16,6 +16,10 @@ public class BaseField extends Actor {
     // Player: 0 = Rot, 1 = Blau, 2 = Grün, 3 = Gelb
     private GreenfootImage imageWhenOccupied;
 
+    // Bild, wenn auf dem Feld eine Figur steht und diese auswählbar ist
+    // Player: 0 = Rot, 1 = Blau, 2 = Grün, 3 = Gelb
+    private GreenfootImage imageWhenOccupiedSelectable;
+
     public BaseField(GameManager gameManager, Player player, int fieldId) {
         this.gameManager = gameManager;
         this.player = player;
@@ -48,10 +52,10 @@ public class BaseField extends Actor {
 
         }
 
-
         // Steht auf dem Feld eine Figur?
         if (fieldOccupied) {
-            this.setImage(imageWhenOccupied);
+            this.setImage(selectable ? imageWhenOccupiedSelectable : imageWhenOccupied);
+
             return;
         }
 
@@ -65,18 +69,22 @@ public class BaseField extends Actor {
             case 0:
                 image = new GreenfootImage("images/RED-Home.png");
                 imageWhenOccupied = new GreenfootImage("images/red22.png");
+                imageWhenOccupiedSelectable = new GreenfootImage("images/red22_selectable.png");
                 break;
             case 1:
                 image = new GreenfootImage("images/BLUE-Home.png");
                 imageWhenOccupied = new GreenfootImage("images/blue22.png");
+                imageWhenOccupiedSelectable = new GreenfootImage("images/blue22_selectable.png");
                 break;
             case 2:
                 image = new GreenfootImage("images/GREEN-Home.png");
                 imageWhenOccupied = new GreenfootImage("images/green22.png");
+                imageWhenOccupiedSelectable = new GreenfootImage("images/green22_selectable.png");
                 break;
             case 3:
                 image = new GreenfootImage("images/YELLOW-Home.png");
                 imageWhenOccupied = new GreenfootImage("images/yellow22.png");
+                imageWhenOccupiedSelectable = new GreenfootImage("images/yellow22_selectable.png");
                 break;
         }
     }

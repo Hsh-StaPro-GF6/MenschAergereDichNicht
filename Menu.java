@@ -9,18 +9,18 @@ public class Menu extends World {
     private static final GameMember[] memberTypes = new GameMember[]{
             new DeadMember(),
             new HumanMember(),
-            new AiMember("Kevin (KI)", 0, 0),  // TODO: kleinste Punktzahl benutzen
-            new AiMember("Donald (KI)", 2, 0),
-            new AiMember("Gitte (KI)", 1, 1),
-            new AiMember("Horst (KI)", 2, 1),
-            new AiMember("Sissi (KI)", 0, 4),
-            new AiMember("Roobert (KI)", 2, 3),
-            new AiMember("Hodor (KI)", 3, 3),
-            new AiMember("Ernst-August (KI)", 4, 3),
-            new AiMember("Ronni (KI)", 3, 4),
-            new AiMember("Balduin (KI)", 4, 4),
-            new AiMember("Albus Percival (KI)", 5, 4),
-            new AiMember("Jussi (KI)", 4, 4) // overloard
+            new AiMember("Kevin (KI)", 4, 4, true),  // nutzt immer die kleinste Punktzahl
+            new AiMember("Donald (KI)", 2, 0, false),
+            new AiMember("Gitte (KI)", 1, 1, false),
+            new AiMember("Horst (KI)", 2, 1, false),
+            new AiMember("Sissi (KI)", 0, 4, false),
+            new AiMember("Roobert (KI)", 2, 3, false),
+            new AiMember("Hodor (KI)", 3, 3, false),
+            new AiMember("Ernst-August (KI)", 4, 3, false),
+            new AiMember("Ronni (KI)", 3, 4, false),
+            new AiMember("Balduin (KI)", 4, 4, false),
+            new AiMember("Albus Percival (KI)", 5, 4, false),
+            new AiMember("Jussi (KI)", 4, 4, false) // overloard
     };
 
     private NameBracket[] brackets = new NameBracket[4];
@@ -33,10 +33,10 @@ public class Menu extends World {
         setBackgroundImage();
 
         //showText("Mensch ärgere dich nicht!", 6 * SPACING, 1 * SPACING);
-        
+
         Name name0= new Name(0);
         addObject(name0,6 * SPACING, 3 * SPACING);
-        
+
         Name name1= new Name(1);
         addObject(name1,3 * SPACING, 3 * SPACING);
         Name name2= new Name(2);
@@ -46,7 +46,7 @@ public class Menu extends World {
         Name name4= new Name(4);
         addObject(name4,3 * SPACING, 6 * SPACING);
 
-        
+
 
         // bracket for player 0
         brackets[0] = new NameBracket(memberTypes, 0);
@@ -68,7 +68,7 @@ public class Menu extends World {
         addObject(brackets[3], 7 * SPACING, 6 * SPACING);
         addObject(new LeftArrow(brackets[3]), 5 * SPACING, 6 * SPACING);
         addObject(new RightArrow(brackets[3]), 9 * SPACING, 6 * SPACING);
-        
+
         TextField textField= new TextField();
         addObject(textField, 6 * SPACING, 8* SPACING);
         addObject(new RightTextArrow(textField), 11 * SPACING, 8 * SPACING);

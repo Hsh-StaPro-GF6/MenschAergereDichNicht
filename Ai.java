@@ -30,6 +30,7 @@ public class Ai {
     private final Player player;
     private final int behaviour;
     private final int speedBehaviour;
+    private final boolean kevin;
 
     /**
      * Instanziert eine neue KI.
@@ -39,24 +40,38 @@ public class Ai {
      * @param behaviour      Das Taktikverhalten der KI.
      * @param speedBehaviour Das Geschwindigkeitsverhalten der KI.
      */
-    public Ai(GameManager gameManager, Player player, int behaviour, int speedBehaviour) {
+    public Ai(GameManager gameManager, Player player, int behaviour, int speedBehaviour, boolean kevin) {
         this.gameManager = gameManager;
         this.player = player;
         this.behaviour = behaviour;
         this.speedBehaviour = speedBehaviour;
+        this.kevin = kevin;
     }
 
     public void processDecision(Decision decision) {
         int highestParameter = 0;
         Figure highestFigure = null;
 
-        for (Figure figure : decision.getMovableFigures()) {
-            System.out.println(" Figur steht an Position: " + figure.isInStreet());
-            int figureParameter = calculateFigureParameter(decision, figure);
+        if (kevin) {
+            // Kevin ist verplant, er nimmt immer die Figur mit der niedrigsten Bewertung.
+            for (Figure figure : decision.getMovableFigures()) {
+                System.out.println(" Figur steht an Position: " + figure.isInStreet());
+                int figureParameter = calculateFigureParameter(decision, figure);
 
-            if (figureParameter >= highestParameter) {
-                highestParameter = figureParameter;
-                highestFigure = figure;
+                if (highestParameter == 0 || figureParameter <= highestParameter) {
+                    highestParameter = figureParameter;
+                    highestFigure = figure;
+                }
+            }
+        } else {
+            for (Figure figure : decision.getMovableFigures()) {
+                System.out.println(" Figur steht an Position: " + figure.isInStreet());
+                int figureParameter = calculateFigureParameter(decision, figure);
+
+                if (figureParameter >= highestParameter) {
+                    highestParameter = figureParameter;
+                    highestFigure = figure;
+                }
             }
         }
 
@@ -80,7 +95,7 @@ public class Ai {
         figurParameter += checkHomePosition(figure, decision);
         //checked    System.out.print("| " + figure + ": checkHomePosition:  " + checkHomePosition( decision.getMovableFigures()[i],decision) + " ");
         figurParameter += checkImpactPrevention(figure, decision);
-        System.out.print("| " + figure + ": checkImpactPrevention:  " + checkImpactPrevention( figure,decision) + " ");
+        System.out.print("| " + figure + ": checkImpactPrevention:  " + checkImpactPrevention(figure, decision) + " ");
         figurParameter += checkImpactChance(figure, decision);
         //checked    System.out.print("| " + figure + ": checkImpactChance:  " + checkImpactChance( decision.getMovableFigures()[i],decision) + " ");
         figurParameter += checkFutureImpactPrevention(figure, decision);
@@ -318,48 +333,45 @@ public class Ai {
      * Prüft, ob die Figur von einer generische Figur geschlagen werden kann
      *
      * @param figure, die Figur welche geprüft wird
-     * @return CHECK_IMPACT_PREVENTION[behaviour], falls die Figur geschalgen werden kann, sonst 0.
      * @return CHECK_IMPACT_PREVENTION[behaviour]+CHECK_MAX_IMPACT_PREVENTION[behaviour], falls die Figur von den meisten Figuren geschalgen werden kann, sonst 0.
      */
     private int checkImpactPrevention(Figure figure, Decision decision) {
         int pos = figure.isInStreet();
-        
 
         // Überhaupt auf der Straße?
         if (pos == -1)
             return 0;
 
-        Figure myFigure= gameManager.getMap().getFigureAtStreetPosition(pos);
-        int enemyCount= 0;
-        int myEnemyCount= 0;    
-        int maxEnemyCount= 0;
-                
-        
+        Figure myFigure = gameManager.getMap().getFigureAtStreetPosition(pos);
+        int enemyCount = 0;
+        int myEnemyCount = 0;
+        int maxEnemyCount = 0;
+
         Figure possibleImpact;
-        
+
         // Führt die Überprüfung für alle bewegbaren Figuren durch
         for (int j = 0; j < decision.getMovableFigures().length; j++) {
             Figure figure2 = decision.getMovableFigures()[j];
-            
+
             // Überprüft die letzten 5 Felder auf Spieler
             for (int i = 1; i < 6; i++) {
                 possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionFromBacksteps(pos, i));
                 if (possibleImpact != null && possibleImpact.getPlayer() != figure.getPlayer())
                     enemyCount = enemyCount + 1;
             }
-            if (figure2==myFigure)
-                myEnemyCount=enemyCount;
-                
-            if(enemyCount>maxEnemyCount)
-                maxEnemyCount=enemyCount;
+            if (figure2 == myFigure)
+                myEnemyCount = enemyCount;
+
+            if (enemyCount > maxEnemyCount)
+                maxEnemyCount = enemyCount;
         }
 
-        if(maxEnemyCount!=0 && maxEnemyCount!= myEnemyCount)
+        if (maxEnemyCount != 0 && maxEnemyCount != myEnemyCount)
             return CHECK_IMPACT_PREVENTION[behaviour];
-        
-        if(maxEnemyCount!=0 && maxEnemyCount== myEnemyCount)    
-            return CHECK_IMPACT_PREVENTION[behaviour]+CHECK_MAX_IMPACT_PREVENTION[behaviour];
-        
+
+        if (maxEnemyCount != 0 && maxEnemyCount == myEnemyCount)
+            return CHECK_IMPACT_PREVENTION[behaviour] + CHECK_MAX_IMPACT_PREVENTION[behaviour];
+
         // Keine Gefahr!
         return 0;
     }
@@ -376,48 +388,46 @@ public class Ai {
         // Überhaupt auf der Straße?
         if (newPosition == -1)
             return 0;
-        
-        Figure myFigure= gameManager.getMap().getFigureAtStreetPosition(newPosition);
-        int enemyCount= 0;
-        int myEnemyCount= 0;    
-        int maxEnemyCount= 0;
-                
-     // Führt die Überprüfung für alle bewegbaren Figuren durch
+
+        Figure myFigure = gameManager.getMap().getFigureAtStreetPosition(newPosition);
+        int enemyCount = 0;
+        int myEnemyCount = 0;
+        int maxEnemyCount = 0;
+
+        // Führt die Überprüfung für alle bewegbaren Figuren durch
         for (int j = 0; j < decision.getMovableFigures().length; j++) {
             Figure figure2 = decision.getMovableFigures()[j];
-            
-        // Überprüft die nächsten 5 Felder auf Spieler
-        Figure possibleImpact;
-        for (int i = 1; i < 6; i++) {
-            possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionFromSteps(newPosition, i));
-            if (possibleImpact != null)
-                enemyCount = enemyCount + 1;
-        
-        
-        if (figure2==myFigure)
-            myEnemyCount=enemyCount;
-            
-        if(enemyCount>maxEnemyCount)
-            maxEnemyCount=enemyCount;  
+
+            // Überprüft die nächsten 5 Felder auf Spieler
+            Figure possibleImpact;
+            for (int i = 1; i < 6; i++) {
+                possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionFromSteps(newPosition, i));
+                if (possibleImpact != null)
+                    enemyCount = enemyCount + 1;
+
+                if (figure2 == myFigure)
+                    myEnemyCount = enemyCount;
+
+                if (enemyCount > maxEnemyCount)
+                    maxEnemyCount = enemyCount;
+            }
         }
-    }
-        if(maxEnemyCount!=0 && maxEnemyCount!= myEnemyCount)
+        if (maxEnemyCount != 0 && maxEnemyCount != myEnemyCount)
             return CHECK_IMPACT_CHANCE[behaviour];
-        
-        if(maxEnemyCount!=0 && maxEnemyCount== myEnemyCount)    
-            return 0;        
-        
-        if(maxEnemyCount==0)
-            return CHECK_IMPACT_CHANCE[behaviour]+CHECK_MAX_IMPACT_CHANCE[behaviour];;
+
+        if (maxEnemyCount != 0 && maxEnemyCount == myEnemyCount)
+            return 0;
+
+        if (maxEnemyCount == 0)
+            return CHECK_IMPACT_CHANCE[behaviour] + CHECK_MAX_IMPACT_CHANCE[behaviour];
+        ;
         return 0;
     }
-    
 
     /**
      * Prüft, ob die Figur nach dem Würfeln von einer generische Figur geschlagen werden kann
      *
      * @param figure, die Figur welche geprüft wird
-     * @return 0, falls die Figur nach dem Würfeln geschalgen werden kann, sonst CHECK_FUTURE_IMPACT_PREVENTION[behaviour].
      * @return 0, falls die Figur nach dem Würfeln geschalgen werden kann, sonst CHECK_FUTURE_IMPACT_PREVENTION[behaviour]+CHECK_FUTURE_MAX_ IMPACT_PREVENTION[behaviour] fals die meisten figuren hintereinem stehn werden.
      */
     private int checkFutureImpactPrevention(Figure figure, Decision decision) {
@@ -426,40 +436,40 @@ public class Ai {
         // Überhaupt auf der Straße?
         if (newPosition == -1)
             return 0;
-        
-        Figure myFigure= gameManager.getMap().getFigureAtStreetPosition(newPosition);
-        int enemyCount= 0;
-        int myEnemyCount= 0;    
-        int maxEnemyCount= 0;
-        
-     // Führt die Überprüfung für alle bewegbaren Figuren durch
+
+        Figure myFigure = gameManager.getMap().getFigureAtStreetPosition(newPosition);
+        int enemyCount = 0;
+        int myEnemyCount = 0;
+        int maxEnemyCount = 0;
+
+        // Führt die Überprüfung für alle bewegbaren Figuren durch
         for (int j = 0; j < decision.getMovableFigures().length; j++) {
             Figure figure2 = decision.getMovableFigures()[j];
-            
-        // Überprüft die letzten 5 Felder auf Spieler
-        Figure possibleImpact;
-        for (int i = 1; i < 6; i++) {
-            possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionFromBacksteps(newPosition, i));
-            if (possibleImpact != null && possibleImpact.getPlayer() != figure.getPlayer())
-                enemyCount = enemyCount + 1;
-                
-        if (figure2==myFigure)
-            myEnemyCount=enemyCount;
-            
-        if (enemyCount>maxEnemyCount)
-            maxEnemyCount=enemyCount;  
-        }        
-    }
-        if(maxEnemyCount!=0 && maxEnemyCount!= myEnemyCount)
+
+            // Überprüft die letzten 5 Felder auf Spieler
+            Figure possibleImpact;
+            for (int i = 1; i < 6; i++) {
+                possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionFromBacksteps(newPosition, i));
+                if (possibleImpact != null && possibleImpact.getPlayer() != figure.getPlayer())
+                    enemyCount = enemyCount + 1;
+
+                if (figure2 == myFigure)
+                    myEnemyCount = enemyCount;
+
+                if (enemyCount > maxEnemyCount)
+                    maxEnemyCount = enemyCount;
+            }
+        }
+        if (maxEnemyCount != 0 && maxEnemyCount != myEnemyCount)
             return CHECK_FUTURE_IMPACT_PREVENTION[behaviour];
-        
-        if(maxEnemyCount!=0 && maxEnemyCount== myEnemyCount)    
+
+        if (maxEnemyCount != 0 && maxEnemyCount == myEnemyCount)
             return 0;
-        
-        if(maxEnemyCount==0)
-            return CHECK_FUTURE_IMPACT_PREVENTION[behaviour]+CHECK_FUTURE_MAX_IMPACT_PREVENTION[behaviour];
-    
-            return 0;
+
+        if (maxEnemyCount == 0)
+            return CHECK_FUTURE_IMPACT_PREVENTION[behaviour] + CHECK_FUTURE_MAX_IMPACT_PREVENTION[behaviour];
+
+        return 0;
     }
 
     /**
@@ -474,37 +484,37 @@ public class Ai {
         // Überhaupt auf der Straße?
         if (newPosition == -1)
             return 0;
-            
-        Figure myFigure= gameManager.getMap().getFigureAtStreetPosition(newPosition);
-        int enemyCount= 0;
-        int myEnemyCount= 0;    
-        int maxEnemyCount= 0;
-         // Führt die Überprüfung für alle bewegbaren Figuren durch
+
+        Figure myFigure = gameManager.getMap().getFigureAtStreetPosition(newPosition);
+        int enemyCount = 0;
+        int myEnemyCount = 0;
+        int maxEnemyCount = 0;
+        // Führt die Überprüfung für alle bewegbaren Figuren durch
         for (int j = 0; j < decision.getMovableFigures().length; j++) {
             Figure figure2 = decision.getMovableFigures()[j];
-        // Überprüft die nächsten 5 Felder auf Spieler
-        Figure possibleImpact;
-        for (int i = 1; i < 6; i++) {
-            possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionFromSteps(newPosition, i));
-            if (possibleImpact != null)
-                enemyCount = enemyCount + 1;
-            
-            if (figure2==myFigure)
-                myEnemyCount=enemyCount;
-                
-            if (enemyCount>maxEnemyCount)
-                maxEnemyCount=enemyCount;  
-            }  
+            // Überprüft die nächsten 5 Felder auf Spieler
+            Figure possibleImpact;
+            for (int i = 1; i < 6; i++) {
+                possibleImpact = gameManager.getMap().getFigureAtStreetPosition(getStreetPositionFromSteps(newPosition, i));
+                if (possibleImpact != null)
+                    enemyCount = enemyCount + 1;
+
+                if (figure2 == myFigure)
+                    myEnemyCount = enemyCount;
+
+                if (enemyCount > maxEnemyCount)
+                    maxEnemyCount = enemyCount;
+            }
         }
-            
-            if(maxEnemyCount!=0 && maxEnemyCount!= myEnemyCount)
-                return CHECK_FUTURE_IMPACT_CHANCE[behaviour];
-            
-            if(maxEnemyCount!=0 && maxEnemyCount== myEnemyCount)    
-                return CHECK_FUTURE_IMPACT_CHANCE[behaviour]+CHECK_FUTURE_MAX_IMPACT_CHANCE[behaviour];
-            
-            if(maxEnemyCount==0)
-                return 0;
+
+        if (maxEnemyCount != 0 && maxEnemyCount != myEnemyCount)
+            return CHECK_FUTURE_IMPACT_CHANCE[behaviour];
+
+        if (maxEnemyCount != 0 && maxEnemyCount == myEnemyCount)
+            return CHECK_FUTURE_IMPACT_CHANCE[behaviour] + CHECK_FUTURE_MAX_IMPACT_CHANCE[behaviour];
+
+        if (maxEnemyCount == 0)
+            return 0;
         return 0;
     }
 
@@ -550,7 +560,6 @@ public class Ai {
 
         return 0;
     }
-    
 
     /**
      * Prüft, die ausgewählte Figur nach dem Würfeln, dierckte freundliche Feldnachbarn hat
@@ -595,13 +604,13 @@ public class Ai {
     }
 
     /**
-     * Prüft, ob die ausgewählte Figur 12 Felder hinter einer 
+     * Prüft, ob die ausgewählte Figur 12 Felder hinter einer
      * Figur von führendem Spieler (meiste Figuren in Home) steht
      *
-     * @param figure, die Figur welche geprüft wird   
-     * @return CHECK_LEADER_HUNT[behaviour],fals die ausgewählte Figur 12 Felder hinter einer 
+     * @param figure, die Figur welche geprüft wird
+     * @return CHECK_LEADER_HUNT[behaviour], fals die ausgewählte Figur 12 Felder hinter einer
      * Figur von führendem Spieler (meiste Figuren in Home) steht, sonst 0.
-     */ 
+     */
     // 12 Felder hinter Figur von führendem Spieler (meiste Figuren in Home) -> Figur setzen
     private int checkLeaderHunt(Figure figure, Decision decision) {
         // Position des nächsten (initialen) Ziels:
@@ -632,8 +641,8 @@ public class Ai {
 
         }
         System.out.println();
-        System.out.print("größe"+leaders.size());
-        
+        System.out.print("größe" + leaders.size());
+
         // Nächste 12 Felder checken:
         for (int i = 0; i < 12; i++) {
             // Nächste Position:
