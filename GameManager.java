@@ -21,14 +21,14 @@ public class GameManager {
 
     private int sixRepeatCount = 0;
     private int leaveBaseRepeatCount = 0;
-    
+
     private GameBoard gameBoard;
     /**
      * Instanziert einen neuen GameManager. Dieser sollte nur einmal existieren.
      */
     public GameManager(GameMember member0, GameMember member1, GameMember member2, GameMember member3, GameBoard gameBoard) {
         System.out.println("--- NEUES SPIEL ---");
-        
+
         this.gameBoard = gameBoard;
         this.member0 = member0;
         this.member1 = member1;
@@ -43,13 +43,13 @@ public class GameManager {
         players[3] = new Player(map, 3, 30, 29, member3);
 
         if (member0 instanceof AiMember)
-            ai[0] = new Ai(this, players[0], ((AiMember)member0).getBehaviour(), ((AiMember)member0).getSpeedBehaviour());
+            ai[0] = new Ai(this, players[0], ((AiMember)member0).getBehaviour(), ((AiMember)member0).getSpeedBehaviour(), ((AiMember)member0).isKevin());
         if (member1 instanceof AiMember)
-            ai[1] = new Ai(this, players[1], ((AiMember)member1).getBehaviour(), ((AiMember)member1).getSpeedBehaviour());
+            ai[1] = new Ai(this, players[1], ((AiMember)member1).getBehaviour(), ((AiMember)member1).getSpeedBehaviour(), ((AiMember)member1).isKevin());
         if (member2 instanceof AiMember)
-            ai[2] = new Ai(this, players[2], ((AiMember)member2).getBehaviour(), ((AiMember)member2).getSpeedBehaviour());
+            ai[2] = new Ai(this, players[2], ((AiMember)member2).getBehaviour(), ((AiMember)member2).getSpeedBehaviour(), ((AiMember)member2).isKevin());
         if (member3 instanceof AiMember)
-            ai[3] = new Ai(this, players[3], ((AiMember)member3).getBehaviour(), ((AiMember)member3).getSpeedBehaviour());
+            ai[3] = new Ai(this, players[3], ((AiMember)member3).getBehaviour(), ((AiMember)member3).getSpeedBehaviour(), ((AiMember)member3).isKevin());
 
         resetGame();
     }
@@ -188,7 +188,7 @@ public class GameManager {
             nextKi = true;
         return won;
     }
-    
+
     public GameBoard getGameBoard(){
         return this.gameBoard;
     }

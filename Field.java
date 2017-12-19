@@ -87,6 +87,7 @@ public class Field extends Actor {
             if (won)
                 getWorld().addObject(new PlayerWonDisplay(lastPlayer),getWorld().getWidth() / 2, getWorld().getHeight() / 2);
         }
+
         // Steht auf dem Feld eine Figur?
         if (fieldOccupied && !animationInProgress) {
             this.setImage(selectable ? imageWhenOccupiedSelectable[figureOwner] : imageWhenOccupied[figureOwner]);
