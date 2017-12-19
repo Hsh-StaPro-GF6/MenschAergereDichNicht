@@ -1,13 +1,16 @@
 Hard dependence
-1. Menü einbimdung
-2. Grafik (Würfel/Zuganimation)
-3. Menschliche eingabe implementieren
+1. Menü einbimdung - FERTIG
+2. Grafik (Würfel/Zuganimation) - FERTIG
+3. Menschliche eingabe implementieren - FERTIG
 
-4. Abschlussbericht beenden
-5. Poster erstellen
+4. Abschlussbericht beenden - FERTIG
+5. Poster erstellen - FERTIG
+
+Bugfixes
+1. Spieler-Auswahl-Hervorhebung früher ausblenden
 
 Soft dependence
-6. spezielle Spieler (Kevin, ..)
+6. spezielle Spieler (Kevin, ..) - FERTIG
 7. Overloard cheat
 8. onilne 
 9. Würfeln um Anfangsspieler herauszufinden

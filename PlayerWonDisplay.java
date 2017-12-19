@@ -8,11 +8,14 @@ public class PlayerWonDisplay extends Actor {
     }
 
     public void act() {
-        if (++imageIndex >= 100) {
-            getWorld().removeObject(this);
-            return;
-        }
+        while (true) {
+            if (++imageIndex >= 100) {
+                getWorld().removeObject(this);
+                break;
+            }
 
-        setImage(new GreenfootImage("images/PlayerWon_frames/" + "0000".substring((imageIndex + "").length()) + imageIndex + ".png"));
+            setImage(new GreenfootImage("images/PlayerWon_frames/" + "0000".substring((imageIndex + "").length()) + imageIndex + ".png"));
+            getWorld().repaint();
+        }
     }
 }
