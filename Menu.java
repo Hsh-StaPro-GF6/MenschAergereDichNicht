@@ -33,20 +33,20 @@ public class Menu extends World {
         setBackgroundImage();
 
         //showText("Mensch ärgere dich nicht!", 6 * SPACING, 1 * SPACING);
-
-        Name name0= new Name(0);
+        
+        Name name0= new Name(0,memberTypes[0]);
         addObject(name0,6 * SPACING, 3 * SPACING);
-
-        Name name1= new Name(1);
+        
+        Name name1= new Name(1,memberTypes[0]);
         addObject(name1,3 * SPACING, 3 * SPACING);
-        Name name2= new Name(2);
+        Name name2= new Name(2,memberTypes[0]);
         addObject(name2,3 * SPACING, 4 * SPACING);
-        Name name3= new Name(3);
+        Name name3= new Name(3,memberTypes[0]);
         addObject(name3,3 * SPACING, 5 * SPACING);
-        Name name4= new Name(4);
+        Name name4= new Name(4,memberTypes[0]);
         addObject(name4,3 * SPACING, 6 * SPACING);
 
-
+        
 
         // bracket for player 0
         brackets[0] = new NameBracket(memberTypes, 0);
@@ -68,7 +68,7 @@ public class Menu extends World {
         addObject(brackets[3], 7 * SPACING, 6 * SPACING);
         addObject(new LeftArrow(brackets[3]), 5 * SPACING, 6 * SPACING);
         addObject(new RightArrow(brackets[3]), 9 * SPACING, 6 * SPACING);
-
+        
         TextField textField= new TextField();
         addObject(textField, 6 * SPACING, 8* SPACING);
         addObject(new RightTextArrow(textField), 11 * SPACING, 8 * SPACING);

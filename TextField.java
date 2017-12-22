@@ -2,60 +2,59 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.io.*;
 
 /**
- * Write a description of class TextField here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Ausgabe der Anleitung, Regeln und der einzelnen Ki Spielern
  */
 public class TextField extends Actor
 {
-    private int nmb;
-    private int maxNmb;
-    
+    // Der Textblock der gerade bearbeitet wird     
+    private int textBlockNumber;
+    // Die maximale Anzahl der Textblöcke
+    private int maxTextBlockNumber;
+    /*
+     * Liest das Dokument "TextFiled.txt" ein und führt die Text ausgabe durch
+     */
     public TextField()
     {
-       
-        try {            
-        FileReader fr = new FileReader("TextField.txt");
-        BufferedReader br = new BufferedReader(fr);
-
-        String begin=br.readLine();
-        
+       try {            
+        FileReader fileReader = new FileReader("TextField.txt");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String begin=bufferedReader.readLine();        
         String begin2= begin.substring(1,3);
         
-        int maxNmb= Integer.parseInt(begin2)+1;
-        System.out.println(maxNmb);
-        this.maxNmb = maxNmb;
+        int maxTextBlockNumber= Integer.parseInt(begin2);
+        this.maxTextBlockNumber = maxTextBlockNumber;
                     } catch (IOException e) {
           e.printStackTrace();
        }
-        nmb=1;
+       
        updateImage();
        
     }  
     
+    /*
+     * Aktualiesiert das ausgegeben Bild, mit dem gerade ausgewählten Textblock
+     */
     private void updateImage() {
        try {            
-        FileReader fr = new FileReader("TextField.txt");
-        BufferedReader br = new BufferedReader(fr);
+        FileReader fileReader = new FileReader("TextField.txt");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
 
         String line;
-        while((line = br.readLine()) != null) {
-            if (line.startsWith(String.valueOf(nmb))) {
-                String zeile1 = br.readLine();
-                String zeile2 = br.readLine();
-                String zeile3 = br.readLine();
-              
+        // überprüft ob das Dokument zu ende ist
+        while((line = bufferedReader.readLine()) != null) {
+            // öffnet den vorher ausgewählten Block
+            if (line.startsWith(String.valueOf(textBlockNumber+1))) {
+                String zeile1 = bufferedReader.readLine();
+                String zeile2 = bufferedReader.readLine();
+                String zeile3 = bufferedReader.readLine();
+                
                 GreenfootImage bild = new GreenfootImage("images/Kastchen.png");
                 bild.scale(550,70);
                 this.setImage(bild);
                 bild.setFont(bild.getFont().deriveFont(15f));
                 this.getImage().drawString(zeile1,10,20);
-                this.setImage(bild);
-                this.getImage().drawString(zeile2,10,40);
-                this.setImage(bild);
-                this.getImage().drawString(zeile3,10,60);
-            
+                this.getImage().drawString(zeile2,10,40);                
+                this.getImage().drawString(zeile3,10,60);            
                 break;
             }
         }
@@ -64,9 +63,12 @@ public class TextField extends Actor
        }
     }
     
+    /*
+     * Springt zwischen den Textblöcken hin und her
+     */
     public void changeSelection(boolean forward) {
         // Das ist Kunst :P
-        nmb = forward ? (++nmb >= maxNmb ? 0 : nmb) : (--nmb < 0 ? maxNmb - 1 : nmb);
+        textBlockNumber = forward ? (++textBlockNumber >= maxTextBlockNumber ? 0 : textBlockNumber) : (--textBlockNumber < 0 ? maxTextBlockNumber - 1 : textBlockNumber);
         
         updateImage();
     }

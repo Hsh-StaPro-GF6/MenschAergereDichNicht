@@ -90,21 +90,33 @@ public class GameBoard extends World {
         addObject(fields[39] = new Field(gameManager, 39), SPACING, 6 * SPACING);
 
         // Base-Felder anlegen
+        if(!member0.getName().equals("Keiner")) {
+                addObject(new Name(5,member0), SPACING + 30, 30);
+            }
         addObject(new BaseField(gameManager, gameManager.getPlayers()[0], 0), SPACING, SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[0], 1), SPACING, 2 * SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[0], 2), 2 * SPACING, SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[0], 3), 2 * SPACING, 2 * SPACING);
 
+        if(!member1.getName().equals("Keiner")) {
+                addObject(new Name(5,member1), 10*SPACING + 30, 30);
+            }
         addObject(new BaseField(gameManager, gameManager.getPlayers()[1], 0), 10 * SPACING, SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[1], 1), 10 * SPACING, 2 * SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[1], 2), 11 * SPACING, SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[1], 3), 11 * SPACING, 2 * SPACING);
 
+        if(!member2.getName().equals("Keiner")) {
+                addObject(new Name(5,member2), 10* SPACING + 30, 10* SPACING + 30);
+            }
         addObject(new BaseField(gameManager, gameManager.getPlayers()[2], 0), 10 * SPACING, 10 * SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[2], 1), 10 * SPACING, 11 * SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[2], 2), 11 * SPACING, 10 * SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[2], 3), 11 * SPACING, 11 * SPACING);
 
+       if(!member3.getName().equals("Keiner")) {
+                addObject(new Name(5,member3), 30,10* SPACING + 30);
+            }
         addObject(new BaseField(gameManager, gameManager.getPlayers()[3], 0), SPACING, 10 * SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[3], 1), SPACING, 11 * SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[3], 2), 2 * SPACING, 10 * SPACING);

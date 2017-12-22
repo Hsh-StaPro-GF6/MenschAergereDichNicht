@@ -1,41 +1,158 @@
-|06|: Anzahl aller Blöcke (Muss immer zweistellig sein)
+|29|: Anzahl aller Blöcke (Muss immer zweistellig sein)
 Schreib Konvention:
 der Inhalt von jedem Block muss in den ersten 3 Zeilen nach dem Zeilenbegrenzer stehen, Kommentare können in den Folgenden Zeilen stehen und müssen mit "//" begonen werden.
 einzelne Blöcke müssen mit folgendem Zeilenbegrenzer getrennt werden:
 
-X----------------------------------------------------- 
+X--------------------------------------------------------------------
 
 X entspricht der Block nummer
 Einzelne Zeilen dürfen nicht mit einer Zahl beginnen und nicht länger als die Zeilenbegrenzer sein.
 
-1----------------------------------------------------- 
- Willkommen zum Spiel: "Mensch äreger dich nicht"
-     der Gruppe GF6 des Startprojekts WiSe 17/18
-
-// Begrüßung
+1--------------------------------------------------------------------
+Willkommen zum Spiel: "Mensch äreger dich nicht", 
+der Gruppe GF6 des Startprojekts WiSe 17/18
+          <--- Ki Spieler                            Spielanleitung --->
+// Begrüßung, Einleitung, Einteilung
+2--------------------------------------------------------------------
+ 1. Die Spieler auswählen
+ Jeder Spieler muss einzeln ausgewählt werden, es können Menschen
+ und KIs audgewählt werden. Die Kis haben verschieden Eigneschaften
 // Anleitung
-2-----------------------------------------------------
-#2 Terf
- 2
-
 3-----------------------------------------------------
-#3 Test ttwejsadjkfsdfsswdsdridlg
- 3
-fgf
+ 2. Spiel starten
+ Um das Spiel zustarten, muss man auf den Button los drücken
+ 
 
-// test komentar1
-// test kommentar 2
+// Anleitung
 4-----------------------------------------------------
+ 3. Aktueller Spieler
+ der aktuelle Spieler wird durch die Position des Würfels angezeigt
 
- 4
-fgf
+//Anleitung
 5-----------------------------------------------------
-#5Test ttwejsadjkfsdfsswdsdridlg
- 5
-fgf
+ 4. Menschlicher Zug
+ Der Menschliche Zug beginnt wenn er auf den Würfel klickt.
+
+
+//Anleitung
 6-----------------------------------------------------
-#6
+ 4. Menschlicher Zug
+ Die spielbaren Figuren werden mit einem gelben Rand gekenzeichnet 
+ und können mit der Maus ausgewählt werden.
+//Anleitung
+7-----------------------------------------------------
+ Zusatz:
+ Während des Drücken der Taste "0" ist der schnelle Vorlauf aktiv
 
+//Anleitung
+8--------------------------------------------------------------------
 
+          <--- Spielanleitung                           Regeln --->
+
+// Einteilung
+9-----------------------------------------------------
+ Regel I:
+ Um aus dem Startfeld rauszukommen, braucht man eine 6.
+
+//Regeln
+10-----------------------------------------------------
+ Regel II:
+ Man das eigene Spawnfeld freimachen wenn das Eigene Startfeld besetz ist
+
+//Regeln
+11-----------------------------------------------------
+ Regel III:
+ Man darf 3 mal würfeln, wenn man sich nicht bewegen kann
+
+//Regeln
+12-----------------------------------------------------
+ Regel IV:
+ Wenn man eine 6 gewürfelt hat darf man noch mal  würfeln
+
+//Regeln
+13-----------------------------------------------------
+ Regel V:
+ Im Zielfeld, darf man keine Figuren überspriongen.
+
+//Regeln
+14-----------------------------------------------------
+ Regel VI:
+ Man muss gegnerische Figuren schlagen, eigene Figuren darf man nicht schlagen
+
+//Regeln
+15--------------------------------------------------------------------
+
+          <--- Regeln                           KI Spieler --->
+
+// Einteilung
+16-----------------------------------------------------
+Kevin: 
+Kevin ist uns zugelaufen und ist sehr defensiv, 
+auch wenn er nicht genau versteht was das bedeuten soll.
+//KI Beschreibung
+17-----------------------------------------------------
+Donald: 
+Donald ist sehr wütend, da er aber alt ist, ist er sehr 
+langsam. Außerdem hat er kleine Hände. FAKENEWS!
+//KI Beschreibung
+18-----------------------------------------------------
+Donald: 
+Donald ist sehr wütend, da er aber alt ist, ist er sehr
+langsam. Außerdem hat er kleine Hände. FAKENEWS!
+//KI Beschreibung
+19----------------------------------------------------
+Gitte:
+Gitte ist eine alte liebe Rentnerin auf ihrem E-Rollstuhl.
+Sie ist sehr langsam und tut niemandem etwa zurleide.
+20-----------------------------------------------------
+Horst: 
+Horst ist der verbitterte Ehemann von Gitte. Er ist auch
+nicht mehr der schnellste aber sehr schnell gereizt.
+//KI Beschreibung
+21-----------------------------------------------------
+Sissi: 
+Sissi lebt in einem großen Schloss. 
+Sie ist flink unterwegs aber eine Pazifistin.
+//KI Beschreibung
+22-----------------------------------------------------
+Rooobert: 
+Er hat eine nervige Ehefrau aber dafür sehr teure Autos, 
+weshalb er schnell unterwegs ist.
+//KI Beschreibung
+23-----------------------------------------------------
+Hodor: 
+Hodors Wortschatz ist sehr begrenzt. Er ist sehr nett 
+zu seinen Freunden aber sehr hart zu seinen Feinden... HODOR!
+//KI Beschreibung
+24-----------------------------------------------------
+Ernst-August: 
+Er ist spätestens Fame seit ein Einkaufszentrum nach 
+ihm benannt wurde. Aber wehe jemand stellt seinen Namen in frage!
+//KI Beschreibung
+25-----------------------------------------------------
+Ronni: 
+Ronni ist Informatiker. Er schläft nie und ernährt 
+sich hauptsächlich von Mate und Monster Energy™®.
+//KI Beschreibung
+26-----------------------------------------------------
+Balduin: 
+Er ist Hausmeister an einer Schule und nimmt seinen Job sehr ernst. Wehe
+jemand hält sich nicht an seine Regeln, dann holt er seine Eisenstange!
+//KI Beschreibung
+27-----------------------------------------------------
+Balduin: 
+Er ist Hausmeister an einer Schule und nimmt seinen Job sehr ernst. Er
+holt er seine Eisenstange, wenn sich jemand nicht an seine Regeln hält.
+//KI Beschreibung
+28-----------------------------------------------------
+Albus Percival: 
+Er ist Schulleiter einer großen Zauberschule. Er ist trotz 
+seines alters noch schnell auf den Beinen und macht kurzen Prozess.
+//KI Beschreibung
+29--------------------------------------------------------------------
+
+          <--- KI Spieler                           Anleitung --->
+
+// Einteilung
 #-----------------------------------------------------
-Ende des Dokuments
+
