@@ -5,15 +5,17 @@ Hard dependence
 
 4. Abschlussbericht beenden - FERTIG
 5. Poster erstellen - FERTIG
-
+6. Anleitung erstellen 
+7. Reset Button BIld einfügen
 Bugfixes
 1. Spieler-Auswahl-Hervorhebung früher ausblenden
+2. Nach dritter 6 Weiter würfeln
 
 Soft dependence
-6. spezielle Spieler (Kevin, ..) - FERTIG
-7. Overloard cheat
-8. onilne 
-9. Würfeln um Anfangsspieler herauszufinden
+1. spezielle Spieler (Kevin, ..) - FERTIG
+2. Overloard cheat - FERTIG
+3. onilne 
+4. Würfeln um Anfangsspieler herauszufinden
 
 
 Sounds:
