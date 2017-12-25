@@ -1,4 +1,4 @@
-|29|: Anzahl aller Blöcke (Muss immer zweistellig sein)
+﻿|29|: Anzahl aller Blöcke (Muss immer zweistellig sein)
 Schreib Konvention:
 der Inhalt von jedem Block muss in den ersten 3 Zeilen nach dem Zeilenbegrenzer stehen, Kommentare können in den Folgenden Zeilen stehen und müssen mit "//" begonen werden.
 einzelne Blöcke müssen mit folgendem Zeilenbegrenzer getrennt werden:
@@ -20,8 +20,8 @@ der Gruppe GF6 des Startprojekts WiSe 17/18
 // Anleitung
 3-----------------------------------------------------
  2. Spiel starten
- Um das Spiel zustarten, muss man auf den Button los drücken, wenn Menschliche Spieler 
- dabei sind, müssen diese nun ihren Namen eingeben.
+ Um das Spiel zustarten, muss man auf den Button los drücken,
+ wenn Spieler Menschen sind, müssen diese nun ihren Namen eingeben.
 
 // Anleitung
 4-----------------------------------------------------
