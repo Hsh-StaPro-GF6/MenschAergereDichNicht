@@ -20,8 +20,8 @@ der Gruppe GF6 des Startprojekts WiSe 17/18
 // Anleitung
 3-----------------------------------------------------
  2. Spiel starten
- Um das Spiel zustarten, muss man auf den Button los drücken
- 
+ Um das Spiel zustarten, muss man auf den Button los drücken, wenn Menschliche Spieler 
+ dabei sind, müssen diese nun ihren Namen eingeben.
 
 // Anleitung
 4-----------------------------------------------------
@@ -96,58 +96,58 @@ Donald ist sehr wütend, da er aber alt ist, ist er sehr
 langsam. Außerdem hat er kleine Hände. FAKENEWS!
 //KI Beschreibung
 18-----------------------------------------------------
-Donald: 
-Donald ist sehr wütend, da er aber alt ist, ist er sehr
-langsam. Außerdem hat er kleine Hände. FAKENEWS!
-//KI Beschreibung
-19----------------------------------------------------
 Gitte:
 Gitte ist eine alte liebe Rentnerin auf ihrem E-Rollstuhl.
 Sie ist sehr langsam und tut niemandem etwa zurleide.
-20-----------------------------------------------------
+19-----------------------------------------------------
 Horst: 
 Horst ist der verbitterte Ehemann von Gitte. Er ist auch
 nicht mehr der schnellste aber sehr schnell gereizt.
 //KI Beschreibung
-21-----------------------------------------------------
+20-----------------------------------------------------
 Sissi: 
 Sissi lebt in einem großen Schloss. 
 Sie ist flink unterwegs aber eine Pazifistin.
 //KI Beschreibung
-22-----------------------------------------------------
+21-----------------------------------------------------
 Rooobert: 
 Er hat eine nervige Ehefrau aber dafür sehr teure Autos, 
 weshalb er schnell unterwegs ist.
 //KI Beschreibung
-23-----------------------------------------------------
+22-----------------------------------------------------
 Hodor: 
 Hodors Wortschatz ist sehr begrenzt. Er ist sehr nett 
 zu seinen Freunden aber sehr hart zu seinen Feinden... HODOR!
 //KI Beschreibung
-24-----------------------------------------------------
+23-----------------------------------------------------
 Ernst-August: 
 Er ist spätestens Fame seit ein Einkaufszentrum nach 
 ihm benannt wurde. Aber wehe jemand stellt seinen Namen in frage!
 //KI Beschreibung
-25-----------------------------------------------------
+24-----------------------------------------------------
 Ronni: 
 Ronni ist Informatiker. Er schläft nie und ernährt 
 sich hauptsächlich von Mate und Monster Energy™®.
 //KI Beschreibung
-26-----------------------------------------------------
+25-----------------------------------------------------
 Balduin: 
 Er ist Hausmeister an einer Schule und nimmt seinen Job sehr ernst. Wehe
 jemand hält sich nicht an seine Regeln, dann holt er seine Eisenstange!
 //KI Beschreibung
-27-----------------------------------------------------
+26-----------------------------------------------------
 Balduin: 
 Er ist Hausmeister an einer Schule und nimmt seinen Job sehr ernst. Er
 holt er seine Eisenstange, wenn sich jemand nicht an seine Regeln hält.
 //KI Beschreibung
-28-----------------------------------------------------
+27-----------------------------------------------------
 Albus Percival: 
 Er ist Schulleiter einer großen Zauberschule. Er ist trotz 
 seines alters noch schnell auf den Beinen und macht kurzen Prozess.
+//KI Beschreibung
+28-----------------------------------------------------
+Jussi: 
+?
+
 //KI Beschreibung
 29--------------------------------------------------------------------
 
