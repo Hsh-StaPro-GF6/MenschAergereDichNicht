@@ -2,6 +2,7 @@ import greenfoot.*;
 
 import java.util.*;
 
+import javax.swing.JOptionPane;
 
 public class Menu extends World {
     private static final int SPACING = 60;
@@ -26,6 +27,10 @@ public class Menu extends World {
     private NameBracket[] brackets = new NameBracket[4];
     private StartButton startButton;
     private TextField textField;
+    private String name0;
+    private String name1;
+    private String name2;
+    private String name3;
 
     public Menu() {
         super(12 * SPACING, 12 * SPACING, 1);
@@ -34,16 +39,16 @@ public class Menu extends World {
 
         //showText("Mensch ärgere dich nicht!", 6 * SPACING, 1 * SPACING);
         
-        Name name0= new Name(0,memberTypes[0]);
+        Name name0= new Name(0,memberTypes[0],"");
         addObject(name0,6 * SPACING, 3 * SPACING);
         
-        Name name1= new Name(1,memberTypes[0]);
+        Name name1= new Name(1,memberTypes[0],"");
         addObject(name1,3 * SPACING, 3 * SPACING);
-        Name name2= new Name(2,memberTypes[0]);
+        Name name2= new Name(2,memberTypes[0],"");
         addObject(name2,3 * SPACING, 4 * SPACING);
-        Name name3= new Name(3,memberTypes[0]);
+        Name name3= new Name(3,memberTypes[0],"");
         addObject(name3,3 * SPACING, 5 * SPACING);
-        Name name4= new Name(4,memberTypes[0]);
+        Name name4= new Name(4,memberTypes[0],"");
         addObject(name4,3 * SPACING, 6 * SPACING);
 
         
@@ -78,16 +83,42 @@ public class Menu extends World {
     }
 
     public void act() {
-        if (Greenfoot.mouseClicked(startButton)) {
+         if (Greenfoot.mouseClicked(startButton)) {
             if (brackets[0].getSelectedIndex() + brackets[1].getSelectedIndex() + brackets[2].getSelectedIndex() + brackets[3].getSelectedIndex() == 0)
                 return;
+            
+            if(memberTypes[brackets[0].getSelectedIndex()].getName().equals("Mensch")) {
+                name0 = JOptionPane.showInputDialog("Name von Spieler 1:");
+            } else {
+                name0 = memberTypes[brackets[0].getSelectedIndex()].getName();
+            }
+            
+            if(memberTypes[brackets[1].getSelectedIndex()].getName().equals("Mensch")) {
+                name1 = JOptionPane.showInputDialog("Name von Spieler 2:");
+            } else {
+                name1 = memberTypes[brackets[1].getSelectedIndex()].getName();
+            }
+            
+            if(memberTypes[brackets[2].getSelectedIndex()].getName().equals("Mensch")) {
+                name2 = JOptionPane.showInputDialog("Name von Spieler 3:");
+            } else {
+                name2 = memberTypes[brackets[2].getSelectedIndex()].getName();
+            }
+            
+            if(memberTypes[brackets[3].getSelectedIndex()].getName().equals("Mensch")) {
+                name3 = JOptionPane.showInputDialog("Name von Spieler 4:");
+            } else {
+                name3 = memberTypes[brackets[0].getSelectedIndex()].getName();
+            }
+            //String name0 = JOptionPane.showInputDialog("Please input a value");
 
             Greenfoot.setWorld(new GameBoard(
                     memberTypes[brackets[0].getSelectedIndex()],
                     memberTypes[brackets[1].getSelectedIndex()],
                     memberTypes[brackets[2].getSelectedIndex()],
-                    memberTypes[brackets[3].getSelectedIndex()]
-            ));
+                    memberTypes[brackets[3].getSelectedIndex()],
+                    name0 ,name1, name2, name3));
+            
         }
     }
 

@@ -16,7 +16,7 @@ public class GameBoard extends World {
     private int initState = 0;
 
     private final StatusDisplay statusDisplay;
-
+    private final ResetButton resetButton;
     private final GameMember member0;
     private final GameMember member1;
     private final GameMember member2;
@@ -29,7 +29,7 @@ public class GameBoard extends World {
     /**
      * Erstellt ein neues Spielfeld.
      */
-    public GameBoard(GameMember member0, GameMember member1, GameMember member2, GameMember member3) {
+    public GameBoard(GameMember member0, GameMember member1, GameMember member2, GameMember member3, String name0, String name1, String name2, String name3) {
         super(12 * SPACING, 12 * SPACING, 1);
 
         this.member0 = member0;
@@ -91,7 +91,7 @@ public class GameBoard extends World {
 
         // Base-Felder anlegen
         if(!member0.getName().equals("Keiner")) {
-                addObject(new Name(5,member0), SPACING + 30, 30);
+                addObject(new Name(6,member0,name0), SPACING + 30, 20);
             }
         addObject(new BaseField(gameManager, gameManager.getPlayers()[0], 0), SPACING, SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[0], 1), SPACING, 2 * SPACING);
@@ -99,7 +99,7 @@ public class GameBoard extends World {
         addObject(new BaseField(gameManager, gameManager.getPlayers()[0], 3), 2 * SPACING, 2 * SPACING);
 
         if(!member1.getName().equals("Keiner")) {
-                addObject(new Name(5,member1), 10*SPACING + 30, 30);
+                addObject(new Name(6,member1,name1), 10*SPACING + 30, 20);
             }
         addObject(new BaseField(gameManager, gameManager.getPlayers()[1], 0), 10 * SPACING, SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[1], 1), 10 * SPACING, 2 * SPACING);
@@ -107,7 +107,7 @@ public class GameBoard extends World {
         addObject(new BaseField(gameManager, gameManager.getPlayers()[1], 3), 11 * SPACING, 2 * SPACING);
 
         if(!member2.getName().equals("Keiner")) {
-                addObject(new Name(5,member2), 10* SPACING + 30, 10* SPACING + 30);
+                addObject(new Name(6,member2,name2), 10* SPACING + 30, 9* SPACING + 20);
             }
         addObject(new BaseField(gameManager, gameManager.getPlayers()[2], 0), 10 * SPACING, 10 * SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[2], 1), 10 * SPACING, 11 * SPACING);
@@ -115,7 +115,7 @@ public class GameBoard extends World {
         addObject(new BaseField(gameManager, gameManager.getPlayers()[2], 3), 11 * SPACING, 11 * SPACING);
 
        if(!member3.getName().equals("Keiner")) {
-                addObject(new Name(5,member3), 30,10* SPACING + 30);
+                addObject(new Name(6,member3,name3), SPACING + 30,9* SPACING + 20);
             }
         addObject(new BaseField(gameManager, gameManager.getPlayers()[3], 0), SPACING, 10 * SPACING);
         addObject(new BaseField(gameManager, gameManager.getPlayers()[3], 1), SPACING, 11 * SPACING);
@@ -145,13 +145,15 @@ public class GameBoard extends World {
 
         // Status-Anzeige anlegen
         addObject(statusDisplay = new StatusDisplay(gameManager), 6 * SPACING, 6 * SPACING);
-
+        addObject(resetButton = new ResetButton(), 6 * SPACING, 6 * SPACING);
         gameManager.kiStarter();
     }
 
     // Spielfeld zeichnen
     public void act() {
-
+        if (Greenfoot.mouseClicked(resetButton)) {
+            Greenfoot.setWorld(new Menu());
+        }
         //Delay um Welt aufbauen zu lassen
         if (initState < 20) {
             initState++;
@@ -178,10 +180,10 @@ public class GameBoard extends World {
         }
 
         //Setze Würfel an aktuelle Spielerbase
-            if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[0]) statusDisplay.setLocation(3 * SPACING, 1 * SPACING);
-            if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[1]) statusDisplay.setLocation(11 * SPACING, 3 * SPACING);
-            if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[2]) statusDisplay.setLocation(9 * SPACING, 11 * SPACING);
-            if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[3]) statusDisplay.setLocation(1 * SPACING, 9 * SPACING);
+            if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[0]) statusDisplay.setLocation(3 * SPACING, 1 * SPACING + 30);
+            if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[1]) statusDisplay.setLocation(9 * SPACING, 1 * SPACING + 30);
+            if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[2]) statusDisplay.setLocation(9 * SPACING, 10 * SPACING + 30);
+            if(gameManager.getCurrentPlayer() == gameManager.getPlayers()[3]) statusDisplay.setLocation(3 * SPACING, 10 * SPACING + 30);
 
 
         //Entweder (Würfel rollt nicht und wird angeklickt) oder (KI ist dran und keine Animation in gange)

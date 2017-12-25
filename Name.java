@@ -8,7 +8,7 @@ public class Name extends Actor
     /**
      * Ein Textfeld welches, verschieden Texte anzeigt
      */
-    public Name(int field,GameMember gameMember) 
+    public Name(int field,GameMember gameMember,String name) 
     {
         // welchselt zwischen verschiedenen Text feldern
         switch(field){
@@ -53,11 +53,20 @@ public class Name extends Actor
           bild4.drawString("Spieler 4:",30,35);
           break;
         case 5:
-          GreenfootImage bild5 = new GreenfootImage(50,50);
-          bild5.scale(200,50);
+          GreenfootImage bild5 = new GreenfootImage("images/Kastchen.png");
+        //GreenfootImage bild5 = new GreenfootImage(200,50);
+          bild5.scale(175,30);
           this.setImage(bild5);
-          bild5.setFont(bild5.getFont().deriveFont(30f));
-          bild5.drawString(gameMember.getName(),30,35);
+          bild5.setFont(bild5.getFont().deriveFont(20f));
+          bild5.drawString(gameMember.getName(),5,20);
+          break;
+        case 6:
+          GreenfootImage bild6 = new GreenfootImage("images/Kastchen.png");
+        //GreenfootImage bild5 = new GreenfootImage(200,50);
+          bild6.scale(175,30);
+          this.setImage(bild6);
+          bild6.setFont(bild6.getFont().deriveFont(20f));
+          bild6.drawString(name,5,20);
           break;
         }
     }    
