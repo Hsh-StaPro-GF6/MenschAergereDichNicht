@@ -19,7 +19,7 @@ public class TextField extends Actor
         FileReader fileReader = new FileReader("TextField.txt");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String begin=bufferedReader.readLine();        
-        String begin2= begin.substring(1,3);
+        String begin2= begin.substring(2,4);
         
         int maxTextBlockNumber= Integer.parseInt(begin2);
         this.maxTextBlockNumber = maxTextBlockNumber;
