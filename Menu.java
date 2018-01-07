@@ -19,9 +19,9 @@ public class Menu extends World {
             new AiMember("Hodor (KI)", 3, 3, false),
             new AiMember("Ernst-August (KI)", 4, 3, false),
             new AiMember("Ronni (KI)", 3, 4, false),
-            new AiMember("Balduin (KI)", 4, 4, false),
-            new AiMember("Albus Percival (KI)", 5, 4, false),
-            new AiMember("Jussi (KI)", 4, 4, false) // overloard
+            new AiMember("Balduin (KI)", 4, 3, false),
+            new AiMember("Albus Percival (KI)", 4, 4, false),
+            new AiMember("? (KI)", Greenfoot.getRandomNumber(4), Greenfoot.getRandomNumber(4), false) // overloard
     };
 
     private NameBracket[] brackets = new NameBracket[4];

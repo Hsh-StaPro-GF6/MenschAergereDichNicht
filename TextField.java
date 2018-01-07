@@ -22,7 +22,7 @@ public class TextField extends Actor
         String begin2= begin.substring(2,4);
         
         int maxTextBlockNumber= Integer.parseInt(begin2);
-        this.maxTextBlockNumber = maxTextBlockNumber;
+        this.maxTextBlockNumber = maxTextBlockNumber+1;
                     } catch (IOException e) {
           e.printStackTrace();
        }
@@ -43,7 +43,7 @@ public class TextField extends Actor
         // überprüft ob das Dokument zu ende ist
         while((line = bufferedReader.readLine()) != null) {
             // öffnet den vorher ausgewählten Block
-            if (line.startsWith(String.valueOf(textBlockNumber+1))) {
+            if (line.startsWith(String.valueOf(textBlockNumber))) {
                 String zeile1 = bufferedReader.readLine();
                 String zeile2 = bufferedReader.readLine();
                 String zeile3 = bufferedReader.readLine();

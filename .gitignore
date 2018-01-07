@@ -1,9 +1,7 @@
-.idea/
 
-*.class
-*.ctxt
-project\.greenfoot
-
-images/\.DS_Store
-
-doc/
+Ki Verhalten Namen
+.DS_Store
+Ki Verhalten Namen
+project.greenfoot
+TODO Liste
+*.greenfoot

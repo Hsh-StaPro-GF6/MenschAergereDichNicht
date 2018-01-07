@@ -1,4 +1,4 @@
-﻿|29|: Anzahl aller Blöcke (Muss immer zweistellig sein)
+﻿|28|: Anzahl aller Blöcke (Muss immer zweistellig sein)
 Schreib Konvention:
 der Inhalt von jedem Block muss in den ersten 3 Zeilen nach dem Zeilenbegrenzer stehen, Kommentare können in den Folgenden Zeilen stehen und müssen mit "//" begonen werden.
 einzelne Blöcke müssen mit folgendem Zeilenbegrenzer getrennt werden:
@@ -8,36 +8,40 @@ X--------------------------------------------------------------------
 X entspricht der Block nummer
 Einzelne Zeilen dürfen nicht mit einer Zahl beginnen und nicht länger als die Zeilenbegrenzer sein.
 
-1--------------------------------------------------------------------
-Willkommen zum Spiel: "Mensch äreger dich nicht", 
-der Gruppe GF6 des Startprojekts WiSe 17/18
+0--------------------------------------------------------------------
+ Willkommen zum Spiel: "Mensch äreger dich nicht", 
+ der Gruppe GF6 des Startprojekts WiSe 17/18
           <--- Ki Spieler                            Spielanleitung --->
 // Begrüßung, Einleitung, Einteilung
-2--------------------------------------------------------------------
- 1. Die Spieler auswählen
+1--------------------------------------------------------------------
+ Die Spieler auswählen
  Jeder Spieler muss einzeln ausgewählt werden, es können Menschen
- und KIs audgewählt werden. Die Kis haben verschieden Eigneschaften
+ und KIs ausgewählt werden. Die KIs haben verschieden Eigenschaften.
 // Anleitung
-3-----------------------------------------------------
- 2. Spiel starten
- Um das Spiel zustarten, muss man auf den Button los drücken,
- wenn Spieler Menschen sind, müssen diese nun ihren Namen eingeben.
+2-----------------------------------------------------
+ Spiel starten
+ Um das Spiel zu starten, muss man auf den Start Button drücken.
 
 // Anleitung
+3-----------------------------------------------------
+ Mensch auswählen
+ Sollte ein Spieler menschlich sein, für diesen einen Name, 
+ in einem Pop-Up Fenster ausgewählt werden.
+
+//Anleitung
 4-----------------------------------------------------
- 3. Aktueller Spieler
- der aktuelle Spieler wird durch die Position des Würfels angezeigt
+ Aktueller Spieler
+ der aktuelle Spieler wird durch die Position des Würfels angezeigt.
 
 //Anleitung
 5-----------------------------------------------------
- 4. Menschlicher Zug
+ Menschlicher Zug
  Der Menschliche Zug beginnt wenn er auf den Würfel klickt.
-
 
 //Anleitung
 6-----------------------------------------------------
- 4. Menschlicher Zug
- Die spielbaren Figuren werden mit einem gelben Rand gekenzeichnet 
+ Menschlicher Zug
+ Die spielbaren Figuren werden mit einem gelben Rand gegenzeichnet 
  und können mit der Maus ausgewählt werden.
 //Anleitung
 7-----------------------------------------------------
@@ -57,27 +61,28 @@ der Gruppe GF6 des Startprojekts WiSe 17/18
 //Regeln
 10-----------------------------------------------------
  Regel II:
- Man das eigene Spawnfeld freimachen wenn das Eigene Startfeld besetz ist
-
+ Man muss das eigene Spawnfeld freimachen, 
+ wenn das Eigene Startfeld besetzt ist
 //Regeln
 11-----------------------------------------------------
  Regel III:
- Man darf 3 mal würfeln, wenn man sich nicht bewegen kann
+ Man darf 3-mal würfeln, wenn man sich nicht bewegen kann.
 
 //Regeln
 12-----------------------------------------------------
  Regel IV:
- Wenn man eine 6 gewürfelt hat darf man noch mal  würfeln
+ Wenn man eine 6 gewürfelt hat darf man noch mal würfeln.
 
 //Regeln
 13-----------------------------------------------------
  Regel V:
- Im Zielfeld, darf man keine Figuren überspriongen.
+ Im Endfeld, darf man keine Figuren überspringen.
 
 //Regeln
 14-----------------------------------------------------
  Regel VI:
- Man muss gegnerische Figuren schlagen, eigene Figuren darf man nicht schlagen
+ Man muss gegnerische Figuren schlagen, 
+ eigene Figuren darf man nicht schlagen
 
 //Regeln
 15--------------------------------------------------------------------
@@ -92,37 +97,37 @@ auch wenn er nicht genau versteht was das bedeuten soll.
 //KI Beschreibung
 17-----------------------------------------------------
 Donald: 
-Donald ist sehr wütend, da er aber alt ist, ist er sehr 
+Donald ist sehr wütend. Da er aber alt ist, ist er sehr 
 langsam. Außerdem hat er kleine Hände. FAKENEWS!
 //KI Beschreibung
 18-----------------------------------------------------
 Gitte:
 Gitte ist eine alte liebe Rentnerin auf ihrem E-Rollstuhl.
-Sie ist sehr langsam und tut niemandem etwa zurleide.
+Sie ist sehr langsam und tut niemandem etwas zuleide.
 19-----------------------------------------------------
 Horst: 
 Horst ist der verbitterte Ehemann von Gitte. Er ist auch
-nicht mehr der schnellste aber sehr schnell gereizt.
+nicht mehr der schnellste, aber sehr schnell gereizt.
 //KI Beschreibung
 20-----------------------------------------------------
 Sissi: 
 Sissi lebt in einem großen Schloss. 
-Sie ist flink unterwegs aber eine Pazifistin.
+Sie ist flink unterwegs, aber eine Pazifistin.
 //KI Beschreibung
 21-----------------------------------------------------
 Rooobert: 
-Er hat eine nervige Ehefrau aber dafür sehr teure Autos, 
+Er hat eine nervige Ehefrau, aber dafür sehr teure Autos, 
 weshalb er schnell unterwegs ist.
 //KI Beschreibung
 22-----------------------------------------------------
 Hodor: 
 Hodors Wortschatz ist sehr begrenzt. Er ist sehr nett 
-zu seinen Freunden aber sehr hart zu seinen Feinden... HODOR!
+zu seinen Freunden und hart zu seinen Feinden... HODOR!
 //KI Beschreibung
 23-----------------------------------------------------
 Ernst-August: 
-Er ist spätestens Fame seit ein Einkaufszentrum nach 
-ihm benannt wurde. Aber wehe jemand stellt seinen Namen in frage!
+Er ist spätestens Fame, seit ein Einkaufszentrum nach 
+ihm benannt wurde. Aber wehe jemand stellt seinen Namen in Frage!
 //KI Beschreibung
 24-----------------------------------------------------
 Ronni: 
@@ -131,25 +136,21 @@ sich hauptsächlich von Mate und Monster Energy™®.
 //KI Beschreibung
 25-----------------------------------------------------
 Balduin: 
-Er ist Hausmeister an einer Schule und nimmt seinen Job sehr ernst. Wehe
-jemand hält sich nicht an seine Regeln, dann holt er seine Eisenstange!
-//KI Beschreibung
-26-----------------------------------------------------
-Balduin: 
 Er ist Hausmeister an einer Schule und nimmt seinen Job sehr ernst. Er
 holt er seine Eisenstange, wenn sich jemand nicht an seine Regeln hält.
 //KI Beschreibung
-27-----------------------------------------------------
+26-----------------------------------------------------
 Albus Percival: 
 Er ist Schulleiter einer großen Zauberschule. Er ist trotz 
-seines alters noch schnell auf den Beinen und macht kurzen Prozess.
+seines Alters noch schnell auf den Beinen und macht kurzen Prozess.
 //KI Beschreibung
-28-----------------------------------------------------
-Jussi: 
-?
+27-----------------------------------------------------
+?: 
+? ist sehr sprunghaft und kann sich nicht entscheiden wie er spielen 
+soll und spielt deshalb jedes Spiel anders.
 
 //KI Beschreibung
-29--------------------------------------------------------------------
+28--------------------------------------------------------------------
 
           <--- KI Spieler                           Anleitung --->
 

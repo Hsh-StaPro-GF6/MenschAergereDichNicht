@@ -168,15 +168,23 @@ public class GameBoard extends World {
         }
 
         //Hack aktivieren
-        if (Greenfoot.isKeyDown("A") && Greenfoot.isKeyDown("9") && Greenfoot.isKeyDown("Ä")) {
+        if (Greenfoot.isKeyDown("A") && Greenfoot.isKeyDown("9") && Greenfoot.isKeyDown("P")) {
             hackActive = true;
         } else {
             hackActive = false;
         }
-
+        
         //Instant win für den current player
         if (Greenfoot.isKeyDown("control") && Greenfoot.isKeyDown("1") && Greenfoot.isKeyDown("#")) {
             addObject(new PlayerWonDisplay(gameManager.getCurrentPlayer()), getWidth() / 2, getHeight() / 2);
+            for(int i = 0; i < 4; i++){
+                gameManager.getMap().moveFigureToBase(gameManager.getCurrentPlayer().getFigures()[i]);
+                //gameManager.getMap().moveFigureToHomePosition(gameManager.getCurrentPlayer().getFigures()[i],i);
+             }  
+             
+            for(int i = 0; i < 4; i++){
+                gameManager.getMap().moveFigureToHomePosition(gameManager.getCurrentPlayer().getFigures()[i],i);
+             }   
         }
 
         //Setze Würfel an aktuelle Spielerbase

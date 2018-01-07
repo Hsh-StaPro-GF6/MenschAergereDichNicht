@@ -9,7 +9,7 @@ public class Figure {
 
     /**
      * Instanziert eine Spielfigur des Spielers.
-     * Diese sollte anschließend mit Map.moveFigureToBase() in die Base gesetzt werden.
+     * Diese sollte anschließend mit Map.moveFigureTo() in die Base gesetzt werden.
      *
      * @param map    Die Instanz der Map.
      * @param player Die Instanz des Spielers, dem diese Figur gehört.
