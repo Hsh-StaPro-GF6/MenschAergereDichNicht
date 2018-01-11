@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.io.*;
+import javax.swing.JOptionPane;
 
 /**
  * Ausgabe der Anleitung, Regeln und der einzelnen Ki Spielern
@@ -15,8 +16,10 @@ public class TextField extends Actor
      */
     public TextField()
     {
-       try {            
-        FileReader fileReader = new FileReader("TextField.txt");
+   try {            
+        File f = new File("./TextField.txt");
+
+        FileReader fileReader = new FileReader(f);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String begin=bufferedReader.readLine();        
         String begin2= begin.substring(2,4);
@@ -35,8 +38,11 @@ public class TextField extends Actor
      * Aktualiesiert das ausgegeben Bild, mit dem gerade ausgewählten Textblock
      */
     private void updateImage() {
-       try {            
-        FileReader fileReader = new FileReader("TextField.txt");
+ try {            
+        File f = new File("./TextField.txt");
+
+        FileReader fileReader = new FileReader(f);
+        //FileReader fileReader = new FileReader(new File(this.getClass().getResource("/TextField.txt")));
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
         String line;
@@ -59,8 +65,12 @@ public class TextField extends Actor
             }
         }
                     } catch (IOException e) {
+          
           e.printStackTrace();
+          JOptionPane.showMessageDialog(null,e.getMessage());
+          System.out.println(e.getMessage());
        }
+    
     }
     
     /*
